@@ -61,3 +61,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+#MY STUFF
+run/
+lib/
+.idea/
+out/
+src/api/java/

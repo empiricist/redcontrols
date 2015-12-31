@@ -1,0 +1,22 @@
+#Comment format, make sure no spaces by the =
+
+#Items
+item.redcontrols:debugger.name=Debugger
+item.redcontrols:bearingCompass.name=Bearing Compass
+item.redcontrols:powerWand.name=Redstone Power Wand
+
+#Blocks
+tile.redcontrols:switchPanel.name=Switch Panel
+tile.redcontrols:buttonPanel.name=Button Panel
+tile.redcontrols:indicatorPanel.name=Indicator Panel
+tile.redcontrols:toggleSwitch.name=Toggle Switch
+tile.redcontrols:power.name=Power Emitter
+tile.redcontrols:analogPower.name=Analog Power Emitter
+
+#Keybinds
+keys.redcontrols.category=Red Controls
+keys.redcontrols.charge=Charge
+keys.redcontrols.release=Release
+
+#CreativeTab
+itemGroup.redcontrols=Red Controls
