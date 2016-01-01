@@ -48,6 +48,7 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
         return new boolean[16];
     }
 
+
     @Override
     public Packet getDescriptionPacket()
     {

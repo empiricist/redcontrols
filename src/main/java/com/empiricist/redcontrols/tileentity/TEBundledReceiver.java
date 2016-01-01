@@ -16,6 +16,7 @@ import crazypants.enderio.conduit.redstone.IInsulatedRedstoneConduit;
 import crazypants.enderio.conduit.redstone.IRedstoneConduit;
 import crazypants.enderio.conduit.redstone.InsulatedRedstoneConduit;
 import crazypants.enderio.conduit.redstone.RedstoneConduit;
+import dan200.computercraft.api.ComputerCraftAPI;
 import mods.immibis.redlogic.api.wiring.*;
 import mods.immibis.redlogic.api.wiring.IBundledEmitter;
 import mods.immibis.redlogic.api.wiring.IConnectable;
@@ -93,6 +94,18 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 //                        }
                     }
                 }
+            }
+            //CC
+            if(Loader.isModLoaded("ComputerCraft")){
+                int ccSignal = ComputerCraftAPI.getBundledRedstoneOutput(worldObj, xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ, dir.getOpposite().ordinal());
+                if(ccSignal == -1){continue;}//no CC signal here
+                //convert to unsigned byte array
+                byte[] ccSignals = new byte[16];
+                for (int i = 0; i < ccSignals.length; i++){
+                    ccSignals[i] = (byte)((ccSignal & 1) != 0 ? -128 : 0);
+                    ccSignal = (short) (ccSignal >> 1);
+                }
+                in = maxSignal(in, ccSignals);
             }
             //MFR
             in = maxSignal(in, blockSignals);
