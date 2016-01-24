@@ -1,6 +1,7 @@
 package com.empiricist.redcontrols.init;
 
 import com.empiricist.redcontrols.block.*;
+import com.empiricist.redcontrols.handler.ConfigurationHandler;
 import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.tileentity.TileEntityButtons;
 import com.empiricist.redcontrols.tileentity.TileEntityIndicators;
@@ -19,19 +20,31 @@ public class ModBlocks {
     public static final BlockBase analogPower = new BlockAnalogPower();
 
     public static void init(){
-        GameRegistry.registerBlock( switches, "switchPanel");
-        GameRegistry.registerTileEntity(TileEntitySwitches.class, "switchPanel");
+        if(ConfigurationHandler.enableSwitches){
+            GameRegistry.registerBlock( switches, "switchPanel");
+            GameRegistry.registerTileEntity(TileEntitySwitches.class, "switchPanel");
+        }
 
-        GameRegistry.registerBlock( buttons, "buttonPanel");
-        GameRegistry.registerTileEntity(TileEntityButtons.class, "buttonPanel");
+        if(ConfigurationHandler.enableButtons) {
+            GameRegistry.registerBlock(buttons, "buttonPanel");
+            GameRegistry.registerTileEntity(TileEntityButtons.class, "buttonPanel");
+        }
 
-        GameRegistry.registerBlock( indicators, "indicatorPanel");
-        GameRegistry.registerTileEntity(TileEntityIndicators.class, "indicatorPanel");
+        if(ConfigurationHandler.enableIndicators) {
+            GameRegistry.registerBlock(indicators, "indicatorPanel");
+            GameRegistry.registerTileEntity(TileEntityIndicators.class, "indicatorPanel");
+        }
 
-        GameRegistry.registerBlock( toggleSwitch, "toggleSwitch");
+        if(ConfigurationHandler.enableSwitch) {
+            GameRegistry.registerBlock(toggleSwitch, "toggleSwitch");
+        }
 
-        GameRegistry.registerBlock( power, "power");
+        if(ConfigurationHandler.enablePowerWand) {
+            GameRegistry.registerBlock(power, "power");
+        }
 
-        GameRegistry.registerBlock( analogPower, "analogPower");
+        if(ConfigurationHandler.enableAnalog) {
+            GameRegistry.registerBlock(analogPower, "analogPower");
+        }
     }
 }

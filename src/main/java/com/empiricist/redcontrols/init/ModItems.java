@@ -1,5 +1,6 @@
 package com.empiricist.redcontrols.init;
 
+import com.empiricist.redcontrols.handler.ConfigurationHandler;
 import com.empiricist.redcontrols.item.*;
 import com.empiricist.redcontrols.reference.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -13,8 +14,16 @@ public class ModItems {
 
     //register items from mod
     public static void init(){
-        GameRegistry.registerItem(debugger, "debugger");
-        GameRegistry.registerItem(itemBearingCompass, "itemBearingCompass");
-        GameRegistry.registerItem(powerWand, "powerWand");
+        if(ConfigurationHandler.enableDebugger) {
+            GameRegistry.registerItem(debugger, "debugger");
+        }
+
+        if(ConfigurationHandler.enableCompass) {
+            GameRegistry.registerItem(itemBearingCompass, "itemBearingCompass");
+        }
+
+        if(ConfigurationHandler.enablePowerWand) {
+            GameRegistry.registerItem(powerWand, "powerWand");
+        }
     }
 }
