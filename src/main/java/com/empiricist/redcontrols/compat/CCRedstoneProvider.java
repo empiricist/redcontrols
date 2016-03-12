@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 
 @Optional.Interface(iface = "dan200.computercraft.api.redstone.IBundledRedstoneProvider", modid = "ComputerCraft", striprefs = true)
 public class CCRedstoneProvider implements IBundledRedstoneProvider {
+
     @Override
     public int getBundledRedstoneOutput(World world, int x, int y, int z, int side) {
         TileEntity te = world.getTileEntity(x,y,z);

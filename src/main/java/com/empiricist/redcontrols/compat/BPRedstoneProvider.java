@@ -28,12 +28,12 @@ public class BPRedstoneProvider implements IRedstoneProvider {
     @Optional.Method(modid="bluepower")
     public IBundledDevice getBundledDeviceAt(World world, int x, int y, int z, ForgeDirection side, ForgeDirection face) {
         if (face != ForgeDirection.UNKNOWN || side == ForgeDirection.UNKNOWN) {
-            return null;
+            //return null;
         }
         LogHelper.info("getting bundled device");
 
         TileEntity te = world.getTileEntity(x,y,z);
-        if( te instanceof TEBundledEmitter){
+        if( te instanceof TEBundledEmitter){ //null just returns false
             TEBundledEmitter teb = (TEBundledEmitter)te;
             return (IBundledDevice)teb;
         }

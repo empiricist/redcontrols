@@ -45,11 +45,13 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
     public byte[] signals;
     public byte[] blockSignals;
     public Object BPCache;
+    public byte[][] BPinputs;
 
     public TEBundledReceiver(){
         signals = new byte[]{0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0};
         blockSignals = signals;
         BPCache = Loader.isModLoaded("bluepower") ? initCache() : null;
+        BPinputs = new byte[6][16];
     }
 
     //this one
@@ -72,7 +74,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
                 for( int i = -1; i < 6; i++ ){
                     //if(!worldObj.isRemote){LogHelper.info(" trying direction " + i);}
                     in = maxSignal(in, ((IBundledEmitter) te).getBundledCableStrength(i, dir.getOpposite().ordinal()));
-                }
+            }
                 //in = maxSignal(in, ((IBundledEmitter) te).getBundledCableStrength(dir.ordinal(), dir.getOpposite().ordinal()));
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
             }
@@ -81,9 +83,29 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
                 in = maxSignal(in, ProjectRedAPI.transmissionAPI.getBundledInput(worldObj, xCoord, yCoord, zCoord, dir.ordinal()));
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
             }
+
             if(Loader.isModLoaded("bluepower") ){//&& te instanceof IBundledDevice){
-                for( int i = -1; i < 6; i++ ) {
-                    IBundledDevice dev = BPApi.getInstance().getRedstoneApi().getBundledDevice(worldObj, xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ, ForgeDirection.getOrientation(i), dir.getOpposite());
+                IConnectionCache<? extends IBundledDevice> connections = ((IConnectionCache<? extends IBundledDevice>) BPCache);
+
+                connections.recalculateConnections();
+                int connected = 0;
+                for (ForgeDirection s : ForgeDirection.VALID_DIRECTIONS)
+                    connected += (connections.getConnectionOnSide(s) != null) ? 1 : 0;
+
+                if (connected == 0)
+                    BPinputs[0] = new byte[16];
+/*
+                int pow = 0;
+                if (((BlockLamp) blockType).isInverted()) {
+                    pow = 255 - Math.min(Math.min(bundledPower[MinecraftColor.RED.ordinal()] & 0xFF, bundledPower[MinecraftColor.GREEN.ordinal()] & 0xFF), bundledPower[MinecraftColor.BLUE.ordinal()] & 0xFF);
+                } else {
+                    pow = Math.max( Math.max(bundledPower[MinecraftColor.RED.ordinal()] & 0xFF, bundledPower[MinecraftColor.GREEN.ordinal()] & 0xFF), bundledPower[MinecraftColor.BLUE.ordinal()] & 0xFF);
+                }
+                power = (int) ((pow / 256D) * 15);
+                sendUpdatePacket();
+
+                //for( int i = -1; i < 6; i++ ) {
+                    IBundledDevice dev = BPApi.getInstance().getRedstoneApi().getBundledDevice(worldObj, xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ, ForgeDirection.UNKNOWN, dir.getOpposite());
                     if (dev != null) {
 //                        if (!worldObj.isRemote) {
 //                            LogHelper.info("found bluepower to " + dir + " on? " + i + " " + dev.getClass().getSimpleName());
@@ -92,20 +114,23 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 //                        if (!worldObj.isRemote) {
 //                            LogHelper.info(" " + debugOutput(in));
 //                        }
-                    }
-                }
+                    }*/
+                //}
+                signals = maxSignal(signals, BPinputs[0]);
             }
+
             //CC
             if(Loader.isModLoaded("ComputerCraft")){
                 int ccSignal = ComputerCraftAPI.getBundledRedstoneOutput(worldObj, xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ, dir.getOpposite().ordinal());
-                if(ccSignal == -1){continue;}//no CC signal here
-                //convert to unsigned byte array
-                byte[] ccSignals = new byte[16];
-                for (int i = 0; i < ccSignals.length; i++){
-                    ccSignals[i] = (byte)((ccSignal & 1) != 0 ? -128 : 0);
-                    ccSignal = (short) (ccSignal >> 1);
+                if(ccSignal != -1){ //there is a signal
+                    //convert to unsigned byte array
+                    byte[] ccSignals = new byte[16];
+                    for (int i = 0; i < ccSignals.length; i++){
+                        ccSignals[i] = (byte)((ccSignal & 1) != 0 ? -128 : 0);
+                        ccSignal = (short) (ccSignal >> 1);
+                    }
+                    in = maxSignal(in, ccSignals);
                 }
-                in = maxSignal(in, ccSignals);
             }
             //MFR
             in = maxSignal(in, blockSignals);
@@ -149,7 +174,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
     public byte[] maxSignal(byte[] a, byte[] b){
         byte[] defVal = new byte[]{0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0};
         if(a==null){
-            //if(!worldObj.isRemote){LogHelper.info(" a was null, replacing with zeros");}
+            if(!worldObj.isRemote){LogHelper.info(" a was null, replacing with zeros");}
             if(b==null){
                 return defVal;
             }else{
@@ -157,7 +182,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             }
         }//else{if(!worldObj.isRemote){LogHelper.info(" a was not null, it was " + debugOutput(a));}}
         if(b==null){
-            //if(!worldObj.isRemote){LogHelper.info(" b was null, replacing with zeros");}
+            if(!worldObj.isRemote){LogHelper.info(" b was null, replacing with zeros");}
             return a;
         }//else{if(!worldObj.isRemote){LogHelper.info(" b was not null, it was " + debugOutput(b));}}
 
@@ -234,48 +259,57 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
     @Override
     @Optional.Method(modid="bluepower")
     public boolean canConnect(ForgeDirection side, IBundledDevice dev, ConnectionType type) {
-        return true;
+        LogHelper.info("Receiver returns " + (type == ConnectionType.STRAIGHT && side != ForgeDirection.UNKNOWN) + " for canConnect");
+        return type == ConnectionType.STRAIGHT && side != ForgeDirection.UNKNOWN;
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public IConnectionCache<? extends IBundledDevice> getBundledConnectionCache() {
+        //LogHelper.info("Receiver returns its connection cache");
         return (IConnectionCache<? extends IBundledDevice>) BPCache;
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public byte[] getBundledOutput(ForgeDirection side) {
-        return null;
+        LogHelper.info("Receiver returns all zeros for its output");
+        return new byte[16];
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public void setBundledPower(ForgeDirection side, byte[] power) {
-
+        //signals = maxSignal(signals, power.clone());
+        BPinputs[side.ordinal()] = power.clone();
+        LogHelper.info("Receiver sets its input on side " + side.name() + " to " + debugOutput(power));
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public byte[] getBundledPower(ForgeDirection side) {
-        return null;
+        LogHelper.info("Receiver returns its input on side " + side.name() + " as " + debugOutput(BPinputs[side.ordinal()]));
+        return BPinputs[side.ordinal()];
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public void onBundledUpdate() {
+        LogHelper.info("Receiver updates");
         onBundledInputChanged();
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public MinecraftColor getBundledColor(ForgeDirection side) {
-        return MinecraftColor.ANY;
+        LogHelper.info("Receiver returns 'none' for its color");
+        return MinecraftColor.NONE;
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public boolean isNormalFace(ForgeDirection side) {
+        LogHelper.info("Receiver returns true for normal face check");
         return true;
     }
 

@@ -5,7 +5,6 @@ import com.bluepowermod.api.connect.ConnectionType;
 import com.bluepowermod.api.connect.IConnectionCache;
 import com.bluepowermod.api.misc.MinecraftColor;
 import com.bluepowermod.api.wire.redstone.IBundledDevice;
-import com.empiricist.redcontrols.utility.LogHelper;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import mods.immibis.redlogic.api.wiring.IBundledEmitter;
@@ -20,8 +19,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetOutputNode;
-import powercrystals.minefactoryreloaded.api.rednet.connectivity.RedNetConnectionType;
 
 @Optional.InterfaceList({
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledEmitter", modid = "RedLogic", striprefs = true),
@@ -30,11 +27,11 @@ import powercrystals.minefactoryreloaded.api.rednet.connectivity.RedNetConnectio
         @Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true)
 })
 public class TEBundledEmitter extends TileEntity implements IBundledEmitter, IConnectable, IBundledTile, IBundledDevice {
-    public byte[] BPpower;
+    public byte[] BPinput;
     public Object BPCache;
 
     public TEBundledEmitter(){
-        BPpower = new byte[16];
+        BPinput = new byte[16];
         BPCache = Loader.isModLoaded("bluepower") ? initCache() : null;
     }
 
@@ -119,12 +116,12 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
 
     @Override
     @Optional.Method(modid="bluepower")
-    public void setBundledPower(ForgeDirection side, byte[] power) { BPpower = power.clone(); }
+    public void setBundledPower(ForgeDirection side, byte[] power) { BPinput = power.clone(); }
 
     @Override
     @Optional.Method(modid="bluepower")
     public byte[] getBundledPower(ForgeDirection side) {
-        return BPpower.clone();
+        return null;//BPinput.clone();
     }
 
     @Override
