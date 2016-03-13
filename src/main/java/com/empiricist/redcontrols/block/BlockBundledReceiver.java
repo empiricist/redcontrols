@@ -1,6 +1,7 @@
 package com.empiricist.redcontrols.block;
 
 import com.empiricist.redcontrols.tileentity.TEBundledReceiver;
+import com.empiricist.redcontrols.utility.LogHelper;
 import cpw.mods.fml.common.Optional;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -38,12 +39,14 @@ public class BlockBundledReceiver extends BlockContainerBase implements IRedNetI
     @Override
     public void updateTick(World world, int x, int y, int z, Random random) {
         super.updateTick(world, x, y, z, random);
+        LogHelper.info("Receiver block does update tick");
         updateTE(world, x, y, z);
     }
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block){
         super.onNeighborBlockChange(world, x, y, z, block);
+        LogHelper.info("Receiver block does block change update");
         updateTE(world, x, y, z);
     }
 

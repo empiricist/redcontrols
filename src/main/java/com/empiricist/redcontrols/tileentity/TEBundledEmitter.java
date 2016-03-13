@@ -5,6 +5,7 @@ import com.bluepowermod.api.connect.ConnectionType;
 import com.bluepowermod.api.connect.IConnectionCache;
 import com.bluepowermod.api.misc.MinecraftColor;
 import com.bluepowermod.api.wire.redstone.IBundledDevice;
+import com.empiricist.redcontrols.utility.LogHelper;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import mods.immibis.redlogic.api.wiring.IBundledEmitter;
@@ -96,7 +97,8 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
     @Override
     @Optional.Method(modid="bluepower")
     public boolean canConnect(ForgeDirection side, IBundledDevice dev, ConnectionType type) {
-        return true;//(type == ConnectionType.STRAIGHT);
+        //return true;//(type == ConnectionType.STRAIGHT);
+        return type == ConnectionType.STRAIGHT && side != ForgeDirection.UNKNOWN;
     }
 
     @Override
@@ -111,17 +113,20 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
     @Override
     @Optional.Method(modid="bluepower")
     public byte[] getBundledOutput(ForgeDirection side) {
+        //LogHelper.info("Emitter returns " + debugOutput(getBundledCableStrength(0, side.ordinal())) + " for its output");
         return getBundledCableStrength(0, side.ordinal());
     }
 
     @Override
     @Optional.Method(modid="bluepower")
-    public void setBundledPower(ForgeDirection side, byte[] power) { BPinput = power.clone(); }
+    public void setBundledPower(ForgeDirection side, byte[] power) {
+        BPinput = power.clone();
+    }
 
     @Override
     @Optional.Method(modid="bluepower")
     public byte[] getBundledPower(ForgeDirection side) {
-        return null;//BPinput.clone();
+        return BPinput.clone();
     }
 
     @Override
@@ -169,6 +174,14 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
         return BPApi.getInstance().getRedstoneApi().createBundledConnectionCache(this);
     }
 
+    public String debugOutput(byte[] bytes){
+        String result = "[";
+        for(int i = 0; i < bytes.length-1; i++){
+            result += bytes[i] + ",";
+        }
+        result += bytes[bytes.length-1] + "]";
+        return result;
+    }
 
     //MFR methods are in block class
 }

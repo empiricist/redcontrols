@@ -1,8 +1,11 @@
 package com.empiricist.redcontrols.item;
 
 
+import com.bluepowermod.api.BPApi;
+import com.bluepowermod.api.wire.redstone.IBundledDevice;
 import com.empiricist.redcontrols.utility.ChatHelper;
 import com.empiricist.redcontrols.utility.LogHelper;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +15,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Arrays;
 
 public class ItemDebugger extends ItemBase{
 
@@ -34,6 +40,26 @@ public class ItemDebugger extends ItemBase{
                 NBTTagCompound tag = new NBTTagCompound();
                 te.writeToNBT(tag);
                 ChatHelper.sendText(player, "NBTData:" + tag.toString());
+            }
+            if(Loader.isModLoaded("bluepower") ) {
+                for (ForgeDirection face : ForgeDirection.VALID_DIRECTIONS) {
+                    for (ForgeDirection sideDir : ForgeDirection.VALID_DIRECTIONS) {
+                        IBundledDevice dev = BPApi.getInstance().getRedstoneApi().getBundledDevice(world, x, y, z, face, sideDir);
+                        if (dev != null) {
+                            ChatHelper.sendText(player, "BP Bundled Device found at face " + face.name() + " and side " + sideDir.name());
+                            for (ForgeDirection outSide : ForgeDirection.VALID_DIRECTIONS) {
+                                ChatHelper.sendText(player, "Output " + outSide.name() + "  " + Arrays.toString(dev.getBundledOutput(outSide)));
+                            }
+                        }
+                    }
+                }
+                for (ForgeDirection sideDir : ForgeDirection.VALID_DIRECTIONS) {
+                    IBundledDevice dev = BPApi.getInstance().getRedstoneApi().getBundledDevice(world, x, y, z, ForgeDirection.UNKNOWN, sideDir);
+                    if (dev != null) {
+                        ChatHelper.sendText(player, "BP Bundled Device found at face UNKNOWN and side " + sideDir.name());
+                        ChatHelper.sendText(player, "Output " + Arrays.toString(dev.getBundledOutput(sideDir.getOpposite())));
+                    }
+                }
             }
         }
         return true;
