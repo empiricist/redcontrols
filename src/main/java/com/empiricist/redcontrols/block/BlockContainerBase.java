@@ -15,6 +15,8 @@ public class BlockContainerBase extends BlockContainer{
     public BlockContainerBase(Material material) {
         //material determines sound, map color, tool?, flammability, etc
         super(material);
+        setHardness(2);
+        setResistance(30);
         this.setCreativeTab(CreativeTabRedControls.RED_CONTROLS_TAB);
     }
 

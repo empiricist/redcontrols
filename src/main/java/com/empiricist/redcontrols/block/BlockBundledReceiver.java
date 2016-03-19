@@ -39,20 +39,22 @@ public class BlockBundledReceiver extends BlockContainerBase implements IRedNetI
     @Override
     public void updateTick(World world, int x, int y, int z, Random random) {
         super.updateTick(world, x, y, z, random);
-        LogHelper.info("Receiver block does update tick");
+        //LogHelper.info("Receiver block does update tick");
         updateTE(world, x, y, z);
     }
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block){
         super.onNeighborBlockChange(world, x, y, z, block);
-        LogHelper.info("Receiver block does block change update");
+        //LogHelper.info("Receiver block does block change update");
         updateTE(world, x, y, z);
     }
 
     public void updateTE(World world, int x, int y, int z){
+        //LogHelper.info("Receiver block does updateTE");
         TileEntity te = world.getTileEntity(x,y,z);
         if(te instanceof TEBundledReceiver){
+            //LogHelper.info("  TEBundledReceiver found");
             TEBundledReceiver teb = (TEBundledReceiver)te;
             teb.onBundledInputChanged();
         }

@@ -54,6 +54,7 @@ public class BlockIndicators extends BlockBundledReceiver{
         int m = (l == 0 ? 2 : (l == 1 ? 5 : (l == 2 ? 3 : (l == 3 ? 4 : 0))));
         world.setBlockMetadataWithNotify(x, y, z, m, 2);
 
+        updateTE(world, x, y, z);
     }
 
     @Override

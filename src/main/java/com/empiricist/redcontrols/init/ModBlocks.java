@@ -6,6 +6,7 @@ import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.tileentity.TileEntityButtons;
 import com.empiricist.redcontrols.tileentity.TileEntityIndicators;
 import com.empiricist.redcontrols.tileentity.TileEntitySwitches;
+import com.empiricist.redcontrols.tileentity.TileEntityText;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 
@@ -18,6 +19,7 @@ public class ModBlocks {
     public static final Block toggleSwitch = new BlockSwitch();
     public static final Block power = new BlockPower();
     public static final BlockBase analogPower = new BlockAnalogPower();
+    public static final BlockBundledReceiver text = new BlockText();
 
     public static void init(){
         if(ConfigurationHandler.enableSwitches){
@@ -46,5 +48,11 @@ public class ModBlocks {
         if(ConfigurationHandler.enableAnalog) {
             GameRegistry.registerBlock(analogPower, "analogPower");
         }
+
+        if(ConfigurationHandler.enableChar) {
+            GameRegistry.registerBlock(text, "textPanel");
+            GameRegistry.registerTileEntity(TileEntityText.class, "textPanel");
+        }
+
     }
 }

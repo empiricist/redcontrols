@@ -63,7 +63,7 @@ public class TileEntitySwitches extends TEBundledEmitter implements ITEBundledLi
         signals = (short)(s ? (signals | value) : ( signals & ~value));
     }
 
-
+    @Override
     public byte[] getBundledCableStrength(int blockFace, int toDirection) {
         boolean[] sig = getSignalsArray();
         byte[] result = new byte[16];

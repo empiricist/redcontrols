@@ -22,6 +22,7 @@ public class BlockButtons extends BlockSwitches{
     }
 
 
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int face, float clickX, float clickY, float clickZ){
         world.markBlockForUpdate(x, y, z); // Makes the server call getDescriptionPacket for a full data sync
         if(world.getBlockMetadata(x,y,z) != face){ return false; }

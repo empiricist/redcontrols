@@ -21,6 +21,7 @@ public class ConfigurationHandler {
     public static boolean enableIndicators = false;
     public static boolean enableSwitch = false;
     public static boolean enableAnalog = false;
+    public static boolean enableChar = false;
 
     public static boolean enablePowerWand = false;
     public static boolean enableDebugger = false;
@@ -64,6 +65,7 @@ public class ConfigurationHandler {
         enableIndicators = configuration.getBoolean("enableIndicators", Configuration.CATEGORY_GENERAL, true, "Enable indicator panel");
         enableSwitch = configuration.getBoolean("enableSwitch", Configuration.CATEGORY_GENERAL, true, "Enable toggle switch");
         enableAnalog = configuration.getBoolean("enableAnalog", Configuration.CATEGORY_GENERAL, true, "Enable analog emitter");
+        enableChar = configuration.getBoolean("enableChar", Configuration.CATEGORY_GENERAL, true, "Enable character panel");
 
         enablePowerWand = configuration.getBoolean("enablePowerWand", Configuration.CATEGORY_GENERAL, true, "Enable power wand");
         enableDebugger = configuration.getBoolean("enableDebugger", Configuration.CATEGORY_GENERAL, true, "Enable debugger");

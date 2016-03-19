@@ -3,6 +3,7 @@ package com.empiricist.redcontrols.init;
 import com.empiricist.redcontrols.block.BlockButtons;
 import com.empiricist.redcontrols.block.BlockIndicators;
 import com.empiricist.redcontrols.block.BlockSwitches;
+import com.empiricist.redcontrols.block.BlockText;
 import com.empiricist.redcontrols.handler.ConfigurationHandler;
 import com.empiricist.redcontrols.utility.LogHelper;
 import com.empiricist.redcontrols.init.ModItems;
@@ -40,6 +41,9 @@ public class Recipes {
         //indicator panel
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.indicators, 1, BlockIndicators.defaultMeta), "sss", "ggg", "sss", 's', new ItemStack(Blocks.stone_slab), 'g', "blockGlass"));
 
+        //character panel
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.text, 1, BlockText.defaultMeta), "sss", "gng", "sss", 's', new ItemStack(Blocks.stone_slab), 'g', "blockGlass", 'n', Items.sign));
+
         //toggle switch
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.toggleSwitch), new ItemStack(Blocks.lever), new ItemStack(Blocks.stone_button));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.toggleSwitch), new ItemStack(Blocks.lever), new ItemStack(Blocks.wooden_button));
@@ -48,9 +52,7 @@ public class Recipes {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.analogPower), "sss", "rtr", "sss", 's', new ItemStack(Blocks.stone_slab,1,3), 't', new ItemStack(Blocks.redstone_torch), 'r', "dustRedstone"));
 
         //power wand
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.powerWand), new ItemStack(Blocks.redstone_torch), new ItemStack(Items.stick), new ItemStack(Items.redstone));
-
-        //to add forge oredict shaped crafting recipe (can use oredict names or itemStacks)
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.powerWand), new ItemStack(Blocks.redstone_torch), "stickWood", "dustRedstone"));
     }
 
     public static void postInit(){
