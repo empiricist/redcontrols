@@ -4,7 +4,7 @@ package com.empiricist.redcontrols.reference;
 public class Reference {
     public static final String MOD_ID = "redcontrols";
     public static final String MOD_NAME = "Red Controls";
-    public static final String VERSION = "1.7.10-0.4";
+    public static final String VERSION = "1.7.10-0.5";
 
     public static final String CLIENT_PROXY_CLASS = "com.empiricist.redcontrols.proxy.ClientProxy";
     public static final String SERVER_PROXY_CLASS = "com.empiricist.redcontrols.proxy.ServerProxy";

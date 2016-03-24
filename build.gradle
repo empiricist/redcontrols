@@ -18,7 +18,7 @@ buildscript {
 apply plugin: 'forge'
 
 //these 5 things are what you change
-version = "1.7.10-0.4"//mod version (whatever scheme), end of final jar file name, change it here, mcmod.info, and Reference
+version = "1.7.10-0.5"//mod version (whatever scheme), end of final jar file name, change it here, mcmod.info, and Reference
 group = "com.empiricist.redcontrols" // prefix.yourname.modid, http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "redcontrols"//modid, start of jar file name
 

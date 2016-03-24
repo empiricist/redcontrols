@@ -21,6 +21,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.List;
 
@@ -53,6 +54,22 @@ public class BlockText extends BlockBundledReceiver {
             TileEntityText tet = (TileEntityText)te;
             //ChatHelper.sendText(player, (world.isRemote? "Client ":"Server ") + tet.getSignalShort() + ", " + tet.debugOutput(tet.signals));
             if(!world.isRemote){
+                if(player.getHeldItem() != null){
+                    int[] ids = {OreDictionary.getOreID("dyeWhite"), OreDictionary.getOreID("dyeOrange"), OreDictionary.getOreID("dyeMagenta"), OreDictionary.getOreID("dyeLightBlue"),
+                            OreDictionary.getOreID("dyeYellow"), OreDictionary.getOreID("dyeLime"), OreDictionary.getOreID("dyePink"), OreDictionary.getOreID("dyeGray"),
+                            OreDictionary.getOreID("dyeLightGray"), OreDictionary.getOreID("dyeCyan"), OreDictionary.getOreID("dyePurple"), OreDictionary.getOreID("dyeBlue"),
+                            OreDictionary.getOreID("dyeBrown"), OreDictionary.getOreID("dyeGreen"), OreDictionary.getOreID("dyeRed"), OreDictionary.getOreID("dyeBlack")};
+                    for(int id : OreDictionary.getOreIDs(player.getHeldItem()) ){
+                        for(int i = 0; i < ids.length; i++){
+                            if(id == ids[i]){
+                                tet.setDyeColor(i);
+                                world.markBlockForUpdate(x,y,z);
+                                return true;
+                            }
+                        }
+                    }
+                }
+
                 byte mode = tet.changeMode();
                 if(mode==0){
                     ChatHelper.sendText(player, "Mode: Unicode Character (16 bits)");

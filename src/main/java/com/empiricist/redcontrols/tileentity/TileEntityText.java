@@ -5,26 +5,32 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityText extends TEBundledReceiver{
     private byte mode;
+    private int color;
 
     public TileEntityText(){
         super();
         mode = 0;
+        color = 0xFFFFFF;
     }
 
     public String getText(){
-        if(mode == 0){
-            return (char)getSignalShort() + ""; //unicode 16b
-        }else{
-            return (char)(getSignalShort() & 0xFFF) + ""; //unicode 12b
+        if(mode == 0){  //unicode 16b
+            return (char)getSignalShort() + ""; //I like shorts! They're comfy and easy to (char)!
+        }else{  //unicode 12b
+            return (char)(getSignalShort() & 0xFFF) + "";
         }
     }
 
     public int getColor(){
         if(mode == 0){
-            return 0xFFFFFF; //white
+            return color; //white
         }else{
-            return ItemDye.field_150922_c[(~getSignalShort()>>12)&15];//color of last 4 bits, according to dyes
+            return ItemDye.field_150922_c[(~getSignalShort()>>12)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
         }
+    }
+
+    public void setDyeColor(int dye){
+        color = ItemDye.field_150922_c[(~dye)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
     }
 
     public short getSignalShort(){
@@ -48,6 +54,7 @@ public class TileEntityText extends TEBundledReceiver{
         super.writeToNBT(compound);
         compound.setByteArray("signals", signals);
         compound.setByte("mode", mode);
+        compound.setInteger("color", color);
     }
 
     @Override
@@ -55,5 +62,6 @@ public class TileEntityText extends TEBundledReceiver{
         super.readFromNBT(compound);
         signals = compound.getByteArray("signals");
         mode = compound.getByte("mode");
+        color = compound.getInteger("color");
     }
 }
