@@ -3,17 +3,20 @@ package com.empiricist.redcontrols.block;
 import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.tileentity.TileEntityButtons;
 import com.empiricist.redcontrols.utility.LogHelper;
-import cpw.mods.fml.common.Optional;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockButtons extends BlockSwitches{
 
     public BlockButtons(){
         super();
-        this.setBlockName("buttonPanel");
+        name = "buttonPanel";
+        this.setUnlocalizedName(name);
     }
 
     @Override
@@ -23,35 +26,68 @@ public class BlockButtons extends BlockSwitches{
 
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int face, float clickX, float clickY, float clickZ){
-        world.markBlockForUpdate(x, y, z); // Makes the server call getDescriptionPacket for a full data sync
-        if(world.getBlockMetadata(x,y,z) != face){ return false; }
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing face, float clickX, float clickY, float clickZ){
+        world.markBlockForUpdate( pos ); // Makes the server call getDescriptionPacket for a full data sync
+        if( activeFace(state) != face){ return false; }
 
         if(!world.isRemote){
             double faceX = 0;
             double faceY = 0;
-            switch (face) {
-                case 0:
-                    faceX = clickX;
-                    faceY = clickZ;
+
+            switch ( face.ordinal() ) {
+                case 0: //bottom
+                    switch( state.getValue(FACING).getHorizontalIndex() ){
+                        case 0: //south
+                            faceX = clickX;
+                            faceY = 1-clickZ;
+                            break;
+                        case 1: //west
+                            faceX = clickZ;
+                            faceY = clickX;
+                            break;
+                        case 2: //north
+                            faceX = 1-clickX;
+                            faceY = clickZ;
+                            break;
+                        case 3: //east
+                            faceX = 1-clickZ;
+                            faceY = 1-clickX;
+                            break;
+                    }
                     break;
-                case 1:
-                    faceX = clickX;
-                    faceY = clickZ;
+                case 1: //top
+                    switch( state.getValue(FACING).getHorizontalIndex() ){
+                        case 0: //south
+                            faceX = clickX;
+                            faceY = clickZ;
+                            break;
+                        case 1: //west
+                            faceX = clickZ;
+                            faceY = 1-clickX;
+                            break;
+                        case 2: //north
+                            faceX = 1-clickX;
+                            faceY = 1-clickZ;
+                            break;
+                        case 3: //east
+                            faceX = 1-clickZ;
+                            faceY = clickX;
+                            break;
+                    }
                     break;
-                case 2:
+                case 2: //north
                     faceX = 1 - clickX;
                     faceY = 1 - clickY;
                     break;
-                case 3:
+                case 3: //south
                     faceX = clickX;
                     faceY = 1 - clickY;
                     break;
-                case 4:
+                case 4: //west
                     faceX = clickZ;
                     faceY = 1 - clickY;
                     break;
-                case 5:
+                case 5: //east
                     faceX = 1 - clickZ;
                     faceY = 1 - clickY;
             }
@@ -65,13 +101,13 @@ public class BlockButtons extends BlockSwitches{
                 button = bx + 4 * by;
             }
 
-            TileEntity tile = world.getTileEntity(x, y, z);
+            TileEntity tile = world.getTileEntity( pos );
             if (tile != null && tile instanceof TileEntityButtons) {
                 TileEntityButtons buttonPanel = (TileEntityButtons)tile;
                 buttonPanel.setSignal(button, 30);
             }
 
-            world.notifyBlocksOfNeighborChange(x, y, z, this);
+            world.notifyNeighborsOfStateChange( pos, this );
             //world.markAndNotifyBlock(x,y,z,world.getChunkFromBlockCoords(x,z),this,this,3);
         }
 

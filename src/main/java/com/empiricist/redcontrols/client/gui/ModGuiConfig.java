@@ -2,7 +2,7 @@ package com.empiricist.redcontrols.client.gui;
 
 import com.empiricist.redcontrols.handler.ConfigurationHandler;
 import com.empiricist.redcontrols.reference.Reference;
-import cpw.mods.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;

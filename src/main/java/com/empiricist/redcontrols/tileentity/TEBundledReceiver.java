@@ -1,24 +1,16 @@
 package com.empiricist.redcontrols.tileentity;
 
 
-import com.bluepowermod.api.BPApi;
-import com.bluepowermod.api.connect.ConnectionType;
-import com.bluepowermod.api.connect.IConnectionCache;
-import com.bluepowermod.api.misc.MinecraftColor;
-import com.bluepowermod.api.wire.redstone.IBundledDevice;
 import com.empiricist.redcontrols.utility.LogHelper;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
 import crazypants.enderio.api.redstone.IRedstoneConnectable;
-import crazypants.enderio.conduit.IConduit;
-import crazypants.enderio.conduit.IConduitBundle;
-import crazypants.enderio.conduit.redstone.IInsulatedRedstoneConduit;
-import crazypants.enderio.conduit.redstone.IRedstoneConduit;
-import crazypants.enderio.conduit.redstone.InsulatedRedstoneConduit;
-import crazypants.enderio.conduit.redstone.RedstoneConduit;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 import dan200.computercraft.api.ComputerCraftAPI;
 import mods.immibis.redlogic.api.wiring.*;
-import mods.immibis.redlogic.api.wiring.IBundledEmitter;
 import mods.immibis.redlogic.api.wiring.IConnectable;
 import mrtjp.projectred.api.*;
 import net.minecraft.block.BlockSand;
@@ -28,29 +20,37 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetOutputNode;
+import pl.asie.charset.api.wires.IBundledReceiver;
 
 import java.util.Collection;
+//import powercrystals.minefactoryreloaded.api.rednet.IRedNetOutputNode;
+
 
 @Optional.InterfaceList({
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledUpdatable", modid = "RedLogic", striprefs = true),
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IConnectable", modid = "RedLogic", striprefs = true),
         @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = "ProjRed|Core", striprefs = true),
-        @Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true),
+        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledReceiver", modid = "CharsetWires", striprefs = true),
         @Optional.Interface(iface = "crazypants.enderio.api.redstone.IRedstoneConnectable", modid = "EnderIO", striprefs = true)
 })
-public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, IConnectable, IBundledTile, IBundledDevice, IRedstoneConnectable {
+//@Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true),
+public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, IConnectable, IBundledTile, IBundledReceiver, IRedstoneConnectable { //, IBundledDevice, } {
 
     public byte[] signals;
     public byte[] blockSignals;
     public Object BPCache;
     public byte[] BPinputs;
 
+    @CapabilityInject(IBundledReceiver.class)
+    public static Capability<IBundledReceiver> BUNDLED_RECEIVER;//the annotation tells forge to make this the capability for IBundledReceiver, if there is one
+    @CapabilityInject(pl.asie.charset.api.wires.IBundledEmitter.class)
+    public static Capability<pl.asie.charset.api.wires.IBundledEmitter> BUNDLED_EMITTER;//the annotation tells forge to make this the capability for IBundledEmitter, if there is one
+
     public TEBundledReceiver(){
+        super();
         signals = new byte[]{0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0};
         blockSignals = signals;
-        BPCache = Loader.isModLoaded("bluepower") ? initCache() : null;
+        //BPCache = Loader.isModLoaded("bluepower") ? initCache() : null;
         BPinputs = new byte[]{0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0};
     }
 
@@ -60,9 +60,9 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 
         //if(!worldObj.isRemote){LogHelper.info("Update for TE at x " + xCoord + " y " + yCoord + " z " + zCoord);}
 
-        for( ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS ){
+        for( EnumFacing dir : EnumFacing.values() ){
             //LogHelper.info("---- Checking for TE at " + dir.name() + " ----");
-            TileEntity te = worldObj.getTileEntity(xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ);
+            TileEntity te = worldObj.getTileEntity( pos.offset(dir) );
             if(te == null ){continue;}
             //if(!worldObj.isRemote){LogHelper.info(" tile " + te);}
             //LogHelper.info("Checking signals against redlogic signals");
@@ -71,11 +71,11 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
                     in = maxSignal(in, ((TEBundledEmitter) te).getBundledCableStrength(i, dir.getOpposite().ordinal()));
                 }
             }
-            if(Loader.isModLoaded("RedLogic") && te instanceof IBundledEmitter){
+            if(Loader.isModLoaded("RedLogic") && te instanceof mods.immibis.redlogic.api.wiring.IBundledEmitter){
                 //if(!worldObj.isRemote){LogHelper.info("found redlogic " + dir);}
                 for( int i = -1; i < 6; i++ ){
                     //if(!worldObj.isRemote){LogHelper.info(" trying direction " + i);}
-                    in = maxSignal(in, ((IBundledEmitter) te).getBundledCableStrength(i, dir.getOpposite().ordinal()));
+                    in = maxSignal(in, ((mods.immibis.redlogic.api.wiring.IBundledEmitter) te).getBundledCableStrength(i, dir.getOpposite().ordinal()));
             }
                 //in = maxSignal(in, ((IBundledEmitter) te).getBundledCableStrength(dir.ordinal(), dir.getOpposite().ordinal()));
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
@@ -83,10 +83,13 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             if(Loader.isModLoaded("ProjRed|Core") ){//&& te instanceof mrtjp.projectred.api.IBundledEmitter){
                 //if(!worldObj.isRemote){LogHelper.info("maybe found project red? " + dir);}
                 //LogHelper.info("Checking signals against project red signals");
-                in = maxSignal(in, ProjectRedAPI.transmissionAPI.getBundledInput(worldObj, xCoord, yCoord, zCoord, dir.ordinal()));
+                in = maxSignal(in, ProjectRedAPI.transmissionAPI.getBundledInput(worldObj, pos.getX(), pos.getY(), pos.getZ(), dir.ordinal()));
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
             }
-
+            if(Loader.isModLoaded("CharsetWires") && te.hasCapability(BUNDLED_EMITTER, dir) ){
+                in = maxSignal( in, charsetLevelShift( te.getCapability(BUNDLED_EMITTER, dir).getBundledSignal() ) );
+            }
+/*
             if(Loader.isModLoaded("bluepower") ){//&& te instanceof IBundledDevice){
                 IConnectionCache<? extends IBundledDevice> connections = ((IConnectionCache<? extends IBundledDevice>) BPCache);
 
@@ -103,29 +106,29 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
                 //LogHelper.info("Checking signals against blue power signals");
                 in = maxSignal(in, BPinputs);
 
-/*
-                for( int i = -1; i < 7; i++ ) {
-                //the face the device is on within block xyz (eg, a cable on the ground is on side BOTTOM), and some kind of side
-                    IBundledDevice dev = BPApi.getInstance().getRedstoneApi().getBundledDevice(worldObj, xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ, ForgeDirection.getOrientation(i), dir.getOpposite());
-                    if (dev != null) {
-//                        if (!worldObj.isRemote) {
-//                            LogHelper.info("found bluepower to " + dir + " on? " + i + " " + dev.getClass().getSimpleName());
-//                        }
-                        LogHelper.info("Actual blue power signals found were " + debugOutput(dev.getBundledOutput(dir.getOpposite())));
-                        in = maxSignal(in, dev.getBundledOutput(dir.getOpposite()));
-                        //in = maxSignal(in, dev.getBundledOutput(dir.getOpposite()));
-//                        if (!worldObj.isRemote) {
-//                            LogHelper.info(" " + debugOutput(in));
-//                        }
-                    }
-                }
-*/
 
-            }
+//                for( int i = -1; i < 7; i++ ) {
+//                //the face the device is on within block xyz (eg, a cable on the ground is on side BOTTOM), and some kind of side
+//                    IBundledDevice dev = BPApi.getInstance().getRedstoneApi().getBundledDevice(worldObj, xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ, ForgeDirection.getOrientation(i), dir.getOpposite());
+//                    if (dev != null) {
+////                        if (!worldObj.isRemote) {
+////                            LogHelper.info("found bluepower to " + dir + " on? " + i + " " + dev.getClass().getSimpleName());
+////                        }
+//                        LogHelper.info("Actual blue power signals found were " + debugOutput(dev.getBundledOutput(dir.getOpposite())));
+//                        in = maxSignal(in, dev.getBundledOutput(dir.getOpposite()));
+//                        //in = maxSignal(in, dev.getBundledOutput(dir.getOpposite()));
+////                        if (!worldObj.isRemote) {
+////                            LogHelper.info(" " + debugOutput(in));
+////                        }
+//                    }
+//                }
+
+
+            }*/
 
             //CC
             if(Loader.isModLoaded("ComputerCraft")){
-                int ccSignal = ComputerCraftAPI.getBundledRedstoneOutput(worldObj, xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ, dir.getOpposite().ordinal());
+                int ccSignal = ComputerCraftAPI.getBundledRedstoneOutput(worldObj, pos.offset(dir), dir.getOpposite());
                 if(ccSignal != -1){ //there is a signal
                     //convert to unsigned byte array
                     byte[] ccSignals = new byte[16];
@@ -160,19 +163,22 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 //                    LogHelper.info(" " + o + "\n");
 //                }
 //            }
+            /*
             //if(!worldObj.isRemote){LogHelper.info(" tile " + te + " is ICB? " + (te instanceof IConduitBundle));}
             if(Loader.isModLoaded("EnderIO") && te instanceof IConduitBundle && ((IConduitBundle)te).hasType(IRedstoneConduit.class)){
                 //if(!worldObj.isRemote){LogHelper.info(" tile " + te + " is ICB? " + (te instanceof IConduitBundle));}
                 IRedstoneConduit ter = ((IConduitBundle)te).getConduit(IRedstoneConduit.class);
                 //if(!worldObj.isRemote){LogHelper.info("found EIO " + dir);}
-                in = maxSignal(in, intsToBytes(ter.getOutputValues(worldObj,xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ, dir.getOpposite())));
+                BlockPos offsetpos = pos.offset(dir);
+                in = maxSignal(in, intsToBytes(ter.getOutputValues(worldObj, offsetpos.getX(), offsetpos.getY(), offsetpos.getZ(), dir.getOpposite().ordinal())));
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
             }
+            */
         }
 
         signals = in;
         //if(!worldObj.isRemote){LogHelper.info("final signals " + debugOutput(signals));}
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        worldObj.markBlockForUpdate(pos);
     }
 
     public byte[] maxSignal(byte[] a, byte[] b){ //returns element-wise maximum of a and b byte arrays, interpreted as unsigned, either of which may be null
@@ -219,13 +225,13 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
     {
         NBTTagCompound syncData = new NBTTagCompound();
         this.writeToNBT(syncData);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+        return new S35PacketUpdateTileEntity(this.pos, 1, syncData);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
-        readFromNBT(pkt.func_148857_g());
+        readFromNBT(pkt.getNbtCompound());
     }
 
 
@@ -259,7 +265,53 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
     }
 
 
+
+    //charset
+    @Override
+    public void onBundledInputChange() {
+        onBundledInputChanged();
+    }
+
+    public byte[] charsetLevelShift(byte[] cInput){
+        byte[] output = new byte[cInput.length];
+        for( int i = 0; i < cInput.length; i ++){
+            output[i] = (byte)(cInput[i] != 0 ? -1 : 0);
+        }
+        return output;
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability != null && capability == BUNDLED_RECEIVER || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability != null && capability == BUNDLED_RECEIVER) {
+            return (T) this;
+        }
+        return super.getCapability(capability, facing);
+    }
+
+
+    public String debugOutput(byte[] bytes){
+        String result = "[";
+        for(int i = 0; i < bytes.length-1; i++){
+            result += bytes[i] + ",";
+        }
+        result += bytes[bytes.length-1] + "]";
+        return result;
+    }
+
+    //EIO
+    @Override
+    public boolean shouldRedstoneConduitConnect(World world, int x, int y, int z, EnumFacing from) { //for EIO
+        return true;
+    }
+
+
     //bluepower
+    /*
     @Override
     @Optional.Method(modid="bluepower")
     public boolean canConnect(ForgeDirection side, IBundledDevice dev, ConnectionType type) {
@@ -324,39 +376,29 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 
     @Override
     @Optional.Method(modid="bluepower")
-    public int getX() {
-        return xCoord;
-    }
+    public int getX() { return pos.getX(); }
 
     @Override
     @Optional.Method(modid="bluepower")
     public int getY() {
-        return yCoord;
+        return pos.getY();
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public int getZ() {
-        return zCoord;
+        return pos.getZ();
     }
 
     @Optional.Method(modid="bluepower")
     public IConnectionCache<? extends  IBundledDevice> initCache() {
         return BPApi.getInstance().getRedstoneApi().createBundledConnectionCache(this);
     }
+*/
 
 
-    public String debugOutput(byte[] bytes){
-        String result = "[";
-        for(int i = 0; i < bytes.length-1; i++){
-            result += bytes[i] + ",";
-        }
-        result += bytes[bytes.length-1] + "]";
-        return result;
-    }
 
-    @Override
-        public boolean shouldRedstoneConduitConnect(World world, int x, int y, int z, ForgeDirection from) { //for EIO
-        return true;
-    }
+
+
+
 }

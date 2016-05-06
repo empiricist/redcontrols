@@ -2,21 +2,19 @@ package com.empiricist.redcontrols.block;
 
 import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.utility.LogHelper;
-import cpw.mods.fml.common.Optional;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetOutputNode;
-import powercrystals.minefactoryreloaded.api.rednet.connectivity.RedNetConnectionType;
 
-@Optional.Interface(iface = "powercrystals.minefactoryreloaded.api.rednet.IRedNetOutputNode", modid = "MineFactoryReloaded", striprefs = true)
-public class BlockBundledEmitter extends BlockContainerBase implements IRedNetOutputNode{
+//@Optional.Interface(iface = "powercrystals.minefactoryreloaded.api.rednet.IRedNetOutputNode", modid = "MineFactoryReloaded", striprefs = true)
+public class BlockBundledEmitter extends BlockContainerBase{//} implements IRedNetOutputNode{
 
     public BlockBundledEmitter(Material m){
         super(m);
     }
 
+    /*
     //Minefactory Reloaded and EnderIO
     @Override
     public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side) {
@@ -51,4 +49,5 @@ public class BlockBundledEmitter extends BlockContainerBase implements IRedNetOu
     public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side) {
         return RedNetConnectionType.CableAll;
     }
+    */
 }

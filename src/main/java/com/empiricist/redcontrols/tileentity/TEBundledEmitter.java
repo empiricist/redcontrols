@@ -1,13 +1,12 @@
 package com.empiricist.redcontrols.tileentity;
 
-import com.bluepowermod.api.BPApi;
-import com.bluepowermod.api.connect.ConnectionType;
-import com.bluepowermod.api.connect.IConnectionCache;
-import com.bluepowermod.api.misc.MinecraftColor;
-import com.bluepowermod.api.wire.redstone.IBundledDevice;
 import com.empiricist.redcontrols.utility.LogHelper;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityDispatcher;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 import mods.immibis.redlogic.api.wiring.IBundledEmitter;
 import mods.immibis.redlogic.api.wiring.IBundledWire;
 import mods.immibis.redlogic.api.wiring.IConnectable;
@@ -19,21 +18,26 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+
 
 @Optional.InterfaceList({
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledEmitter", modid = "RedLogic", striprefs = true),
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IConnectable", modid = "RedLogic", striprefs = true),
         @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = "ProjRed|Core", striprefs = true),
-        @Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true)
+        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledEmitter", modid = "CharsetWires", striprefs = true)
 })
-public class TEBundledEmitter extends TileEntity implements IBundledEmitter, IConnectable, IBundledTile, IBundledDevice {
+//If bluepower ever updates start by uncommenting cache, methods, IBundledDevice, readding @Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true)
+public class TEBundledEmitter extends TileEntity implements IBundledEmitter, IConnectable, IBundledTile, pl.asie.charset.api.wires.IBundledEmitter{//}, IBundledDevice {
     public byte[] BPinput;
     public Object BPCache;
 
+    @CapabilityInject(pl.asie.charset.api.wires.IBundledEmitter.class)
+    public static Capability<pl.asie.charset.api.wires.IBundledEmitter> BUNDLED_EMITTER;//the annotation tells forge to make this the capability for IBundledEmitter, if there is one
+
     public TEBundledEmitter(){
+        super();
         BPinput = new byte[16];
-        BPCache = Loader.isModLoaded("bluepower") ? initCache() : null;
+        //BPCache = Loader.isModLoaded("bluepower") ? initCache() : null;
     }
 
     //implement this, and extend BlockBundledEmitter on block, and compatibility is handled
@@ -52,13 +56,12 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
     {
         NBTTagCompound syncData = new NBTTagCompound();
         this.writeToNBT(syncData);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+        return new S35PacketUpdateTileEntity(this.pos, 1, syncData);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
-    {
-        readFromNBT(pkt.func_148857_g());
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        readFromNBT(pkt.getNbtCompound());
     }
 
 
@@ -93,6 +96,44 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
 
 
 
+    //CharSet
+    @Override
+    public byte[] getBundledSignal() {
+        byte[] signals = getBundledCableStrength(0, 0);
+        byte[] result = new byte[signals.length];
+        for( int i = 0; i < signals.length; i++ ){
+            result[i] = (byte)(signals[i] == -1 ? 15 : 0);//charset wires, like vanilla redstone, carry a strength in [0,15], while redcontrols natively uses values 0 or 255 (-1 signed)
+        }
+        return result;
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        if (capability != null && capability == BUNDLED_EMITTER) {
+            return true;
+        }
+        return super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability != null && capability == BUNDLED_EMITTER) {
+            return (T) this;
+        }
+        return super.getCapability(capability, facing);
+    }
+
+
+
+    public String debugOutput(byte[] bytes){
+        String result = "[";
+        for(int i = 0; i < bytes.length-1; i++){
+            result += bytes[i] + ",";
+        }
+        result += bytes[bytes.length-1] + "]";
+        return result;
+    }
+/*
     //BluePower
     @Override
     @Optional.Method(modid="bluepower")
@@ -153,35 +194,27 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
 
     @Override
     @Optional.Method(modid="bluepower")
-    public int getX() {
-        return xCoord;
-    }
+    public int getX() { return pos.getX(); }
 
     @Override
     @Optional.Method(modid="bluepower")
     public int getY() {
-        return yCoord;
+        return pos.getY();
     }
 
     @Override
     @Optional.Method(modid="bluepower")
     public int getZ() {
-        return zCoord;
+        return pos.getZ();
     }
 
     @Optional.Method(modid="bluepower")
     public IConnectionCache<? extends  IBundledDevice> initCache() {
         return BPApi.getInstance().getRedstoneApi().createBundledConnectionCache(this);
     }
+    */
 
-    public String debugOutput(byte[] bytes){
-        String result = "[";
-        for(int i = 0; i < bytes.length-1; i++){
-            result += bytes[i] + ",";
-        }
-        result += bytes[bytes.length-1] + "]";
-        return result;
-    }
+
 
     //MFR methods are in block class
 }

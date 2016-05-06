@@ -8,10 +8,10 @@ import com.empiricist.redcontrols.handler.ConfigurationHandler;
 import com.empiricist.redcontrols.utility.LogHelper;
 import com.empiricist.redcontrols.init.ModItems;
 import com.google.common.collect.Multimap;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.registry.GameData;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.registry.GameData;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -31,18 +31,18 @@ public class Recipes {
         //to add vanilla shaped crafting recipe (can also use addShapedRecipe?)
 
         //button panel
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.buttons, 1, BlockButtons.defaultMeta), "sss", "bbb", "sss", 's', new ItemStack(Blocks.stone_slab), 'b', new ItemStack(Blocks.stone_button));
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.buttons, 1, BlockButtons.defaultMeta), "sss", "bbb", "sss", 's', new ItemStack(Blocks.stone_slab), 'b', new ItemStack(Blocks.wooden_button));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.buttons, 1, 0), "sss", "bbb", "sss", 's', new ItemStack(Blocks.stone_slab), 'b', new ItemStack(Blocks.stone_button));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.buttons, 1, 0), "sss", "bbb", "sss", 's', new ItemStack(Blocks.stone_slab), 'b', new ItemStack(Blocks.wooden_button));
 
         //switch panel
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.switches, 1, BlockSwitches.defaultMeta), "sss", "lll", "sss", 's', new ItemStack(Blocks.stone_slab), 'l', new ItemStack(Blocks.lever));
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.switches, 1, BlockSwitches.defaultMeta), "sss", "ttt", "sss", 's', new ItemStack(Blocks.stone_slab), 't', new ItemStack(ModBlocks.toggleSwitch));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.switches, 1, 0), "sss", "lll", "sss", 's', new ItemStack(Blocks.stone_slab), 'l', new ItemStack(Blocks.lever));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.switches, 1, 0), "sss", "ttt", "sss", 's', new ItemStack(Blocks.stone_slab), 't', new ItemStack(ModBlocks.toggleSwitch));
 
         //indicator panel
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.indicators, 1, BlockIndicators.defaultMeta), "sss", "ggg", "sss", 's', new ItemStack(Blocks.stone_slab), 'g', "blockGlass"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.indicators, 1, 0), "sss", "ggg", "sss", 's', new ItemStack(Blocks.stone_slab), 'g', "blockGlass"));
 
         //character panel
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.text, 1, BlockText.defaultMeta), "sss", "gng", "sss", 's', new ItemStack(Blocks.stone_slab), 'g', "blockGlass", 'n', Items.sign));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.charPanel, 1, 0), "sss", "gng", "sss", 's', new ItemStack(Blocks.stone_slab), 'g', "blockGlass", 'n', Items.sign));
 
         //toggle switch
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.toggleSwitch), new ItemStack(Blocks.lever), new ItemStack(Blocks.stone_button));

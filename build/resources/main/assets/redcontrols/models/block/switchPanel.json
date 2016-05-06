@@ -1,0 +1,7 @@
+{
+  "parent": "redcontrols:block/cube_turnable",
+  "textures": {
+    "side": "blocks/stone_slab_top",
+	"front":"redcontrols:blocks/panel"
+  }
+}

@@ -2,15 +2,16 @@ package com.empiricist.redcontrols.block;
 
 import com.empiricist.redcontrols.creativetab.CreativeTabRedControls;
 import com.empiricist.redcontrols.reference.Reference;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockContainerBase extends BlockContainer{
+
+    protected String name;
 
     public BlockContainerBase(Material material) {
         //material determines sound, map color, tool?, flammability, etc
@@ -32,13 +33,6 @@ public class BlockContainerBase extends BlockContainer{
         return String.format("tile.%s:%s", Reference.MOD_ID.toLowerCase(), getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister){
-        //this assumes file name is same as name
-        blockIcon = iconRegister.registerIcon( getUnwrappedUnlocalizedName( this.getUnlocalizedName() ) );
-    }
-
     protected String getUnwrappedUnlocalizedName( String unlocalizedName ){
         return unlocalizedName.substring(unlocalizedName.indexOf(".")+1);
     }
@@ -46,4 +40,21 @@ public class BlockContainerBase extends BlockContainer{
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
         return null;
     }
+
+    @Override
+    public int getRenderType() {
+        return 3;//-1 none, 1 liquid, 2 TESR, 3 model
+    }
+
+    public String getName(){
+        return name;
+    }
+    /*
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister iconRegister){
+        //this assumes file name is same as name
+        blockIcon = iconRegister.registerIcon( getUnwrappedUnlocalizedName( this.getUnlocalizedName() ) );
+    }
+    */
 }

@@ -5,7 +5,7 @@ import com.empiricist.redcontrols.utility.ChatHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.Direction;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import java.util.List;
@@ -14,7 +14,8 @@ public class ItemBearingCompass extends ItemBase {
 
     public ItemBearingCompass() {
         super();
-        this.setUnlocalizedName("bearingCompass");
+        name = "bearingCompass";
+        this.setUnlocalizedName(name);
     }
 
 
@@ -39,7 +40,7 @@ public class ItemBearingCompass extends ItemBase {
                 axis = "-Y";
             }else{
                 int direction = MathHelper.floor_double((double) ((yaw * 4F) / 360F) + 0.5D) & 3;
-                dir = Direction.directions[direction]; //very easy to read
+                dir = EnumFacing.HORIZONTALS[direction].getName();
                 switch( direction ) {
                     case 0:
                         axis = "+Z";

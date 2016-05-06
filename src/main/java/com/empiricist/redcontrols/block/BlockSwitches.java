@@ -1,16 +1,22 @@
 package com.empiricist.redcontrols.block;
 
+import com.empiricist.redcontrols.init.ModBlocks;
 import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.tileentity.TileEntitySwitches;
 import com.empiricist.redcontrols.utility.ChatHelper;
 import com.empiricist.redcontrols.utility.LogHelper;
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,23 +24,24 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import java.util.List;
 
 
 public class BlockSwitches extends BlockBundledEmitter {
 
-    public static int defaultMeta; //so it renders the right side as item
+    //public static int defaultMeta; //so it renders the right side as item
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static final PropertyInteger VERTICAL = PropertyInteger.create("vertical", 0, 2);
 
     public BlockSwitches(){
         super(Material.rock);
         this.setHardness(3f);
-        this.setBlockName("switchPanel");
-        defaultMeta = 3;
+        name = "switchPanel";
+        this.setUnlocalizedName(name);
+        //defaultMeta = 3;
+        //setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(VERTICAL, 1));
     }
 
     @Override
@@ -53,51 +60,79 @@ public class BlockSwitches extends BlockBundledEmitter {
 //        }
 //    }
 
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int face, float clickX, float clickY, float clickZ){
-        world.markBlockForUpdate(x, y, z); // Makes the server call getDescriptionPacket for a full data sync
-        if(world.getBlockMetadata(x,y,z) != face){ return false; }
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing face, float clickX, float clickY, float clickZ){
+        world.markBlockForUpdate( pos ); // Makes the server call getDescriptionPacket for a full data sync
+
+        if( activeFace(state) != face){ //only does special things if you click on the face with the switches
+            return false;
+        }
 
         //if( !world.isRemote ){ ChatHelper.sendText(player, "side: " + face + " f0: " + clickX + " f1: " + clickY + " f2: " + clickZ );}//+ " faceX: " + faceX + " faceY: " + faceY + " button: " + button);}
 
-        //TileEntity t = world.getTileEntity(x, y, z);
-//        if (t != null && t instanceof TileEntityButtons) {
-//            TileEntityButtons warpCore = (TileEntityButtons) t;
-//
-//            NBTTagCompound nbt = new NBTTagCompound();
-//            warpCore.writeToNBT(nbt);
-//            LogHelper.info((world.isRemote ? "Client " : "Server ") + " Data: " + nbt);
-//        }
         if(!world.isRemote){
-
-
             double faceX = 0;
             double faceY = 0;
-            switch (face) {
-                case 0:
-                    faceX = clickX;
-                    faceY = clickZ;
+
+            switch ( face.ordinal() ) {
+                case 0: //bottom
+                    switch( state.getValue(FACING).getHorizontalIndex() ){
+                        case 0: //south
+                            faceX = clickX;
+                            faceY = 1-clickZ;
+                            break;
+                        case 1: //west
+                            faceX = clickZ;
+                            faceY = clickX;
+                            break;
+                        case 2: //north
+                            faceX = 1-clickX;
+                            faceY = clickZ;
+                            break;
+                        case 3: //east
+                            faceX = 1-clickZ;
+                            faceY = 1-clickX;
+                            break;
+                    }
                     break;
-                case 1:
-                    faceX = clickX;
-                    faceY = clickZ;
+                case 1: //top
+                    switch( state.getValue(FACING).getHorizontalIndex() ){
+                        case 0: //south
+                            faceX = clickX;
+                            faceY = clickZ;
+                            break;
+                        case 1: //west
+                            faceX = clickZ;
+                            faceY = 1-clickX;
+                            break;
+                        case 2: //north
+                            faceX = 1-clickX;
+                            faceY = 1-clickZ;
+                            break;
+                        case 3: //east
+                            faceX = 1-clickZ;
+                            faceY = clickX;
+                            break;
+                    }
                     break;
-                case 2:
+                case 2: //north
                     faceX = 1 - clickX;
                     faceY = 1 - clickY;
                     break;
-                case 3:
+                case 3: //south
                     faceX = clickX;
                     faceY = 1 - clickY;
                     break;
-                case 4:
+                case 4: //west
                     faceX = clickZ;
                     faceY = 1 - clickY;
                     break;
-                case 5:
+                case 5: //east
                     faceX = 1 - clickZ;
                     faceY = 1 - clickY;
             }
 
+            //which switch did they click?
             double bezel = 2.0/16;
             int button = -1;
             if( (faceX > bezel) && (faceX < (1 - bezel)) && (faceY > bezel) && (faceY < (1 - bezel))){
@@ -107,45 +142,81 @@ public class BlockSwitches extends BlockBundledEmitter {
                 button = bx + 4 * by;
             }
 
-            TileEntity tile = world.getTileEntity(x, y, z);
+            //tell the tileentity which was clicked
+            TileEntity tile = world.getTileEntity( pos );
             if (tile != null && tile instanceof TileEntitySwitches) {
                 TileEntitySwitches switchPanel = (TileEntitySwitches)tile;
                 switchPanel.setSignal(button, !switchPanel.getSignal(button));
                 //Minecraft.getMinecraft().getNetHandler().addToSendQueue(warpCore.getDescriptionPacket());
                 //world.markBlockForUpdate(x, y, z);
 
-
                 //player.openGui(RedControls.instance, 0, world, x, y, z);
             }
 
-            world.notifyBlocksOfNeighborChange(x, y, z, this);
+            world.notifyNeighborsOfStateChange(pos, this);
         }
 
-
-        return true;
+        return true;//something happened
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack){
-        boolean closeH = (MathHelper.abs((float) entity.posX - (float) x) < 2.0F && MathHelper.abs((float)entity.posZ - (float)z) < 2.0F);
-
-        double d0 = entity.posY + 1.82D - (double) entity.yOffset;
-
-        if (closeH && (d0 - (double) y > 2.0D)) {
-            world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-            return;
-        } else if (closeH && ((double) y - d0 > 0.0D)) {
-            world.setBlockMetadataWithNotify(x, y, z, 0, 2);
-            return;
-        }
-
-
-        int l = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        int m = (l == 0 ? 2 : (l == 1 ? 5 : (l == 2 ? 3 : (l == 3 ? 4 : 0))));
-        world.setBlockMetadataWithNotify(x, y, z, m, 2);
-
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack){
+        world.setBlockState(pos, state.withProperty(FACING, getFacingFromEntity(world, pos, entity)).withProperty(VERTICAL, getVerticalFromEntity(world, pos, entity)), 2);
     }
 
+
+    public EnumFacing activeFace(IBlockState state){ //which face are the buttons on for this state?
+        switch (state.getValue(VERTICAL)) {
+            case 0:
+                return EnumFacing.DOWN;
+            case 1:
+                return state.getValue(FACING);
+            case 2:
+                return EnumFacing.UP;
+        }
+        return EnumFacing.UP;
+    }
+
+    public static EnumFacing getFacingFromEntity(World worldIn, BlockPos clickedBlock, EntityLivingBase entityIn) {
+        return entityIn.getHorizontalFacing().getOpposite();
+    }
+
+    public static int getVerticalFromEntity(World worldIn, BlockPos clickedBlock, EntityLivingBase entityIn) {
+        if (MathHelper.abs((float)entityIn.posX - (float)clickedBlock.getX()) < 2.0F && MathHelper.abs((float)entityIn.posZ - (float)clickedBlock.getZ()) < 2.0F) //up or down
+        {
+            double d0 = entityIn.posY + (double)entityIn.getEyeHeight();
+
+            if (d0 - (double)clickedBlock.getY() > 2.0D)
+            {
+                return 2;
+            }
+
+            if ((double)clickedBlock.getY() - d0 > 0.0D)
+            {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state){
+        return (state.getValue(VERTICAL) << 2) + state.getValue(FACING).getHorizontalIndex();
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta){
+        EnumFacing facing = EnumFacing.getHorizontal(meta & 3);//lower 2 bits handle horizontal direction
+        int vertical = ((meta >> 2) & 3)%3; //upper 2 bits handle up/flat/down (mod 3 is for safety I guess)
+        return getDefaultState().withProperty(FACING, facing).withProperty(VERTICAL, vertical);
+    }
+
+    @Override
+    public BlockState createBlockState() {
+        return new BlockState( this, new IProperty[]{VERTICAL, FACING} );
+    }
+
+    /*
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list){
         list.add(new ItemStack(item, 1, defaultMeta));
@@ -156,33 +227,16 @@ public class BlockSwitches extends BlockBundledEmitter {
         return defaultMeta;
     }
 
-
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta){
-        //top and bottom have different texture
-        return (side == meta ) ? this.blockIcon : Blocks.stone_slab.getIcon(0,0);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister reg)
-    {
-        //super.registerBlockIcons(reg);
-        //LogHelper.warn(Reference.MOD_ID + ":panel");
-        this.blockIcon = reg.registerIcon(Reference.MOD_ID + ":panel");
-    }
-
+*/
 //    //public boolean canRenderInPass(int pass)
 //    {
 //        return true;
 //    }
 
-    @Override
-    public boolean isOpaqueCube(){
-        return false;
-    }
+//    @Override
+//    public boolean isOpaqueCube(){
+//        return false;
+//    }
 
     /*--
     @Override

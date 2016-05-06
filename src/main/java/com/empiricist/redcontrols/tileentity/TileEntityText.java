@@ -25,12 +25,12 @@ public class TileEntityText extends TEBundledReceiver{
         if(mode == 0){
             return color; //white
         }else{
-            return ItemDye.field_150922_c[(~getSignalShort()>>12)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
+            return ItemDye.dyeColors[(~getSignalShort()>>12)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
         }
     }
 
     public void setDyeColor(int dye){
-        color = ItemDye.field_150922_c[(~dye)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
+        color = ItemDye.dyeColors[(~dye)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
     }
 
     public short getSignalShort(){

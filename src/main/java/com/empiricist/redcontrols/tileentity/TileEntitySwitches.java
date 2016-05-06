@@ -2,8 +2,8 @@ package com.empiricist.redcontrols.tileentity;
 
 
 import com.empiricist.redcontrols.utility.LogHelper;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 import mods.immibis.redlogic.api.wiring.IBundledEmitter;
 import mods.immibis.redlogic.api.wiring.IBundledWire;
 import mods.immibis.redlogic.api.wiring.IConnectable;
@@ -18,8 +18,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.*;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import java.util.List;
 
 public class TileEntitySwitches extends TEBundledEmitter implements ITEBundledLights{

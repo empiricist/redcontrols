@@ -3,8 +3,8 @@ package com.empiricist.redcontrols.creativetab;
 import com.empiricist.redcontrols.block.BlockSwitches;
 import com.empiricist.redcontrols.init.ModBlocks;
 import com.empiricist.redcontrols.reference.Reference;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,11 +18,11 @@ public class CreativeTabRedControls {
             return new ItemStack(ModBlocks.buttons).getItem();//this tab's icon item
         }
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public int func_151243_f()
-        {
-            return BlockSwitches.defaultMeta;
-        } //meta of icon item
+//        @Override
+//        @SideOnly(Side.CLIENT)
+//        public int getIconItemDamage()
+//        {
+//            return BlockSwitches.defaultMeta;
+//        } //meta of icon item
     };
 }

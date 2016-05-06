@@ -1,16 +1,11 @@
 package com.empiricist.redcontrols.init;
 
 
-
-import com.bluepowermod.api.BPApi;
-import com.bluepowermod.api.wire.redstone.IRedstoneApi;
-import com.bluepowermod.api.wire.redstone.IRedstoneProvider;
-import com.empiricist.redcontrols.compat.BPRedstoneProvider;
 import com.empiricist.redcontrols.compat.CCRedstoneProvider;
 import com.empiricist.redcontrols.utility.LogHelper;
 import com.empiricist.redcontrols.init.Recipes;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 import dan200.computercraft.api.ComputerCraftAPI;
 import dan200.computercraft.api.redstone.IBundledRedstoneProvider;
 import net.minecraft.block.Block;
@@ -27,11 +22,11 @@ public class Integration {
     @Optional.Method(modid = "bluepower")
     public static void bluepower(){
         if( Loader.isModLoaded("bluepower")){
-            final BPRedstoneProvider provider = new BPRedstoneProvider();
-            if( provider instanceof IRedstoneApi){
-                BPApi.getInstance().getRedstoneApi().registerRedstoneProvider( (IRedstoneProvider) provider);
-                LogHelper.info("Registered bluepower redstone provider");
-            }
+//            final BPRedstoneProvider provider = new BPRedstoneProvider();
+//            if( provider instanceof IRedstoneApi){
+//                BPApi.getInstance().getRedstoneApi().registerRedstoneProvider( (IRedstoneProvider) provider);
+//                LogHelper.info("Registered bluepower redstone provider");
+//            }
         }
     }
 

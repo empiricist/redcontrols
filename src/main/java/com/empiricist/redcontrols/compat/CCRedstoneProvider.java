@@ -2,7 +2,9 @@ package com.empiricist.redcontrols.compat;
 
 
 import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
-import cpw.mods.fml.common.Optional;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.common.Optional;
 import dan200.computercraft.api.redstone.IBundledRedstoneProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -11,8 +13,8 @@ import net.minecraft.world.World;
 public class CCRedstoneProvider implements IBundledRedstoneProvider {
 
     @Override
-    public int getBundledRedstoneOutput(World world, int x, int y, int z, int side) {
-        TileEntity te = world.getTileEntity(x,y,z);
+    public int getBundledRedstoneOutput(World world, BlockPos pos, EnumFacing side) {
+        TileEntity te = world.getTileEntity( pos );
         if(te != null && te instanceof TEBundledEmitter){
             boolean[] signals = ((TEBundledEmitter)te).getSignalsArray();
 

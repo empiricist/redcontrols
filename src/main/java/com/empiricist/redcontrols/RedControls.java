@@ -9,12 +9,13 @@ import com.empiricist.redcontrols.init.Recipes;
 import com.empiricist.redcontrols.proxy.IProxy;
 import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.utility.LogHelper;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class RedControls {
@@ -30,8 +31,8 @@ public class RedControls {
         //handle config file at default location
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 
-        //register our class to listen for config events from FML's event bus
-        FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+        //register our class to listen for config events from event bus
+        MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
 
         //register keybindings
         //proxy.registerKeyBindings(); //no key bindings needed
@@ -39,7 +40,6 @@ public class RedControls {
         //initialize the mod's items and blocks
         ModItems.init();
         ModBlocks.init();
-
 
         LogHelper.info("PreInit Complete");
     }
@@ -56,9 +56,8 @@ public class RedControls {
         //new GuiHandler();
 
         //renderers
+        proxy.registerModels();
         proxy.registerTESR();
-
-        //ForgeChunkManager.setForcedChunkLoadingCallback(instance, null);
 
         LogHelper.info("Init Complete");
     }

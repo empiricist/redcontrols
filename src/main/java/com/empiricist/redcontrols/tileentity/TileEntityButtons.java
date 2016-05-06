@@ -2,11 +2,12 @@ package com.empiricist.redcontrols.tileentity;
 
 import com.empiricist.redcontrols.init.ModBlocks;
 import com.empiricist.redcontrols.utility.LogHelper;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.ITickable;
 
-public class TileEntityButtons extends TEBundledEmitter implements ITEBundledLights{
+public class TileEntityButtons extends TEBundledEmitter implements ITEBundledLights, ITickable{
     public int[] signals;
 
     public TileEntityButtons() {
@@ -15,7 +16,7 @@ public class TileEntityButtons extends TEBundledEmitter implements ITEBundledLig
     }
 
     @Override
-    public void updateEntity() {
+    public void update() {
         if(!worldObj.isRemote) {
             for (int i = 0; i < signals.length; i++) {
                 if (signals[i] == 1) {//button runs out
@@ -28,7 +29,8 @@ public class TileEntityButtons extends TEBundledEmitter implements ITEBundledLig
                     //if(!worldObj.isRemote){ LogHelper.info("notify block update"); }
                     //worldObj.scheduleBlockUpdate(xCoord, yCoord, zCoord, ModBlocks.buttons, 2);
                     //worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, ModBlocks.buttons);
-                    worldObj.markAndNotifyBlock(xCoord, yCoord, zCoord, worldObj.getChunkFromBlockCoords(xCoord,zCoord), ModBlocks.buttons, ModBlocks.buttons, 3);
+                    IBlockState state = worldObj.getBlockState(pos);
+                    worldObj.markAndNotifyBlock( pos, worldObj.getChunkFromBlockCoords( pos ), state, state, 3);
                     //ModBlocks.buttons.onBlockActivated(worldObj, xCoord, yCoord, zCoord, null, worldObj.getBlockMetadata(xCoord,yCoord,zCoord), 0, 0, 0);
                 }
                 if (signals[i] >= 1) {//if time left for signal, decrement counter

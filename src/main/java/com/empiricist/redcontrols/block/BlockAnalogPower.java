@@ -1,7 +1,13 @@
 package com.empiricist.redcontrols.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockRedstoneDiode;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.TextureCompass;
@@ -10,15 +16,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockAnalogPower extends BlockBase{
 
+    public static final PropertyInteger POWER = PropertyInteger.create("power", 0, 15);
+
     public BlockAnalogPower(){
         super(Material.circuits);
-        this.setBlockName("analogPower");
+        name = "analogPower";
+        this.setUnlocalizedName(name);
+        //setDefaultState(blockState.getBaseState().withProperty(POWER, 0));
     }
 
     @Override
@@ -28,39 +37,50 @@ public class BlockAnalogPower extends BlockBase{
     }
 
     @Override
-    public int isProvidingWeakPower(IBlockAccess worldAccess, int x, int y, int z, int side){
-        return worldAccess.getBlockMetadata(x,y,z);
+    public int getWeakPower(IBlockAccess worldAccess, BlockPos pos, IBlockState state, EnumFacing side){
+        return state.getValue(POWER);
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ){
-        int meta = world.getBlockMetadata(x,y,z);
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ){
+        int meta = state.getValue(POWER);
         if(player.isSneaking()){
             meta--;
         }else{
             meta++;
         }
-        world.setBlockMetadataWithNotify(x,y,z,meta&15,3);
+        world.setBlockState(pos, blockState.getBaseState().withProperty(POWER, meta&15), 3);
         return false;
     }
 
     @Override
-    public int getRenderType(){
-        return 0;
-    }//0,1,17
-
-    @Override
     @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess worldAccess, int x, int y, int z){ //in world
-        return 0x080202 * (worldAccess.getBlockMetadata(x,y,z)+1) + 0x7F0000;
+    public int colorMultiplier(IBlockAccess worldAccess, BlockPos pos, int pass){ //in world
+        return 0x080202 * (worldAccess.getBlockState(pos).getValue(POWER)+1) + 0x7F0000;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getRenderColor(int meta){ //in inventory
+    public int getRenderColor(IBlockState state){ //in inventory
         return 0xFF2000;
     }
 
+    @Override
+    public int getMetaFromState(IBlockState state){
+        return state.getValue(POWER);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta){
+        return blockState.getBaseState().withProperty(POWER, meta);
+    }
+
+    @Override
+    public BlockState createBlockState() {
+        return new BlockState( this, POWER );
+    }
+
+    /*
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta){
@@ -70,5 +90,5 @@ public class BlockAnalogPower extends BlockBase{
         //return Blocks.redstone_block.getIcon(0,0);
         return Blocks.furnace.getIcon(0,0);
     }
-
+*/
 }

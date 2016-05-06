@@ -1,0 +1,13 @@
+{
+	"parent": "minecraft:block/button_inventory",
+	"textures": {
+        "texture": "redcontrols:blocks/toggleSwitch"
+    },
+	"display": {
+		"thirdperson": {
+			"rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1, -1.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+		}
+	}
+}

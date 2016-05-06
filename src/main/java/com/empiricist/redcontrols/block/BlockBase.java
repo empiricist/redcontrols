@@ -2,13 +2,14 @@ package com.empiricist.redcontrols.block;
 
 import com.empiricist.redcontrols.creativetab.CreativeTabRedControls;
 import com.empiricist.redcontrols.reference.Reference;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class BlockBase extends Block{
+
+    protected String name;
 
     public BlockBase(Material material) {
         //material determines sound, map color, tool?, flammability, etc
@@ -30,15 +31,25 @@ public class BlockBase extends Block{
         return String.format("tile.%s:%s", Reference.MOD_ID.toLowerCase(), getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
     }
 
+    protected String getUnwrappedUnlocalizedName( String unlocalizedName ){
+        return unlocalizedName.substring(unlocalizedName.indexOf(".")+1);
+    }
+
+    @Override
+    public int getRenderType() {
+        return 3;//-1 none, 1 liquid, 2 TESR, 3 model
+    }
+
+    public String getName(){
+        return name;
+    }
+    /*
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister){
         //this assumes file name is same as name
         blockIcon = iconRegister.registerIcon( getUnwrappedUnlocalizedName( this.getUnlocalizedName() ) );
     }
-
-    protected String getUnwrappedUnlocalizedName( String unlocalizedName ){
-        return unlocalizedName.substring(unlocalizedName.indexOf(".")+1);
-    }
+    */
 
 }

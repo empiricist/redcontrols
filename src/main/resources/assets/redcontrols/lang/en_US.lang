@@ -12,7 +12,7 @@ tile.redcontrols:indicatorPanel.name=Indicator Panel
 tile.redcontrols:toggleSwitch.name=Toggle Switch
 tile.redcontrols:power.name=Power Emitter
 tile.redcontrols:analogPower.name=Analog Power Emitter
-tile.redcontrols:textPanel.name=Character Panel
+tile.redcontrols:charPanel.name=Character Panel
 
 #Keybinds
 keys.redcontrols.category=Red Controls
