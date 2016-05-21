@@ -13,6 +13,17 @@ tile.redcontrols:toggleSwitch.name=Toggle Switch
 tile.redcontrols:power.name=Power Emitter
 tile.redcontrols:analogPower.name=Analog Power Emitter
 tile.redcontrols:charPanel.name=Character Panel
+tile.redcontrols:breakerSwitch.name=Breaker Switch
+tile.redcontrols:coverButton.name=Covered Button
+tile.redcontrols:uncoverButton.name=Uncovered Button
+tile.redcontrols:bigLever.name=Big Lever
+tile.redcontrols:woodPressurePanel.name=Wooden Pressure Panel
+tile.redcontrols:stonePressurePanel.name=Stone Pressure Panel
+tile.redcontrols:playerPressurePanel.name=Player Pressure Panel
+tile.redcontrols:ironPressurePanel_down.name=Weighted Pressure Panel (Heavy)
+tile.redcontrols:goldPressurePanel_down.name=Weighted Pressure Panel (Light)
+tile.redcontrols:dac.name=Digital Analog Converter
+tile.redcontrols:adc.name=Analog Digital Converter
 
 #Keybinds
 keys.redcontrols.category=Red Controls

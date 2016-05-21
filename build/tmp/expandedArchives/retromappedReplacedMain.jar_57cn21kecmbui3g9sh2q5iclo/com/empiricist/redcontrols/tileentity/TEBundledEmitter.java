@@ -102,7 +102,7 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
         byte[] signals = getBundledCableStrength(0, 0);
         byte[] result = new byte[signals.length];
         for( int i = 0; i < signals.length; i++ ){
-            result[i] = (byte)(signals[i] == -1 ? 15 : 0);//charset wires, like vanilla redstone, carry a strength in [0,15]
+            result[i] = (byte)(signals[i] == -1 ? 15 : 0);//charset wires, like vanilla redstone, carry a strength in [0,15], while redcontrols natively uses values 0 or 255 (-1 signed)
         }
         return result;
     }

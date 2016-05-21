@@ -28,7 +28,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import java.util.List;
 
-
 public class BlockSwitches extends BlockBundledEmitter {
 
     //public static int defaultMeta; //so it renders the right side as item

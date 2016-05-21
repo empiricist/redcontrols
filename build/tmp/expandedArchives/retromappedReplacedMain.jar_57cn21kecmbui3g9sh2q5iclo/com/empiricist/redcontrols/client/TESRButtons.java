@@ -49,7 +49,7 @@ public class TESRButtons extends TileEntitySpecialRenderer{
                 GL11.glTranslated(x, y, z);
 
                 this.func_147499_a(lightTextures[i]);
-                double stopZFighting = 0.01;
+                final double stopZFighting = 0.01;
 
                 worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181707_g); //no idea why mode is 7, just copying beacon
 

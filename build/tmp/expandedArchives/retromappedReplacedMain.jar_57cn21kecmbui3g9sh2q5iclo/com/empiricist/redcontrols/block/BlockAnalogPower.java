@@ -6,6 +6,7 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.ColorizerGrass;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockRedstoneDiode;
@@ -61,9 +62,15 @@ public class BlockAnalogPower extends BlockBase{
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int func_180644_h(IBlockState state){ //in inventory
+    public int func_180644_h(IBlockState state){ //in inventory, but only if registered with an ItemColored using a silly workaround for a type issue with forge's reflection stuff
         return 0xFF2000;
     }
+
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public int getBlockColor() {//not necessary I guess
+//        return 0xFF2000;
+//    }
 
     @Override
     public int func_176201_c(IBlockState state){
@@ -80,15 +87,4 @@ public class BlockAnalogPower extends BlockBase{
         return new BlockState( this, POWER );
     }
 
-    /*
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta){
-        //return Items.cookie.getIconFromDamage(0);
-        //return Blocks.stone_slab.getIcon(0,0);
-        //return Blocks.stained_glass.getIcon(side,meta);
-        //return Blocks.redstone_block.getIcon(0,0);
-        return Blocks.furnace.getIcon(0,0);
-    }
-*/
 }

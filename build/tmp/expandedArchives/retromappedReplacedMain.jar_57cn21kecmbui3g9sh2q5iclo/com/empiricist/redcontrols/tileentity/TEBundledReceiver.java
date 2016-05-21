@@ -2,6 +2,7 @@ package com.empiricist.redcontrols.tileentity;
 
 
 import com.empiricist.redcontrols.utility.LogHelper;
+import crazypants.enderio.api.redstone.IRedstoneConnectable;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -29,11 +30,11 @@ import java.util.Collection;
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledUpdatable", modid = "RedLogic", striprefs = true),
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IConnectable", modid = "RedLogic", striprefs = true),
         @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = "ProjRed|Core", striprefs = true),
-        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledReceiver", modid = "CharsetWires", striprefs = true)
+        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledReceiver", modid = "CharsetWires", striprefs = true),
+        @Optional.Interface(iface = "crazypants.enderio.api.redstone.IRedstoneConnectable", modid = "EnderIO", striprefs = true)
 })
 //@Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true),
-//@Optional.Interface(iface = "crazypants.enderio.api.redstone.IRedstoneConnectable", modid = "EnderIO", striprefs = true)
-public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, IConnectable, IBundledTile, IBundledReceiver{ //, IBundledDevice, IRedstoneConnectable} {
+public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, IConnectable, IBundledTile, IBundledReceiver, IRedstoneConnectable { //, IBundledDevice, } {
 
     public byte[] signals;
     public byte[] blockSignals;
@@ -302,6 +303,12 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
         return result;
     }
 
+    //EIO
+    @Override
+    public boolean shouldRedstoneConduitConnect(World world, int x, int y, int z, EnumFacing from) { //for EIO
+        return true;
+    }
+
 
     //bluepower
     /*
@@ -391,10 +398,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 
 
 
-    /*
-    @Override
-    public boolean shouldRedstoneConduitConnect(World world, int x, int y, int z, ForgeDirection from) { //for EIO
-        return true;
-    }
-    */
+
+
+
 }

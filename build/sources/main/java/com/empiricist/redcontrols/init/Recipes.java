@@ -8,6 +8,7 @@ import com.empiricist.redcontrols.handler.ConfigurationHandler;
 import com.empiricist.redcontrols.utility.LogHelper;
 import com.empiricist.redcontrols.init.ModItems;
 import com.google.common.collect.Multimap;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.registry.GameData;
@@ -53,6 +54,31 @@ public class Recipes {
 
         //power wand
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.powerWand), new ItemStack(Blocks.redstone_torch), "stickWood", "dustRedstone"));
+
+        //breaker switch
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.breakerSwitch, 1, 0), "ll", 'l', new ItemStack(Blocks.lever));
+
+        //cover button
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.coverButton), "blockGlass", new ItemStack(Blocks.stone_button)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.coverButton), "blockGlass", new ItemStack(Blocks.wooden_button)));
+
+        //big lever
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.bigLever, 1, 0), "s", "l", 's', Items.stick, 'l', new ItemStack(Blocks.lever));
+
+        //pressure panels
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.woodPanel), new ItemStack(Blocks.wooden_pressure_plate));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wooden_pressure_plate), new ItemStack(ModBlocks.woodPanel));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.stonePanel), new ItemStack(Blocks.stone_pressure_plate));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.stone_pressure_plate), new ItemStack(ModBlocks.stonePanel));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.playerPanel), "bb", 'b', new ItemStack(Blocks.stonebrick));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ironPanels[0]), new ItemStack(Blocks.heavy_weighted_pressure_plate));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.heavy_weighted_pressure_plate), new ItemStack(ModBlocks.ironPanels[0]));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.goldPanels[0]), new ItemStack(Blocks.light_weighted_pressure_plate));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(ModBlocks.goldPanels[0]));
+
+        //dac
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.dac), "sss", "rtr", "sss", 's', new ItemStack(Blocks.stone_slab), 't', new ItemStack(Blocks.redstone_torch), 'r', "dustRedstone"));
+
     }
 
     public static void postInit(){

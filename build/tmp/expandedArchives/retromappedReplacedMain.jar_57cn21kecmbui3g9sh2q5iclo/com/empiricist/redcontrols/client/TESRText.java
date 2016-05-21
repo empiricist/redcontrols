@@ -34,7 +34,7 @@ public class TESRText extends TileEntitySpecialRenderer {
 
             String s = tet.getText();
 
-            double stopZFighting = 0.01;
+            final double stopZFighting = 0.01;
             switch( state.func_177229_b(BlockText.VERTICAL) ){ //does this work?
                 case 0: //bottom
                     switch(  state.func_177229_b(BlockSwitches.FACING ).func_176736_b() ){

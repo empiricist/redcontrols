@@ -1,14 +1,22 @@
 Symbol range map extraction starting
-Processing 42 files
+Processing 53 files
 processing com\empiricist\redcontrols\RedControls.java
+processing com\empiricist\redcontrols\block\BlockAnalogDigitalConverter.java
 processing com\empiricist\redcontrols\block\BlockAnalogPower.java
 processing com\empiricist\redcontrols\block\BlockBase.java
+processing com\empiricist\redcontrols\block\BlockBigLever.java
+processing com\empiricist\redcontrols\block\BlockBreakerSwitch.java
 processing com\empiricist\redcontrols\block\BlockBundledEmitter.java
 processing com\empiricist\redcontrols\block\BlockBundledReceiver.java
 processing com\empiricist\redcontrols\block\BlockButtons.java
 processing com\empiricist\redcontrols\block\BlockContainerBase.java
+processing com\empiricist\redcontrols\block\BlockCoverButton.java
+processing com\empiricist\redcontrols\block\BlockDigitalAnalogConverter.java
 processing com\empiricist\redcontrols\block\BlockIndicators.java
 processing com\empiricist\redcontrols\block\BlockPower.java
+processing com\empiricist\redcontrols\block\BlockPressurePanel.java
+processing com\empiricist\redcontrols\block\BlockPressurePanelBase.java
+processing com\empiricist\redcontrols\block\BlockPressurePanelWeighted.java
 processing com\empiricist\redcontrols\block\BlockSwitch.java
 processing com\empiricist\redcontrols\block\BlockSwitches.java
 processing com\empiricist\redcontrols\block\BlockText.java
@@ -26,6 +34,7 @@ processing com\empiricist\redcontrols\init\ModItems.java
 processing com\empiricist\redcontrols\init\Recipes.java
 processing com\empiricist\redcontrols\item\ItemBase.java
 processing com\empiricist\redcontrols\item\ItemBearingCompass.java
+processing com\empiricist\redcontrols\item\ItemColorable.java
 processing com\empiricist\redcontrols\item\ItemDebugger.java
 processing com\empiricist\redcontrols\item\ItemPowerWand.java
 processing com\empiricist\redcontrols\proxy\ClientProxy.java
@@ -36,7 +45,9 @@ processing com\empiricist\redcontrols\reference\Reference.java
 processing com\empiricist\redcontrols\tileentity\ITEBundledLights.java
 processing com\empiricist\redcontrols\tileentity\TEBundledEmitter.java
 processing com\empiricist\redcontrols\tileentity\TEBundledReceiver.java
+processing com\empiricist\redcontrols\tileentity\TileEntityADC.java
 processing com\empiricist\redcontrols\tileentity\TileEntityButtons.java
+processing com\empiricist\redcontrols\tileentity\TileEntityDAC.java
 processing com\empiricist\redcontrols\tileentity\TileEntityIndicators.java
 processing com\empiricist\redcontrols\tileentity\TileEntitySwitches.java
 processing com\empiricist\redcontrols\tileentity\TileEntityText.java
