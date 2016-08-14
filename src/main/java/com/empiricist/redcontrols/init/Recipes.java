@@ -9,6 +9,7 @@ import com.empiricist.redcontrols.utility.LogHelper;
 import com.empiricist.redcontrols.init.ModItems;
 import com.google.common.collect.Multimap;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.registry.GameData;
@@ -32,52 +33,52 @@ public class Recipes {
         //to add vanilla shaped crafting recipe (can also use addShapedRecipe?)
 
         //button panel
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.buttons, 1, 0), "sss", "bbb", "sss", 's', new ItemStack(Blocks.stone_slab), 'b', new ItemStack(Blocks.stone_button));
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.buttons, 1, 0), "sss", "bbb", "sss", 's', new ItemStack(Blocks.stone_slab), 'b', new ItemStack(Blocks.wooden_button));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.buttons, 1, 0), "sss", "bbb", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 'b', new ItemStack(Blocks.STONE_BUTTON));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.buttons, 1, 0), "sss", "bbb", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 'b', new ItemStack(Blocks.WOODEN_BUTTON));
 
         //switch panel
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.switches, 1, 0), "sss", "lll", "sss", 's', new ItemStack(Blocks.stone_slab), 'l', new ItemStack(Blocks.lever));
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.switches, 1, 0), "sss", "ttt", "sss", 's', new ItemStack(Blocks.stone_slab), 't', new ItemStack(ModBlocks.toggleSwitch));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.switches, 1, 0), "sss", "lll", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 'l', new ItemStack(Blocks.LEVER));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.switches, 1, 0), "sss", "ttt", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 't', new ItemStack(ModBlocks.toggleSwitch));
 
         //indicator panel
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.indicators, 1, 0), "sss", "ggg", "sss", 's', new ItemStack(Blocks.stone_slab), 'g', "blockGlass"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.indicators, 1, 0), "sss", "ggg", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 'g', "blockGlass"));
 
         //character panel
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.charPanel, 1, 0), "sss", "gng", "sss", 's', new ItemStack(Blocks.stone_slab), 'g', "blockGlass", 'n', Items.sign));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.charPanel, 1, 0), "sss", "gng", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 'g', "blockGlass", 'n', Items.SIGN));
 
         //toggle switch
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.toggleSwitch), new ItemStack(Blocks.lever), new ItemStack(Blocks.stone_button));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.toggleSwitch), new ItemStack(Blocks.lever), new ItemStack(Blocks.wooden_button));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.toggleSwitch), new ItemStack(Blocks.LEVER), new ItemStack(Blocks.STONE_BUTTON));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.toggleSwitch), new ItemStack(Blocks.LEVER), new ItemStack(Blocks.WOODEN_BUTTON));
 
         //analog emitter
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.analogPower), "sss", "rtr", "sss", 's', new ItemStack(Blocks.stone_slab,1,3), 't', new ItemStack(Blocks.redstone_torch), 'r', "dustRedstone"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.analogPower), "sss", "rtr", "sss", 's', new ItemStack(Blocks.STONE_SLAB,1,3), 't', new ItemStack(Blocks.REDSTONE_TORCH), 'r', "dustRedstone"));
 
         //power wand
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.powerWand), new ItemStack(Blocks.redstone_torch), "stickWood", "dustRedstone"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.powerWand), new ItemStack(Blocks.REDSTONE_TORCH), "stickWood", "dustRedstone"));
 
         //breaker switch
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.breakerSwitch, 1, 0), "ll", 'l', new ItemStack(Blocks.lever));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.breakerSwitch, 1, 0), "ll", 'l', new ItemStack(Blocks.LEVER));
 
         //cover button
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.coverButton), "blockGlass", new ItemStack(Blocks.stone_button)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.coverButton), "blockGlass", new ItemStack(Blocks.wooden_button)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.coverButton), "blockGlass", new ItemStack(Blocks.STONE_BUTTON)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.coverButton), "blockGlass", new ItemStack(Blocks.WOODEN_BUTTON)));
 
         //big lever
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.bigLever, 1, 0), "s", "l", 's', Items.stick, 'l', new ItemStack(Blocks.lever));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.bigLever, 1, 0), "s", "l", 's', Items.STICK, 'l', new ItemStack(Blocks.LEVER));
 
         //pressure panels
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.woodPanel), new ItemStack(Blocks.wooden_pressure_plate));
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wooden_pressure_plate), new ItemStack(ModBlocks.woodPanel));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.stonePanel), new ItemStack(Blocks.stone_pressure_plate));
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.stone_pressure_plate), new ItemStack(ModBlocks.stonePanel));
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.playerPanel), "bb", 'b', new ItemStack(Blocks.stonebrick));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ironPanels[0]), new ItemStack(Blocks.heavy_weighted_pressure_plate));
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.heavy_weighted_pressure_plate), new ItemStack(ModBlocks.ironPanels[0]));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.goldPanels[0]), new ItemStack(Blocks.light_weighted_pressure_plate));
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.light_weighted_pressure_plate), new ItemStack(ModBlocks.goldPanels[0]));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.woodPanel), new ItemStack(Blocks.WOODEN_PRESSURE_PLATE));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.WOODEN_PRESSURE_PLATE), new ItemStack(ModBlocks.woodPanel));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.stonePanel), new ItemStack(Blocks.STONE_PRESSURE_PLATE));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.STONE_PRESSURE_PLATE), new ItemStack(ModBlocks.stonePanel));
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.playerPanel), "bb", 'b', new ItemStack(Blocks.STONEBRICK));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.ironPanels[0]), new ItemStack(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE), new ItemStack(ModBlocks.ironPanels[0]));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.goldPanels[0]), new ItemStack(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE), new ItemStack(ModBlocks.goldPanels[0]));
 
         //dac
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.dac), "sss", "rtr", "sss", 's', new ItemStack(Blocks.stone_slab), 't', new ItemStack(Blocks.redstone_torch), 'r', "dustRedstone"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.dac), "sss", "rtr", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 't', new ItemStack(Blocks.REDSTONE_TORCH), 'r', "dustRedstone"));
 
     }
 
@@ -86,10 +87,10 @@ public class Recipes {
     }
 
     public static boolean exists(String modid, String name) {
-        if ( GameRegistry.findItem(modid, name) != null) {
+        if ( Item.REGISTRY.getObject(new ResourceLocation(modid + ":" + name)) != null) {
             LogHelper.info("Found item " + name + " for recipe");
             return true;
-        }else if (GameRegistry.findBlock(modid, name) != null){
+        }else if (Block.REGISTRY.getObject(new ResourceLocation(modid + ":" + name)) != null) {
             LogHelper.info("Found block " + name + " for recipe");
             return true;
         }else{

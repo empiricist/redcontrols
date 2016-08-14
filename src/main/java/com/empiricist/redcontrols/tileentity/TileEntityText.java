@@ -25,21 +25,22 @@ public class TileEntityText extends TEBundledReceiver{
         if(mode == 0){
             return color; //white
         }else{
-            return ItemDye.dyeColors[(~getSignalShort()>>12)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
+            return ItemDye.DYE_COLORS[(~getSignalShort()>>12)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
         }
     }
 
     public void setDyeColor(int dye){
-        color = ItemDye.dyeColors[(~dye)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
+        color = ItemDye.DYE_COLORS[(~dye)&15] | 0x0F0F0F;//color of last 4 bits, according to dyes, brightened a little
     }
 
     public short getSignalShort(){
         int result = 0;
-        for(int i = signals.length-1; i > 0; i--){
+        for(int i = signals.length-1; i > -1; i--){
             result += (signals[i]==0?0:1);
             result <<= 1;
         }
-        result += (signals[0]==0?0:1);
+        //result += ((signals[0]==0)?0:1);
+        result >>= 1;
         return (short)result;
     }
 
@@ -50,11 +51,12 @@ public class TileEntityText extends TEBundledReceiver{
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setByteArray("signals", signals);
         compound.setByte("mode", mode);
         compound.setInteger("color", color);
+        return compound;
     }
 
     @Override

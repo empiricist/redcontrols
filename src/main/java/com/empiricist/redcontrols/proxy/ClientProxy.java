@@ -12,9 +12,9 @@ import com.empiricist.redcontrols.tileentity.TileEntityText;
 import com.empiricist.redcontrols.utility.LogHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
@@ -47,6 +47,8 @@ public class ClientProxy extends CommonProxy{
         mesher.register(Item.getItemFromBlock(ModBlocks.indicators),   0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.indicators.getName(),    "inventory"));
         mesher.register(Item.getItemFromBlock(ModBlocks.toggleSwitch), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.toggleSwitch.getName(),  "inventory"));
         mesher.register(Item.getItemFromBlock(ModBlocks.analogPower),  0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.analogPower.getName(),   "inventory"));
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((IBlockColor)ModBlocks.analogPower, ModBlocks.analogPower);
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((IItemColor)ModBlocks.analogPower, ModBlocks.analogPower);
         mesher.register(Item.getItemFromBlock(ModBlocks.charPanel),    0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.charPanel.getName(),     "inventory"));
         mesher.register(Item.getItemFromBlock(ModBlocks.breakerSwitch),0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.breakerSwitch.getName(), "inventory"));
         mesher.register(Item.getItemFromBlock(ModBlocks.coverButton),  0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.coverButton.getName(),   "inventory"));

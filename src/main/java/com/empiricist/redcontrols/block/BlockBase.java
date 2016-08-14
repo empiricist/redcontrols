@@ -2,6 +2,8 @@ package com.empiricist.redcontrols.block;
 
 import com.empiricist.redcontrols.creativetab.CreativeTabRedControls;
 import com.empiricist.redcontrols.reference.Reference;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -20,7 +22,7 @@ public class BlockBase extends Block{
     }
 
     public BlockBase(){
-        this(Material.rock);//we'll use rock as default
+        this(Material.ROCK);//we'll use rock as default
     }
 
     //unlocalized name here, localized name comes from lang file
@@ -36,8 +38,8 @@ public class BlockBase extends Block{
     }
 
     @Override
-    public int getRenderType() {
-        return 3;//-1 none, 1 liquid, 2 TESR, 3 model
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
     }
 
     public String getName(){

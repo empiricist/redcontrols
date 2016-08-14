@@ -11,14 +11,16 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -51,10 +53,43 @@ public class BlockPressurePanel extends BlockPressurePanelBase{ //like a pressur
     {
         return state.withProperty(POWERED, (strength > 0));
     }
+
+    @Override
+    protected void playClickOnSound(World worldIn, BlockPos pos) {
+        switch (this.sensitivity)
+        {
+            case EVERYTHING:
+                worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_WOOD_PRESSPLATE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.8F);//wooden panel
+                break;
+            case MOBS:
+                worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_STONE_PRESSPLATE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);//stone panel
+                break;
+            case PLAYERS:
+                worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_STONE_PRESSPLATE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);//stone brick panel
+                break;
+        }
+    }
+
+    @Override
+    protected void playClickOffSound(World worldIn, BlockPos pos) {
+        switch (this.sensitivity)
+        {
+            case EVERYTHING:
+                worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_WOOD_PRESSPLATE_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.8F);//wooden panel
+                break;
+            case MOBS:
+                worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_STONE_PRESSPLATE_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.6F);//stone panel
+                break;
+            case PLAYERS:
+                worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_STONE_PRESSPLATE_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.6F);//stone brick panel
+                break;
+        }
+    }
+
     @Override
     protected int computeRedstoneStrength(World worldIn, BlockPos pos)
     {
-        AxisAlignedBB axisalignedbb = this.getSensitiveAABB(pos);
+        AxisAlignedBB axisalignedbb = PRESSURE_AABB.offset(pos);//this.getSensitiveAABB(pos);
         List<? extends Entity > list;
 
         switch (this.sensitivity)
@@ -92,8 +127,10 @@ public class BlockPressurePanel extends BlockPressurePanelBase{ //like a pressur
         return this.getDefaultState().withProperty(POWERED, false).withProperty(FACING, facing);//place it on the side of the block they click on
     }
 
+
+
     @Override
-    public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
+    public int getStrongPower(IBlockState state, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         return side == state.getValue(FACING) ? this.getRedstoneStrength(state) : 0;
     }
 
@@ -108,9 +145,8 @@ public class BlockPressurePanel extends BlockPressurePanelBase{ //like a pressur
     }
 
     @Override
-    protected BlockState createBlockState()
-    {
-        return new BlockState(this, new IProperty[] {POWERED, FACING});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[] {POWERED, FACING});
     }
 
     public static enum Sensitivity

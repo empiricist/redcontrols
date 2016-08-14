@@ -2,7 +2,7 @@ package com.empiricist.redcontrols.compat;
 
 
 import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Optional;
 import dan200.computercraft.api.redstone.IBundledRedstoneProvider;

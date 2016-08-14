@@ -9,9 +9,10 @@ import com.empiricist.redcontrols.utility.LogHelper;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,8 +25,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockSwitches extends BlockBundledEmitter {
@@ -35,7 +38,7 @@ public class BlockSwitches extends BlockBundledEmitter {
     public static final PropertyInteger VERTICAL = PropertyInteger.create("vertical", 0, 2);
 
     public BlockSwitches(){
-        super(Material.rock);
+        super(Material.ROCK);
         this.setHardness(3f);
         name = "switchPanel";
         this.setUnlocalizedName(name);
@@ -60,8 +63,8 @@ public class BlockSwitches extends BlockBundledEmitter {
 //    }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing face, float clickX, float clickY, float clickZ){
-        world.markBlockForUpdate( pos ); // Makes the server call getDescriptionPacket for a full data sync
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing face, float clickX, float clickY, float clickZ){
+        world.notifyBlockUpdate(pos, state, state, 3);//markBlockForUpdate( pos ); // Makes the server call getDescriptionPacket for a full data sync
 
         if( activeFace(state) != face){ //only does special things if you click on the face with the switches
             return false;
@@ -211,8 +214,8 @@ public class BlockSwitches extends BlockBundledEmitter {
     }
 
     @Override
-    public BlockState createBlockState() {
-        return new BlockState( this, new IProperty[]{VERTICAL, FACING} );
+    public BlockStateContainer createBlockState() {
+        return new BlockStateContainer( this, new IProperty[]{VERTICAL, FACING} );
     }
 
     /*

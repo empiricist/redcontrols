@@ -4,12 +4,16 @@ import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.tileentity.TileEntityButtons;
 import com.empiricist.redcontrols.utility.LogHelper;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class BlockButtons extends BlockSwitches{
 
@@ -26,8 +30,8 @@ public class BlockButtons extends BlockSwitches{
 
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing face, float clickX, float clickY, float clickZ){
-        world.markBlockForUpdate( pos ); // Makes the server call getDescriptionPacket for a full data sync
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing face, float clickX, float clickY, float clickZ) {
+        world.notifyBlockUpdate(pos, state, state, 3);//markBlockForUpdate( pos ); // Makes the server call getDescriptionPacket for a full data sync
         if( activeFace(state) != face){ return false; }
 
         if(!world.isRemote){

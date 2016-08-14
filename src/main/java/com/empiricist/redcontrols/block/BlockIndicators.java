@@ -8,10 +8,10 @@ import com.empiricist.redcontrols.utility.ChatHelper;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,7 +22,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class BlockIndicators extends BlockBundledReceiver{
     public static final PropertyInteger VERTICAL = PropertyInteger.create("vertical", 0, 2);
 
     public BlockIndicators(){
-        super(Material.rock);
+        super(Material.ROCK);
         name = "indicatorPanel";
         this.setUnlocalizedName(name);
         //defaultMeta = 3;
@@ -112,8 +112,8 @@ public class BlockIndicators extends BlockBundledReceiver{
 //    }
 
     @Override
-    public BlockState createBlockState() {
-        return new BlockState( this, new IProperty[]{VERTICAL, FACING} );
+    public BlockStateContainer createBlockState() {
+        return new BlockStateContainer( this, new IProperty[]{VERTICAL, FACING} );
     }
 
 //    @Override

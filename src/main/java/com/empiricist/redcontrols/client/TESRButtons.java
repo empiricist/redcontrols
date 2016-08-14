@@ -8,9 +8,9 @@ import com.empiricist.redcontrols.tileentity.TileEntitySwitches;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -29,7 +29,7 @@ public class TESRButtons extends TileEntitySpecialRenderer{
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage) {
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        net.minecraft.client.renderer.VertexBuffer worldrenderer = tessellator.getBuffer();
         //LogHelper.info(textureRL.toString());
 
         if(te instanceof ITEBundledLights){

@@ -1,5 +1,5 @@
 #################################################
-         ForgeGradle 2.1-SNAPSHOT-da90449        
+         ForgeGradle 2.2-SNAPSHOT-0447b4e        
   https://github.com/MinecraftForge/ForgeGradle  
 #################################################
                Powered by MCP unknown               
@@ -9,120 +9,248 @@
 #################################################
 :deobfCompileDummyTask
 :deobfProvidedDummyTask
-:sourceApiJava UP-TO-DATE
+:sourceApiJava
 :compileApiJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\AbstractConduit.java:21: error: cannot find symbol
+import net.minecraft.util.BlockPos;
+                         ^
+  symbol:   class BlockPos
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\IConduit.java:11: error: cannot find symbol
+import net.minecraft.util.BlockPos;
+                         ^
+  symbol:   class BlockPos
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\AbstractConduit.java:579: error: cannot find symbol
+    public boolean onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbourPos) {
+                                                        ^
+  symbol:   class BlockPos
+  location: class AbstractConduit
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\AbstractConduit.java:579: error: cannot find symbol
+    public boolean onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbourPos) {
+                                                                      ^
+  symbol:   class BlockPos
+  location: class AbstractConduit
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\IConduit.java:131: error: cannot find symbol
+    boolean onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos otherPos);
+                                                 ^
+  symbol:   class BlockPos
+  location: interface IConduit
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\IConduit.java:131: error: cannot find symbol
+    boolean onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos otherPos);
+                                                               ^
+  symbol:   class BlockPos
+  location: interface IConduit
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\RedstoneConduit.java:14: error: cannot find symbol
+import net.minecraft.util.BlockPos;
+                         ^
+  symbol:   class BlockPos
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\RedstoneConduit.java:372: error: cannot find symbol
+    public boolean onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos otherPos) {
+                                                        ^
+  symbol:   class BlockPos
+  location: class RedstoneConduit
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\RedstoneConduit.java:372: error: cannot find symbol
+    public boolean onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos otherPos) {
+                                                                      ^
+  symbol:   class BlockPos
+  location: class RedstoneConduit
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\ComputerCraftAPI.java:16: error: cannot find symbol
+import net.minecraft.util.BlockPos;
+                         ^
+  symbol:   class BlockPos
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\peripheral\IPeripheralProvider.java:9: error: cannot find symbol
+import net.minecraft.util.BlockPos;
+                         ^
+  symbol:   class BlockPos
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\turtle\ITurtleUpgrade.java:10: error: package net.minecraft.client.resources.model does not exist
+import net.minecraft.client.resources.model.IBakedModel;
+                                           ^
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\redstone\IBundledRedstoneProvider.java:9: error: cannot find symbol
+import net.minecraft.util.BlockPos;
+                         ^
+  symbol:   class BlockPos
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\ComputerCraftAPI.java:197: error: cannot find symbol
+    public static int getBundledRedstoneOutput( World world, BlockPos pos, EnumFacing side )
+                                                             ^
+  symbol:   class BlockPos
+  location: class ComputerCraftAPI
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\permissions\ITurtlePermissionProvider.java:9: error: cannot find symbol
+import net.minecraft.util.BlockPos;
+                         ^
+  symbol:   class BlockPos
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\peripheral\IPeripheralProvider.java:24: error: cannot find symbol
+	public IPeripheral getPeripheral( World world, BlockPos pos, EnumFacing side );
+	                                               ^
+  symbol:   class BlockPos
+  location: interface IPeripheralProvider
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\turtle\ITurtleAccess.java:14: error: cannot find symbol
+import net.minecraft.util.BlockPos;
+                         ^
+  symbol:   class BlockPos
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\turtle\ITurtleAccess.java:16: error: cannot find symbol
+import net.minecraft.util.Vec3;
+                         ^
+  symbol:   class Vec3
+  location: package net.minecraft.util
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\turtle\ITurtleUpgrade.java:100: error: cannot find symbol
+    public Pair<IBakedModel, Matrix4f> getModel( ITurtleAccess turtle, TurtleSide side );
+                ^
+  symbol:   class IBakedModel
+  location: interface ITurtleUpgrade
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\redstone\IBundledRedstoneProvider.java:24: error: cannot find symbol
+    public int getBundledRedstoneOutput( World world, BlockPos pos, EnumFacing side );
+                                                      ^
+  symbol:   class BlockPos
+  location: interface IBundledRedstoneProvider
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\permissions\ITurtlePermissionProvider.java:18: error: cannot find symbol
+    public boolean isBlockEnterable( World world, BlockPos pos );
+                                                  ^
+  symbol:   class BlockPos
+  location: interface ITurtlePermissionProvider
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\permissions\ITurtlePermissionProvider.java:19: error: cannot find symbol
+    public boolean isBlockEditable( World world, BlockPos pos );
+                                                 ^
+  symbol:   class BlockPos
+  location: interface ITurtlePermissionProvider
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\turtle\ITurtleAccess.java:35: error: cannot find symbol
+	public BlockPos getPosition();
+	       ^
+  symbol:   class BlockPos
+  location: interface ITurtleAccess
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\turtle\ITurtleAccess.java:40: error: cannot find symbol
+    public boolean teleportTo( World world, BlockPos pos );
+                                            ^
+  symbol:   class BlockPos
+  location: interface ITurtleAccess
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\turtle\ITurtleAccess.java:48: error: cannot find symbol
+	public Vec3 getVisualPosition( float f );
+	       ^
+  symbol:   class Vec3
+  location: interface ITurtleAccess
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:62: error: cannot find symbol
+    private static final List<Block> CONECTABLE_BLOCKS = Arrays.asList(Blocks.redstone_lamp, Blocks.lit_redstone_lamp, Blocks.redstone_torch,
+                                                                             ^
+  symbol:   variable redstone_lamp
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:62: error: cannot find symbol
+    private static final List<Block> CONECTABLE_BLOCKS = Arrays.asList(Blocks.redstone_lamp, Blocks.lit_redstone_lamp, Blocks.redstone_torch,
+                                                                                                   ^
+  symbol:   variable lit_redstone_lamp
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:62: error: cannot find symbol
+    private static final List<Block> CONECTABLE_BLOCKS = Arrays.asList(Blocks.redstone_lamp, Blocks.lit_redstone_lamp, Blocks.redstone_torch,
+                                                                                                                             ^
+  symbol:   variable redstone_torch
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:63: error: cannot find symbol
+            Blocks.redstone_wire, Blocks.redstone_block, Blocks.dispenser, Blocks.lever, Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_pressure_plate,
+                  ^
+  symbol:   variable redstone_wire
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:63: error: cannot find symbol
+            Blocks.redstone_wire, Blocks.redstone_block, Blocks.dispenser, Blocks.lever, Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_pressure_plate,
+                                        ^
+  symbol:   variable redstone_block
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:63: error: cannot find symbol
+            Blocks.redstone_wire, Blocks.redstone_block, Blocks.dispenser, Blocks.lever, Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_pressure_plate,
+                                                               ^
+  symbol:   variable dispenser
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:63: error: cannot find symbol
+            Blocks.redstone_wire, Blocks.redstone_block, Blocks.dispenser, Blocks.lever, Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_pressure_plate,
+                                                                                 ^
+  symbol:   variable lever
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:63: error: cannot find symbol
+            Blocks.redstone_wire, Blocks.redstone_block, Blocks.dispenser, Blocks.lever, Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_pressure_plate,
+                                                                                               ^
+  symbol:   variable wooden_button
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:63: error: cannot find symbol
+            Blocks.redstone_wire, Blocks.redstone_block, Blocks.dispenser, Blocks.lever, Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_pressure_plate,
+                                                                                                                     ^
+  symbol:   variable stone_button
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:63: error: cannot find symbol
+            Blocks.redstone_wire, Blocks.redstone_block, Blocks.dispenser, Blocks.lever, Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_pressure_plate,
+                                                                                                                                          ^
+  symbol:   variable wooden_pressure_plate
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:64: error: cannot find symbol
+            Blocks.stone_pressure_plate, Blocks.dropper, Blocks.daylight_detector, Blocks.command_block, Blocks.golden_rail, Blocks.trapped_chest, Blocks.piston,
+                  ^
+  symbol:   variable stone_pressure_plate
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:64: error: cannot find symbol
+            Blocks.stone_pressure_plate, Blocks.dropper, Blocks.daylight_detector, Blocks.command_block, Blocks.golden_rail, Blocks.trapped_chest, Blocks.piston,
+                                               ^
+  symbol:   variable dropper
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:64: error: cannot find symbol
+            Blocks.stone_pressure_plate, Blocks.dropper, Blocks.daylight_detector, Blocks.command_block, Blocks.golden_rail, Blocks.trapped_chest, Blocks.piston,
+                                                               ^
+  symbol:   variable daylight_detector
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:64: error: cannot find symbol
+            Blocks.stone_pressure_plate, Blocks.dropper, Blocks.daylight_detector, Blocks.command_block, Blocks.golden_rail, Blocks.trapped_chest, Blocks.piston,
+                                                                                         ^
+  symbol:   variable command_block
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:64: error: cannot find symbol
+            Blocks.stone_pressure_plate, Blocks.dropper, Blocks.daylight_detector, Blocks.command_block, Blocks.golden_rail, Blocks.trapped_chest, Blocks.piston,
+                                                                                                               ^
+  symbol:   variable golden_rail
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:64: error: cannot find symbol
+            Blocks.stone_pressure_plate, Blocks.dropper, Blocks.daylight_detector, Blocks.command_block, Blocks.golden_rail, Blocks.trapped_chest, Blocks.piston,
+                                                                                                                                   ^
+  symbol:   variable trapped_chest
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:64: error: cannot find symbol
+            Blocks.stone_pressure_plate, Blocks.dropper, Blocks.daylight_detector, Blocks.command_block, Blocks.golden_rail, Blocks.trapped_chest, Blocks.piston,
+                                                                                                                                                         ^
+  symbol:   variable piston
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:65: error: cannot find symbol
+            Blocks.sticky_piston, Blocks.noteblock);
+                  ^
+  symbol:   variable sticky_piston
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\redstone\InsulatedRedstoneConduit.java:65: error: cannot find symbol
+            Blocks.sticky_piston, Blocks.noteblock);
+                                        ^
+  symbol:   variable noteblock
+  location: class Blocks
+C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\ComputerCraftAPI.java:275: error: cannot find symbol
+                    World.class, BlockPos.class, EnumFacing.class
+                                 ^
+  symbol:   class BlockPos
+  location: class ComputerCraftAPI
+Note: C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\crazypants\enderio\conduit\AbstractConduit.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
 Note: C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\api\java\dan200\computercraft\api\ComputerCraftAPI.java uses unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
+45 errors
 1 warning
+ FAILED
 
-:processApiResources UP-TO-DATE
-:apiClasses
-:sourceMainJava UP-TO-DATE
-:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
-Note: Some input files use unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
-1 warning
+FAILURE: Build failed with an exception.
 
-:processResources UP-TO-DATE
-:classes
-:jar UP-TO-DATE
-:sourceTestJava UP-TO-DATE
-:compileTestJava UP-TO-DATE
-:processTestResources UP-TO-DATE
-:testClasses UP-TO-DATE
-:test UP-TO-DATE
-:extractMcpData SKIPPED
-:extractMcpMappings SKIPPED
-:getVersionJson
-:extractUserdev UP-TO-DATE
-:genSrgs SKIPPED
-:reobfJar
-:extractRangemapReplacedMain
-C:\Users\Ken\Documents\Mod Stuff\redcontrols\build\sources\main\java
-java.lang.NullPointerException
-	at net.minecraftforge.srg2source.ast.SymbolRangeEmitter.emitFieldRange(SymbolRangeEmitter.java:125)
-	at net.minecraftforge.srg2source.ast.SymbolReferenceWalker.visit(SymbolReferenceWalker.java:407)
-	at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:467)
-	at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2514)
-	at net.minecraftforge.srg2source.ast.SymbolReferenceWalker.walk(SymbolReferenceWalker.java:65)
-	at net.minecraftforge.srg2source.ast.RangeExtractor.generateRangeMap(RangeExtractor.java:162)
-	at net.minecraftforge.srg2source.ast.RangeExtractor.generateRangeMap(RangeExtractor.java:88)
-	at net.minecraftforge.gradle.tasks.ExtractS2SRangeTask.generateRangeMap(ExtractS2SRangeTask.java:100)
-	at net.minecraftforge.gradle.tasks.ExtractS2SRangeTask.doTask(ExtractS2SRangeTask.java:80)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:63)
-	at org.gradle.api.internal.project.taskfactory.AnnotationProcessingTaskFactory$StandardTaskAction.doExecute(AnnotationProcessingTaskFactory.java:218)
-	at org.gradle.api.internal.project.taskfactory.AnnotationProcessingTaskFactory$StandardTaskAction.execute(AnnotationProcessingTaskFactory.java:211)
-	at org.gradle.api.internal.project.taskfactory.AnnotationProcessingTaskFactory$StandardTaskAction.execute(AnnotationProcessingTaskFactory.java:200)
-	at org.gradle.api.internal.AbstractTask$TaskActionWrapper.execute(AbstractTask.java:585)
-	at org.gradle.api.internal.AbstractTask$TaskActionWrapper.execute(AbstractTask.java:568)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeAction(ExecuteActionsTaskExecuter.java:80)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeActions(ExecuteActionsTaskExecuter.java:61)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:46)
-	at org.gradle.api.internal.tasks.execution.PostExecutionAnalysisTaskExecuter.execute(PostExecutionAnalysisTaskExecuter.java:35)
-	at org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter.execute(SkipUpToDateTaskExecuter.java:64)
-	at org.gradle.api.internal.tasks.execution.ValidatingTaskExecuter.execute(ValidatingTaskExecuter.java:58)
-	at org.gradle.api.internal.tasks.execution.SkipEmptySourceFilesTaskExecuter.execute(SkipEmptySourceFilesTaskExecuter.java:42)
-	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:52)
-	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:53)
-	at org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter.execute(ExecuteAtMostOnceTaskExecuter.java:43)
-	at org.gradle.api.internal.AbstractTask.executeWithoutThrowingTaskFailure(AbstractTask.java:306)
-	at org.gradle.execution.taskgraph.AbstractTaskPlanExecutor$TaskExecutorWorker.executeTask(AbstractTaskPlanExecutor.java:79)
-	at org.gradle.execution.taskgraph.AbstractTaskPlanExecutor$TaskExecutorWorker.processTask(AbstractTaskPlanExecutor.java:63)
-	at org.gradle.execution.taskgraph.AbstractTaskPlanExecutor$TaskExecutorWorker.run(AbstractTaskPlanExecutor.java:51)
-	at org.gradle.execution.taskgraph.DefaultTaskPlanExecutor.process(DefaultTaskPlanExecutor.java:23)
-	at org.gradle.execution.taskgraph.DefaultTaskGraphExecuter.execute(DefaultTaskGraphExecuter.java:88)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:29)
-	at org.gradle.execution.DefaultBuildExecuter.execute(DefaultBuildExecuter.java:62)
-	at org.gradle.execution.DefaultBuildExecuter.access$200(DefaultBuildExecuter.java:23)
-	at org.gradle.execution.DefaultBuildExecuter$2.proceed(DefaultBuildExecuter.java:68)
-	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:32)
-	at org.gradle.execution.DefaultBuildExecuter.execute(DefaultBuildExecuter.java:62)
-	at org.gradle.execution.DefaultBuildExecuter.execute(DefaultBuildExecuter.java:55)
-	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:149)
-	at org.gradle.initialization.DefaultGradleLauncher.doBuild(DefaultGradleLauncher.java:106)
-	at org.gradle.initialization.DefaultGradleLauncher.run(DefaultGradleLauncher.java:86)
-	at org.gradle.launcher.exec.InProcessBuildActionExecuter$DefaultBuildController.run(InProcessBuildActionExecuter.java:80)
-	at org.gradle.launcher.cli.ExecuteBuildAction.run(ExecuteBuildAction.java:33)
-	at org.gradle.launcher.cli.ExecuteBuildAction.run(ExecuteBuildAction.java:24)
-	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:36)
-	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:26)
-	at org.gradle.launcher.cli.RunBuildAction.run(RunBuildAction.java:51)
-	at org.gradle.internal.Actions$RunnableActionAdapter.execute(Actions.java:169)
-	at org.gradle.launcher.cli.CommandLineActionFactory$ParseAndBuildAction.execute(CommandLineActionFactory.java:237)
-	at org.gradle.launcher.cli.CommandLineActionFactory$ParseAndBuildAction.execute(CommandLineActionFactory.java:210)
-	at org.gradle.launcher.cli.JavaRuntimeValidationAction.execute(JavaRuntimeValidationAction.java:35)
-	at org.gradle.launcher.cli.JavaRuntimeValidationAction.execute(JavaRuntimeValidationAction.java:24)
-	at org.gradle.launcher.cli.CommandLineActionFactory$WithLogging.execute(CommandLineActionFactory.java:206)
-	at org.gradle.launcher.cli.CommandLineActionFactory$WithLogging.execute(CommandLineActionFactory.java:169)
-	at org.gradle.launcher.cli.ExceptionReportingAction.execute(ExceptionReportingAction.java:33)
-	at org.gradle.launcher.cli.ExceptionReportingAction.execute(ExceptionReportingAction.java:22)
-	at org.gradle.launcher.Main.doAction(Main.java:33)
-	at org.gradle.launcher.bootstrap.EntryPoint.run(EntryPoint.java:45)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.gradle.launcher.bootstrap.ProcessBootstrap.runNoExit(ProcessBootstrap.java:54)
-	at org.gradle.launcher.bootstrap.ProcessBootstrap.run(ProcessBootstrap.java:35)
-	at org.gradle.launcher.GradleMain.main(GradleMain.java:23)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.gradle.wrapper.BootstrapMainStarter.start(BootstrapMainStarter.java:30)
-	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:127)
-	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:55)
-:retromapReplacedMain
-remapping source...
-:sourceJar
-:assemble
-:check UP-TO-DATE
-:build
+* What went wrong:
+Execution failed for task ':compileApiJava'.
+> Compilation failed; see the compiler error output for details.
 
-BUILD SUCCESSFUL
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
 
-Total time: 19.899 secs
+BUILD FAILED
+
+Total time: 8.859 secs

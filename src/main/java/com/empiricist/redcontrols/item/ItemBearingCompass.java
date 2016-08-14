@@ -4,9 +4,11 @@ package com.empiricist.redcontrols.item;
 import com.empiricist.redcontrols.utility.ChatHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class ItemBearingCompass extends ItemBase {
 
 
     @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand){
         if( !world.isRemote ){
             //alt 167 (º), or \u0167
 
@@ -58,7 +60,7 @@ public class ItemBearingCompass extends ItemBase {
             }
             ChatHelper.sendText(player, String.format("%-8s %-5s  %-10s %-5s", "Facing:", dir, "Axis:", axis));
         }
-        return stack;
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
     }
 
     @Override

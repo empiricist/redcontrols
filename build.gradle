@@ -8,14 +8,14 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 //these 5 things are what you change
-version = "1.8.9-0.7"//mod version (whatever scheme), end of final jar file name, change it here, mcmod.info, and Reference
+version = "1.9.4-0.8"//mod version (whatever scheme), end of final jar file name, change it here, mcmod.info, and Reference
 group = "com.empiricist.redcontrols" // prefix.yourname.modid, http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "redcontrols"//modid, start of jar file name
 
@@ -23,10 +23,10 @@ minecraft {
     //forge version (MC-MCF)
     //(update by changing #, gradlew( clean, setupDecompWorkspace, idea/eclipse ) (also change Reference and mcmod.info)
     //previously 1.7.10-10.13.0.1180, 1.7.10-10.13.4.1492-1.7.10, 1.7.10-10.13.4.1558-1.7.10
-    version = "1.8.9-11.15.1.1722"
+    version = "1.9.4-12.17.0.1976"
     runDir = "run"
     //assetDir = "eclipse/assets"//deprecated now?//location of stuff in folder
-    mappings = "stable_22"
+    mappings = "stable_26"
 }
 
 dependencies {

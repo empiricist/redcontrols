@@ -3,12 +3,25 @@ package com.empiricist.redcontrols.block;
 import com.empiricist.redcontrols.creativetab.CreativeTabRedControls;
 import com.empiricist.redcontrols.reference.Reference;
 import net.minecraft.block.BlockLever;
-import net.minecraft.util.BlockPos;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockBreakerSwitch extends BlockLever{
 
     protected String name;
+    protected static float f = 0.1875F;// 3/16
+    protected static float g = 0.25F;
+
+    protected static final AxisAlignedBB BREAKER_EAST_AABB =  new AxisAlignedBB(0.0F, 0.2F, f, f * 2.0F, 0.8F, 1.0F - f);
+    protected static final AxisAlignedBB BREAKER_WEST_AABB =  new AxisAlignedBB(1.0F - f * 2.0F, 0.2F, f, 1.0F, 0.8F, 1.0F - f);
+    protected static final AxisAlignedBB BREAKER_NORTH_AABB = new AxisAlignedBB(f, 0.2F, 1.0F - f * 2.0F, 1.0F - f, 0.8F, 1.0F);
+    protected static final AxisAlignedBB BREAKER_SOUTH_AABB = new AxisAlignedBB(f, 0.2F, 0.0F, 1.0F - f, 0.8F, f * 2.0F);
+
+    protected static final AxisAlignedBB BREAKER_UP_AABB =    new AxisAlignedBB(g, 0.0F, 0.5F - g, 1.0F - g, 0.6F, 0.5F + g);
+    protected static final AxisAlignedBB BREAKER_DOWN_AABB =  new AxisAlignedBB(g, 0.4F, 0.5F - g, 1.0F - g, 1.0F, 0.5F + g);
+
 
     public BlockBreakerSwitch(){
         super();
@@ -17,33 +30,27 @@ public class BlockBreakerSwitch extends BlockLever{
         this.setUnlocalizedName(name);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
-    {
-        float f = 0.1875F;// 3/16
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
-        switch ((BlockLever.EnumOrientation)worldIn.getBlockState(pos).getValue(FACING))
+        switch ((BlockLever.EnumOrientation)state.getValue(FACING))
         {
             case EAST:
-                this.setBlockBounds(0.0F, 0.2F, f, f * 2.0F, 0.8F, 1.0F - f);
-                break;
+                return BREAKER_EAST_AABB;
             case WEST:
-                this.setBlockBounds(1.0F - f * 2.0F, 0.2F, f, 1.0F, 0.8F, 1.0F - f);
-                break;
+                return BREAKER_WEST_AABB;
             case SOUTH:
-                this.setBlockBounds(f, 0.2F, 0.0F, 1.0F - f, 0.8F, f * 2.0F);
-                break;
+                return BREAKER_SOUTH_AABB;
             case NORTH:
-                this.setBlockBounds(f, 0.2F, 1.0F - f * 2.0F, 1.0F - f, 0.8F, 1.0F);
-                break;
+                return BREAKER_NORTH_AABB;
             case UP_Z:
             case UP_X:
-                f = 0.25F;
-                this.setBlockBounds(f, 0.0F, 0.5F - f, 1.0F - f, 0.6F, 0.5F + f);
-                break;
+                return BREAKER_UP_AABB;
             case DOWN_X:
             case DOWN_Z:
-                f = 0.25F;
-                this.setBlockBounds(f, 0.4F, 0.5F - f, 1.0F - f, 1.0F, 0.5F + f);
+                return BREAKER_DOWN_AABB;
+            default:
+                return FULL_BLOCK_AABB;//should never happen
         }
     }
 

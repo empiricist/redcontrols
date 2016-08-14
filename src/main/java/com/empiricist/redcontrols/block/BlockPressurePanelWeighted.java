@@ -7,16 +7,18 @@ import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class BlockPressurePanelWeighted extends BlockPressurePanelBase{
@@ -44,7 +46,7 @@ public class BlockPressurePanelWeighted extends BlockPressurePanelBase{
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {//return the default one with the name and inventory model
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player){//return the default one with the name and inventory model
         if( world.getBlockState(pos).getBlock().getUnlocalizedName().contains("iron") ){
             return new ItemStack(ModBlocks.ironPanels[0]);//its an iron panel
         }//this is a bit silly, why don't I just make these separate classes?
@@ -54,7 +56,7 @@ public class BlockPressurePanelWeighted extends BlockPressurePanelBase{
     @Override
     protected int computeRedstoneStrength(World worldIn, BlockPos pos)
     {
-        int i = Math.min(worldIn.getEntitiesWithinAABB(Entity.class, this.getSensitiveAABB(pos)).size(), this.weight);
+        int i = Math.min(worldIn.getEntitiesWithinAABB(Entity.class, PRESSURE_AABB.offset(pos)).size(), this.weight);
 
         if (i > 0)
         {
@@ -79,9 +81,18 @@ public class BlockPressurePanelWeighted extends BlockPressurePanelBase{
      * How many world ticks before ticking
      */
     @Override
-    public int tickRate(World worldIn)
-    {
+    public int tickRate(World worldIn) {
         return 10;
+    }
+
+    @Override
+    protected void playClickOnSound(World worldIn, BlockPos color) {
+        worldIn.playSound((EntityPlayer)null, color, SoundEvents.BLOCK_METAL_PRESSPLATE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.90000004F);
+    }
+
+    @Override
+    protected void playClickOffSound(World worldIn, BlockPos pos) {
+        worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_METAL_PRESSPLATE_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.75F);
     }
 
     /**
@@ -100,8 +111,8 @@ public class BlockPressurePanelWeighted extends BlockPressurePanelBase{
         return state.getValue(POWER);
     }
 
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {POWER});
+        return new BlockStateContainer(this, new IProperty[] {POWER});
     }
 }

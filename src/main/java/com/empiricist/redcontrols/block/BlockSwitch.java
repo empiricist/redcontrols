@@ -5,8 +5,9 @@ import com.empiricist.redcontrols.init.ModBlocks;
 import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.utility.LogHelper;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -17,6 +18,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -35,13 +38,12 @@ public class BlockSwitch extends BlockButton{
     public void updateTick(World world, BlockPos pos, IBlockState state, Random random){}
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float fx, float fy, float fz)
-    {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing face, float clickX, float clickY, float clickZ){
         if (((Boolean)state.getValue(POWERED)).booleanValue()) //I have no idea why they would need to do all of this, but I'll leave it in in case there's a reason
         {
             worldIn.setBlockState(pos, state.withProperty(POWERED, Boolean.valueOf(false)), 3);
             worldIn.markBlockRangeForRenderUpdate(pos, pos);
-            worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
+            playReleaseSound(worldIn, pos);
             this.notifyNeighbors(worldIn, pos, (EnumFacing)state.getValue(FACING));
             //worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
             return true;
@@ -50,7 +52,7 @@ public class BlockSwitch extends BlockButton{
         {
             worldIn.setBlockState(pos, state.withProperty(POWERED, Boolean.valueOf(true)), 3);
             worldIn.markBlockRangeForRenderUpdate(pos, pos);
-            worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
+            playClickSound(playerIn, worldIn, pos);
             this.notifyNeighbors(worldIn, pos, (EnumFacing)state.getValue(FACING));
             //worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
             return true;
@@ -69,6 +71,16 @@ public class BlockSwitch extends BlockButton{
 //            //world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 //            return true;
 //        }
+    }
+
+    @Override
+    protected void playClickSound(@Nullable EntityPlayer player, World worldIn, BlockPos pos) {
+        worldIn.playSound(player, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F);
+    }
+
+    @Override
+    protected void playReleaseSound(World worldIn, BlockPos pos) {
+        worldIn.playSound(null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F);
     }
 
     public void notifyNeighbors(World worldIn, BlockPos pos, EnumFacing facing) {

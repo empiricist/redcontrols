@@ -8,9 +8,10 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,11 +25,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockText extends BlockBundledReceiver {
@@ -38,7 +40,7 @@ public class BlockText extends BlockBundledReceiver {
     public static final PropertyInteger VERTICAL = PropertyInteger.create("vertical", 0, 2);
 
     public BlockText() {
-        super(Material.rock);
+        super(Material.ROCK);
         name = "charPanel";
         this.setUnlocalizedName(name);
         //defaultMeta = 3;
@@ -51,22 +53,21 @@ public class BlockText extends BlockBundledReceiver {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing face, float clickX, float clickY, float clickZ){
-        TileEntity te = world.getTileEntity( pos );
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {        TileEntity te = world.getTileEntity( pos );
         if( te instanceof TileEntityText){
             TileEntityText tet = (TileEntityText)te;
             //ChatHelper.sendText(player, (world.isRemote? "Client ":"Server ") + tet.getSignalShort() + ", " + tet.debugOutput(tet.signals));
             if(!world.isRemote){
-                if(player.getHeldItem() != null){
+                if(player.getHeldItem(hand) != null){
                     int[] ids = {OreDictionary.getOreID("dyeWhite"), OreDictionary.getOreID("dyeOrange"), OreDictionary.getOreID("dyeMagenta"), OreDictionary.getOreID("dyeLightBlue"),
                             OreDictionary.getOreID("dyeYellow"), OreDictionary.getOreID("dyeLime"), OreDictionary.getOreID("dyePink"), OreDictionary.getOreID("dyeGray"),
                             OreDictionary.getOreID("dyeLightGray"), OreDictionary.getOreID("dyeCyan"), OreDictionary.getOreID("dyePurple"), OreDictionary.getOreID("dyeBlue"),
                             OreDictionary.getOreID("dyeBrown"), OreDictionary.getOreID("dyeGreen"), OreDictionary.getOreID("dyeRed"), OreDictionary.getOreID("dyeBlack")};
-                    for(int id : OreDictionary.getOreIDs(player.getHeldItem()) ){
+                    for(int id : OreDictionary.getOreIDs(player.getHeldItem(hand)) ){
                         for(int i = 0; i < ids.length; i++){
                             if(id == ids[i]){
                                 tet.setDyeColor(i);
-                                world.markBlockForUpdate( pos );
+                                world.notifyBlockUpdate(pos, state, state, 3);
                                 return true;
                             }
                         }
@@ -83,7 +84,7 @@ public class BlockText extends BlockBundledReceiver {
                 //ChatHelper.sendText(player, "String Width: " + Minecraft.getMinecraft().fontRenderer.getStringWidth(tet.getText()));
             }
         }
-        world.markBlockForUpdate( pos );
+        world.notifyBlockUpdate(pos, state, state, 3);
         return true;
     }
 
@@ -156,8 +157,8 @@ public class BlockText extends BlockBundledReceiver {
     }
 
     @Override
-    public BlockState createBlockState() {
-        return new BlockState( this, new IProperty[]{VERTICAL, FACING} );
+    public BlockStateContainer createBlockState() {
+        return new BlockStateContainer( this, new IProperty[]{VERTICAL, FACING} );
     }
 
 

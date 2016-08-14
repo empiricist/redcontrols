@@ -66,9 +66,10 @@ public class TileEntityButtons extends TEBundledEmitter implements ITEBundledLig
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setIntArray("signals", signals);
+        return compound;
     }
 
     @Override

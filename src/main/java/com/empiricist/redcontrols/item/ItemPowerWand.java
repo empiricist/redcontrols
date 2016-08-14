@@ -2,7 +2,9 @@ package com.empiricist.redcontrols.item;
 
 import com.empiricist.redcontrols.init.ModBlocks;
 import com.empiricist.redcontrols.utility.LogHelper;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -23,7 +25,7 @@ public class ItemPowerWand extends ItemBase{
 
     //give data of block right clicked on
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ){
         BlockPos powerPos = pos.offset(side);
         //if(!world.isRemote){LogHelper.info("Clicked  " + x + ", " + y + ", " + z);}
         //if(!world.isRemote){LogHelper.info("Checking " + destX + ", " + destY + ", " + destZ);}
@@ -31,10 +33,10 @@ public class ItemPowerWand extends ItemBase{
             world.setBlockState(powerPos, ModBlocks.power.getDefaultState());
             //if(!world.isRemote){LogHelper.info("Set Block");}
             world.scheduleBlockUpdate(powerPos, ModBlocks.power, 40, 1);
-            return true;
+            return EnumActionResult.SUCCESS;
         }
         //if(!world.isRemote){LogHelper.info("Couldn't Set Block");}
-        return false;
+        return EnumActionResult.FAIL;
     }
 
     @Override

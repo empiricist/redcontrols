@@ -3,7 +3,8 @@ package com.empiricist.redcontrols.tileentity;
 
 import com.empiricist.redcontrols.utility.LogHelper;
 import crazypants.enderio.api.redstone.IRedstoneConnectable;
-import net.minecraft.util.BlockPos;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -16,12 +17,11 @@ import mrtjp.projectred.api.*;
 import net.minecraft.block.BlockSand;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import pl.asie.charset.api.wires.IBundledReceiver;
 
+import java.util.Arrays;
 import java.util.Collection;
 //import powercrystals.minefactoryreloaded.api.rednet.IRedNetOutputNode;
 
@@ -59,6 +59,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
         byte[] in = new byte[16];
 
         //if(!worldObj.isRemote){LogHelper.info("Update for TE at x " + xCoord + " y " + yCoord + " z " + zCoord);}
+        if(!worldObj.isRemote){LogHelper.info("  Last signals were " + debugOutput(signals));}
 
         for( EnumFacing dir : EnumFacing.values() ){
             //LogHelper.info("---- Checking for TE at " + dir.name() + " ----");
@@ -67,16 +68,18 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             //if(!worldObj.isRemote){LogHelper.info(" tile " + te);}
             //LogHelper.info("Checking signals against redlogic signals");
             if(te instanceof TEBundledEmitter){
+                if(!worldObj.isRemote){LogHelper.info("  TE is a TEBundledEmitter");}
                 for( int i = -1; i < 6; i++ ){
                     in = maxSignal(in, ((TEBundledEmitter) te).getBundledCableStrength(i, dir.getOpposite().ordinal()));
                 }
+                if(!worldObj.isRemote){LogHelper.info("    TE output makes state " + debugOutput(in));}
             }
             if(Loader.isModLoaded("RedLogic") && te instanceof mods.immibis.redlogic.api.wiring.IBundledEmitter){
                 //if(!worldObj.isRemote){LogHelper.info("found redlogic " + dir);}
                 for( int i = -1; i < 6; i++ ){
                     //if(!worldObj.isRemote){LogHelper.info(" trying direction " + i);}
                     in = maxSignal(in, ((mods.immibis.redlogic.api.wiring.IBundledEmitter) te).getBundledCableStrength(i, dir.getOpposite().ordinal()));
-            }
+                }
                 //in = maxSignal(in, ((IBundledEmitter) te).getBundledCableStrength(dir.ordinal(), dir.getOpposite().ordinal()));
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
             }
@@ -141,6 +144,8 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             }
             //MFR
             in = maxSignal(in, blockSignals);
+            if(!worldObj.isRemote){LogHelper.info("    blockSignals output makes state " + debugOutput(in));}
+
             //EIO (does this require MFR to be loaded?)
 //            if(Loader.isModLoaded("MineFactoryReloaded") && te instanceof IRedNetOutputNode){
 //                if(!worldObj.isRemote){LogHelper.info("found MFR? " + dir);}
@@ -176,9 +181,17 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             */
         }
 
-        signals = in;
-        //if(!worldObj.isRemote){LogHelper.info("final signals " + debugOutput(signals));}
-        worldObj.markBlockForUpdate(pos);
+        if(!worldObj.isRemote){LogHelper.info("      Signals were " + debugOutput(signals));}
+        if(!worldObj.isRemote){LogHelper.info("      Input now is " + debugOutput(in));}
+        if( !Arrays.equals(signals, in) ){ //see if anything actually changed
+            LogHelper.info("    Receiver input changed");
+            signals = in;
+            //if(!worldObj.isRemote){LogHelper.info("final signals " + debugOutput(signals));}
+            worldObj.notifyBlockUpdate(pos, worldObj.getBlockState(pos), worldObj.getBlockState(pos), 3);//send change to clients
+        }else{
+            LogHelper.info("    Receiver input did not change");
+        }
+
     }
 
     public byte[] maxSignal(byte[] a, byte[] b){ //returns element-wise maximum of a and b byte arrays, interpreted as unsigned, either of which may be null
@@ -220,20 +233,30 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
         return bytes;
     }
 
+    //apparently these two are for resyncing (notifyBlockUpdate or markDirty)
     @Override
-    public Packet getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound syncData = new NBTTagCompound();
         this.writeToNBT(syncData);
-        return new S35PacketUpdateTileEntity(this.pos, 1, syncData);
+        return new SPacketUpdateTileEntity(this.pos, 1, syncData);
     }
-
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
-    {
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         readFromNBT(pkt.getNbtCompound());
     }
 
+    //and these two are for initial syncing (chunk data sent)
+    @Override
+    public NBTTagCompound getUpdateTag(){
+        NBTTagCompound syncData = new NBTTagCompound();
+        this.writeToNBT(syncData);
+        return syncData;
+    }
+    @Override
+    public void handleUpdateTag(NBTTagCompound tag){
+        readFromNBT(tag);
+    }
 
 
     //redlogic

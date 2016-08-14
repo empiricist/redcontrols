@@ -1,21 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="redcontrols" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="com.empiricist.redcontrols" external.system.module.version="1.8.9-0.6" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="redcontrols" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="com.empiricist.redcontrols" external.system.module.version="1.8.9-0.7" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/api/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/api/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/api/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
-      <excludeFolder url="file://$MODULE_DIR$/src/api/java/codechicken" />
-      <excludeFolder url="file://$MODULE_DIR$/src/api/java/powercrystals/minefactoryreloaded/api" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Gradle: com.mojang:netty:1.6" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: oshi-project:oshi-core:1.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.java.dev.jna:jna:3.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.java.dev.jna:platform:3.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.ibm.icu:icu4j-core-mojang:51.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.sf.jopt-simple:jopt-simple:4.6" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: io.netty:netty-all:4.0.23.Final" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.google.guava:guava:17.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.commons:commons-lang3:3.3.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-io:commons-io:2.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-codec:commons-codec:1.9" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.java.jutils:jutils:1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.google.code.gson:gson:2.2.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.mojang:authlib:1.5.21" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.mojang:realms:1.7.59" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.commons:commons-compress:1.8.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpclient:4.3.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-logging:commons-logging:1.1.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpcore:4.3.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.logging.log4j:log4j-api:2.0-beta9" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.logging.log4j:log4j-core:2.0-beta9" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.minecraft:launchwrapper:1.12" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: jline:jline:2.13" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.ow2.asm:asm-debug-all:5.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.typesafe.akka:akka-actor_2.11:2.3.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.typesafe:config:1.2.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang:scala-actors-migration_2.11:1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang:scala-compiler:2.11.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang.plugins:scala-continuations-library_2.11:1.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang.plugins:scala-continuations-plugin_2.11.1:1.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang:scala-library:2.11.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang.modules:scala-parser-combinators_2.11:1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang:scala-reflect:2.11.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang.modules:scala-swing_2.11:1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang.modules:scala-xml_2.11:1.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: lzma:lzma:0.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.sf.trove4j:trove4j:3.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.paulscode:codecjorbis:20101023" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.paulscode:codecwav:20101023" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.paulscode:libraryjavasound:20101123" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.paulscode:librarylwjglopenal:20100824" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.paulscode:soundsystem:20120107" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.java.jinput:jinput:2.0.5" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.lwjgl.lwjgl:lwjgl:2.9.4-nightly-20150209" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.lwjgl.lwjgl:lwjgl_util:2.9.4-nightly-20150209" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: tv.twitch:twitch:6.5" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: java3d:vecmath:1.5.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.fusesource.jansi:jansi:1.11" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.scala-lang:scala-actors:2.11.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.java.jinput:jinput-platform:2.0.5:natives-linux" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.java.jinput:jinput-platform:2.0.5:natives-windows" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: net.java.jinput:jinput-platform:2.0.5:natives-osx" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: tv.twitch:twitch-platform:6.5:natives-windows-32" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: tv.twitch:twitch-platform:6.5:natives-windows-64" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: tv.twitch:twitch-platform:6.5:natives-osx" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: tv.twitch:twitch-external-platform:4.5:natives-windows-32" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: tv.twitch:twitch-external-platform:4.5:natives-windows-64" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.google.code.findbugs:jsr305:2.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.lwjgl.lwjgl:lwjgl-platform:2.9.4-nightly-20150209:natives-windows" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.lwjgl.lwjgl:lwjgl-platform:2.9.4-nightly-20150209:natives-linux" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.lwjgl.lwjgl:lwjgl-platform:2.9.4-nightly-20150209:natives-osx" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -29,6 +89,28 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/providedDummy.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.1/f7be08ec23c21485b9b5a1cf1654c2ec8c58168d/jsr305-3.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.1/3d7ec36bbfbf5d7259356a6b8fec0ce4f96e3f47/jsr305-3.0.1-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.1/a2926c057ca3b662b9db194c869bdbe7d3bb8aef/jsr305-3.0.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mojang/netty/1.6/4b75825a06139752bd800d9e29c5fd55b8b1b1e4/netty-1.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -185,7 +267,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mojang/authlib/1.5.21/aefba0d5b53fbcb70860bc8046ab95d5854c07a5/authlib-1.5.21.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mojang/authlib/1.5.22/afaa8f6df976fcb5520e76ef1d5798c9e6b5c0b2/authlib-1.5.22.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -194,7 +276,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mojang/realms/1.7.59/9c6c59b742d8e038a15f64c1aa273a893a658424/realms-1.7.59.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mojang/realms/1.8.19/f7469a9307b962d1097e44713eb1baa087c06e43/realms-1.8.19.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -250,6 +332,15 @@
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/4809f38359edeea9487f747e09aa58ec8d3a54c5/httpcore-4.3.2-sources.jar!/" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/it.unimi.dsi/fastutil/7.0.12_mojang/ba787e741efdc425fc5d2ea654b57c15fba27efa/fastutil-7.0.12_mojang.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
@@ -565,15 +656,6 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tv.twitch/twitch/6.5/320a2dfd18513a5f41b4e75729df684488cbd925/twitch-6.5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/java3d/vecmath/1.5.2/79846ba34cbd89e2422d74d53752f993dcc2ccaf/vecmath-1.5.2.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -636,60 +718,6 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tv.twitch/twitch-platform/6.5/206c4ccaecdbcfd2a1631150c69a97bbc9c20c11/twitch-platform-6.5-natives-windows-32.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tv.twitch/twitch-platform/6.5/9fdd0fd5aed0817063dcf95b69349a171f447ebd/twitch-platform-6.5-natives-windows-64.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tv.twitch/twitch-platform/6.5/5f9d1ee26257b3a33f0ca06fed335ef462af659f/twitch-platform-6.5-natives-osx.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tv.twitch/twitch-external-platform/4.5/18215140f010c05b9f86ef6f0f8871954d2ccebf/twitch-external-platform-4.5-natives-windows-32.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tv.twitch/twitch-external-platform/4.5/c3cde57891b935d41b6680a9c5e1502eeab76d86/twitch-external-platform-4.5-natives-windows-64.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.4-nightly-20150209/b84d5102b9dbfabfeb5e43c7e2828d98a7fc80e0/lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -717,18 +745,18 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.8.9-11.15.1.1722/stable/22/forgeSrc-1.8.9-11.15.1.1722.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.9.4-12.17.0.1976/stable/26/forgeSrc-1.9.4-12.17.0.1976.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.8.9-11.15.1.1722/stable/22/forgeSrc-1.8.9-11.15.1.1722-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.9.4-12.17.0.1976/stable/26/forgeSrc-1.9.4-12.17.0.1976-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.8.9-11.15.1.1722/start" />
+          <root url="file://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.9.4-12.17.0.1976/start" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

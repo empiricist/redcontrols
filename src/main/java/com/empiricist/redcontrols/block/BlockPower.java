@@ -1,9 +1,11 @@
 package com.empiricist.redcontrols.block;
 
 import com.empiricist.redcontrols.utility.LogHelper;
-import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.scoreboard.IScoreCriteria;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
@@ -11,7 +13,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -22,7 +23,7 @@ public class BlockPower extends Block {
     protected String name;
 
     public BlockPower(){
-        super(Material.circuits);
+        super(Material.CIRCUITS);
         name = "powerEmitter";
         this.setUnlocalizedName(name);
     }
@@ -39,19 +40,19 @@ public class BlockPower extends Block {
     }
 
     @Override
-    public boolean canProvidePower()
+    public boolean canProvidePower(IBlockState state)
     {
         return true;
     }
 
     @Override
-    public int getWeakPower(IBlockAccess worldAccess, BlockPos pos, IBlockState state, EnumFacing side){
+    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         return 15;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random){
+    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random random){
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
@@ -64,9 +65,9 @@ public class BlockPower extends Block {
     }
 
     @Override
-    public int getRenderType()
+    public EnumBlockRenderType getRenderType(IBlockState state)
     {
-        return -1;
+        return EnumBlockRenderType.INVISIBLE;
     }
 
     public String getName(){
@@ -74,13 +75,12 @@ public class BlockPower extends Block {
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state){
-        return null;
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos){
+        return NULL_AABB;
     }
 
     @Override
-    public boolean isOpaqueCube()
-    {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 

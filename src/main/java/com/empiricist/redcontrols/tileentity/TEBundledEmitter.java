@@ -1,6 +1,7 @@
 package com.empiricist.redcontrols.tileentity;
 
 import com.empiricist.redcontrols.utility.LogHelper;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityDispatcher;
@@ -14,8 +15,6 @@ import mods.immibis.redlogic.api.wiring.IWire;
 import mrtjp.projectred.api.IBundledTile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -50,20 +49,30 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
         return new boolean[16];
     }
 
-
+    //apparently these two are for resyncing (notifyBlockUpdate or markDirty)
     @Override
-    public Packet getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound syncData = new NBTTagCompound();
         this.writeToNBT(syncData);
-        return new S35PacketUpdateTileEntity(this.pos, 1, syncData);
+        return new SPacketUpdateTileEntity(this.pos, 1, syncData);
     }
-
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         readFromNBT(pkt.getNbtCompound());
     }
 
+    //and these two are for initial syncing (chunk data sent)
+    @Override
+    public NBTTagCompound getUpdateTag(){
+        NBTTagCompound syncData = new NBTTagCompound();
+        this.writeToNBT(syncData);
+        return syncData;
+    }
+    @Override
+    public void handleUpdateTag(NBTTagCompound tag){
+        readFromNBT(tag);
+    }
 
 
     //Redlogic

@@ -18,9 +18,10 @@ public class TileEntityIndicators extends TEBundledReceiver implements ITEBundle
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setByteArray("signals", signals);
+        return compound;
     }
 
     @Override

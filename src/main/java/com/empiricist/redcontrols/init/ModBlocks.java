@@ -2,14 +2,18 @@ package com.empiricist.redcontrols.init;
 
 import com.empiricist.redcontrols.block.*;
 import com.empiricist.redcontrols.handler.ConfigurationHandler;
-import com.empiricist.redcontrols.item.ItemColorable;
 import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.tileentity.*;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockPressurePlate;
+import com.empiricist.redcontrols.utility.LogHelper;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemColored;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 
@@ -28,81 +32,121 @@ public class ModBlocks {
     public static final BlockBigLever               bigLever =      new BlockBigLever();
     public static final BlockAnalogDigitalConverter adc =           new BlockAnalogDigitalConverter();//for technical reasons it is easier to make these separate blocks
     public static final BlockDigitalAnalogConverter dac =           new BlockDigitalAnalogConverter();
-    public static final BlockPressurePanel          woodPanel =     new BlockPressurePanel("woodPressurePanel", Material.wood, BlockPressurePanel.Sensitivity.EVERYTHING);
-    public static final BlockPressurePanel          stonePanel =    new BlockPressurePanel("stonePressurePanel", Material.rock, BlockPressurePanel.Sensitivity.MOBS);
-    public static final BlockPressurePanel          playerPanel =   new BlockPressurePanel("playerPressurePanel", Material.rock, BlockPressurePanel.Sensitivity.PLAYERS);
+    public static final BlockPressurePanel          woodPanel =     new BlockPressurePanel("woodPressurePanel", Material.WOOD, BlockPressurePanel.Sensitivity.EVERYTHING);
+    public static final BlockPressurePanel          stonePanel =    new BlockPressurePanel("stonePressurePanel", Material.ROCK, BlockPressurePanel.Sensitivity.MOBS);
+    public static final BlockPressurePanel          playerPanel =   new BlockPressurePanel("playerPressurePanel", Material.ROCK, BlockPressurePanel.Sensitivity.PLAYERS);
 
-    public static BlockPressurePanelWeighted[]  ironPanels = initializeWeighted("ironPressurePanel", Material.iron, 15);//ugh these need 16 states for their power already
-    public static BlockPressurePanelWeighted[]  goldPanels = initializeWeighted("goldPressurePanel", Material.iron, 150);
+    public static BlockPressurePanelWeighted[]  ironPanels = initializeWeighted("ironPressurePanel", Material.IRON, 150);//ugh these need 16 states for their power already
+    public static BlockPressurePanelWeighted[]  goldPanels = initializeWeighted("goldPressurePanel", Material.IRON, 15);
 
     public static void init(){
         if(ConfigurationHandler.enableSwitches){
-            GameRegistry.registerBlock( switches, switches.getName());
+            switches.setRegistryName(Reference.MOD_ID, switches.getName());
+            GameRegistry.register( switches );
             GameRegistry.registerTileEntity(TileEntitySwitches.class, switches.getName());
+            GameRegistry.register( new ItemBlock(switches), new ResourceLocation(Reference.MOD_ID + ":" + switches.getName()));
         }
 
         if(ConfigurationHandler.enableButtons) {
-            GameRegistry.registerBlock(buttons, buttons.getName());
+            buttons.setRegistryName(Reference.MOD_ID, buttons.getName());
+            GameRegistry.register( buttons );
             GameRegistry.registerTileEntity(TileEntityButtons.class, buttons.getName());
+            GameRegistry.register( new ItemBlock(buttons), new ResourceLocation(Reference.MOD_ID + ":" + buttons.getName()));
         }
 
         if(ConfigurationHandler.enableIndicators) {
-            GameRegistry.registerBlock(indicators, indicators.getName());
+            indicators.setRegistryName(Reference.MOD_ID, indicators.getName());
+            GameRegistry.register( indicators );
             GameRegistry.registerTileEntity(TileEntityIndicators.class, indicators.getName());
+            GameRegistry.register( new ItemBlock(indicators), new ResourceLocation(Reference.MOD_ID + ":" + indicators.getName()));
         }
 
         if(ConfigurationHandler.enableSwitch) {
-            GameRegistry.registerBlock(toggleSwitch, toggleSwitch.getName());
+            toggleSwitch.setRegistryName(Reference.MOD_ID, toggleSwitch.getName());
+            GameRegistry.register( toggleSwitch );
+            GameRegistry.register( new ItemBlock(toggleSwitch), new ResourceLocation(Reference.MOD_ID + ":" + toggleSwitch.getName()));
         }
 
         if(ConfigurationHandler.enablePowerWand) { //produces power block
-            GameRegistry.registerBlock(power, power.getName());
+            power.setRegistryName(Reference.MOD_ID, power.getName());
+            GameRegistry.register( power );
+            //no item form
         }
 
         if(ConfigurationHandler.enableAnalog) {
-            GameRegistry.registerBlock(analogPower, ItemColorable.class, analogPower.getName(), false);//so it has color in inventory too
+            analogPower.setRegistryName(Reference.MOD_ID, analogPower.getName());
+            GameRegistry.register( analogPower );
+            GameRegistry.register( new ItemColored(analogPower, false), new ResourceLocation(Reference.MOD_ID + ":" + analogPower.getName()));//so it has color in inventory too
         }
 
         if(ConfigurationHandler.enableChar) {
-            GameRegistry.registerBlock(charPanel, charPanel.getName());
+            charPanel.setRegistryName(Reference.MOD_ID, charPanel.getName());
+            GameRegistry.register( charPanel );
             GameRegistry.registerTileEntity(TileEntityText.class, charPanel.getName());
+            GameRegistry.register( new ItemBlock(charPanel), new ResourceLocation(Reference.MOD_ID + ":" + charPanel.getName()));
         }
 
         if(ConfigurationHandler.enableBreaker) {
-            GameRegistry.registerBlock(breakerSwitch, breakerSwitch.getName());
+            breakerSwitch.setRegistryName(Reference.MOD_ID, breakerSwitch.getName());
+            GameRegistry.register (breakerSwitch );
+            GameRegistry.register( new ItemBlock(breakerSwitch), new ResourceLocation(Reference.MOD_ID + ":" + breakerSwitch.getName()));
         }
 
         if(ConfigurationHandler.enableCoverButton) {
-            GameRegistry.registerBlock(coverButton, coverButton.getName());
-            GameRegistry.registerBlock(uncoverButton, uncoverButton.getName());
+            coverButton.setRegistryName(Reference.MOD_ID, coverButton.getName());
+            GameRegistry.register( coverButton );
+            uncoverButton.setRegistryName(Reference.MOD_ID, uncoverButton.getName());
+            GameRegistry.register( uncoverButton );
+            GameRegistry.register( new ItemBlock(coverButton), new ResourceLocation(Reference.MOD_ID + ":" + coverButton.getName()));
         }
 
         if(ConfigurationHandler.enableBigLever) {
-            GameRegistry.registerBlock(bigLever, bigLever.getName());
+            bigLever.setRegistryName(Reference.MOD_ID, bigLever.getName());
+            GameRegistry.register( bigLever );
+            GameRegistry.register( new ItemBlock(bigLever), new ResourceLocation(Reference.MOD_ID + ":" + bigLever.getName()));
         }
         if(ConfigurationHandler.enableWoodPanel) {
-            GameRegistry.registerBlock(woodPanel, woodPanel.getName());
+            woodPanel.setRegistryName(Reference.MOD_ID, woodPanel.getName());
+            GameRegistry.register( woodPanel );
+            GameRegistry.register( new ItemBlock(woodPanel), new ResourceLocation(Reference.MOD_ID + ":" + woodPanel.getName()));
         }
         if(ConfigurationHandler.enableStonePanel) {
-            GameRegistry.registerBlock(stonePanel, stonePanel.getName());
+            stonePanel.setRegistryName(Reference.MOD_ID, stonePanel.getName());
+            GameRegistry.register( stonePanel );
+            GameRegistry.register( new ItemBlock(stonePanel), new ResourceLocation(Reference.MOD_ID + ":" + stonePanel.getName()));
         }
         if(ConfigurationHandler.enablePlayerPanel) {
-            GameRegistry.registerBlock(playerPanel, playerPanel.getName());
+            playerPanel.setRegistryName(Reference.MOD_ID, playerPanel.getName());
+            GameRegistry.register( playerPanel );
+            GameRegistry.register( new ItemBlock(playerPanel), new ResourceLocation(Reference.MOD_ID + ":" + playerPanel.getName()));
         }
-        for(int i = 0; i < ironPanels.length; i++){
-            if(ConfigurationHandler.enableIronPanel) {
-                GameRegistry.registerBlock(ironPanels[i], ironPanels[i].getName());
+        if(ConfigurationHandler.enableIronPanel) {
+            for(int i = 0; i < ironPanels.length; i++) {
+                ironPanels[i].setRegistryName(Reference.MOD_ID, ironPanels[i].getName());
+                GameRegistry.register(ironPanels[i]);
             }
-            if(ConfigurationHandler.enableGoldPanel) {
-                GameRegistry.registerBlock(goldPanels[i], goldPanels[i].getName());
+            //LogHelper.info( "Trying to get block iron panel: " + Block.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":" + ironPanels[i].getName())).getUnlocalizedName() );
+            //LogHelper.info( "Trying to get block iron panel: " + Item.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":" + ironPanels[0].getName())).getUnlocalizedName() );
+            GameRegistry.register( new ItemBlock(ironPanels[0]), new ResourceLocation(Reference.MOD_ID + ":" + ironPanels[0].getName()));
+        }
+        if(ConfigurationHandler.enableGoldPanel) {
+            for(int i = 0; i < goldPanels.length; i++) {
+                goldPanels[i].setRegistryName(Reference.MOD_ID, goldPanels[i].getName());
+                GameRegistry.register( goldPanels[i] );
             }
+            GameRegistry.register( new ItemBlock(goldPanels[0]), new ResourceLocation(Reference.MOD_ID + ":" + goldPanels[0].getName()));
         }
 
         if(ConfigurationHandler.enableDACADC) {
-            GameRegistry.registerBlock(adc, adc.getName());
+            adc.setRegistryName(Reference.MOD_ID, adc.getName());
+            GameRegistry.register( adc );
             GameRegistry.registerTileEntity(TileEntityADC.class, adc.getName());
-            GameRegistry.registerBlock(dac, dac.getName());
+            GameRegistry.register( new ItemBlock(adc), new ResourceLocation(Reference.MOD_ID + ":" + adc.getName()));
+
+            dac.setRegistryName(Reference.MOD_ID, dac.getName());
+            GameRegistry.register( dac );
             GameRegistry.registerTileEntity(TileEntityDAC.class, dac.getName());
+            GameRegistry.register( new ItemBlock(dac), new ResourceLocation(Reference.MOD_ID + ":" + dac.getName()));
         }
     }
 

@@ -1,6 +1,7 @@
 {
   "parent": "redcontrols:block/cube_tintable",
   "textures": {
+    "particle": "blocks/furnace_top",
     "all": "blocks/furnace_top"
   }
 }

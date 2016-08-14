@@ -5,14 +5,31 @@ import com.empiricist.redcontrols.reference.Reference;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public class BlockBigLever extends BlockLever {
 
     protected String name;
+    protected static float f = 0.1875F;// 3/16
+    protected static float g = 0.25F;
+
+    protected static final AxisAlignedBB BIGLEVER_EAST_AABB =  new AxisAlignedBB(0.0F, 0.2F, f, f*4.0F, 0.8F, 1.0F - f);
+    protected static final AxisAlignedBB BIGLEVER_WEST_AABB =  new AxisAlignedBB(1.0F - f*4.0F, 0.2F, f, 1.0F, 0.8F, 1.0F - f);
+    protected static final AxisAlignedBB BIGLEVER_NORTH_AABB = new AxisAlignedBB(f, 0.2F, 1.0F - f*4.0F, 1.0F - f, 0.8F, 1.0F);
+    protected static final AxisAlignedBB BIGLEVER_SOUTH_AABB = new AxisAlignedBB(f, 0.2F, 0.0F, 1.0F - f, 0.8F, f*4.0F);
+
+    protected static final AxisAlignedBB BIGLEVER_UP_AABB =    new AxisAlignedBB(g, 0.0F, 0.5F - g, 1.0F - g, 0.8F, 0.5F + g);
+    protected static final AxisAlignedBB BIGLEVER_DOWN_AABB =  new AxisAlignedBB(g, 0.2F, 0.5F - g, 1.0F - g, 1.0F, 0.5F + g);
 
     public BlockBigLever(){
         super();
@@ -22,38 +39,32 @@ public class BlockBigLever extends BlockLever {
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
-    {
-        float f = 0.1875F;// 3/16
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
-        switch ((BlockLever.EnumOrientation)worldIn.getBlockState(pos).getValue(FACING))
+        switch ((BlockLever.EnumOrientation)state.getValue(FACING))
         {
             case EAST:
-                this.setBlockBounds(0.0F, 0.2F, f, f*4.0F, 0.8F, 1.0F - f);
-                break;
+                return BIGLEVER_EAST_AABB;
             case WEST:
-                this.setBlockBounds(1.0F - f*4.0F, 0.2F, f, 1.0F, 0.8F, 1.0F - f);
-                break;
+                return BIGLEVER_WEST_AABB;
             case SOUTH:
-                this.setBlockBounds(f, 0.2F, 0.0F, 1.0F - f, 0.8F, f*4.0F);
-                break;
+                return BIGLEVER_SOUTH_AABB;
             case NORTH:
-                this.setBlockBounds(f, 0.2F, 1.0F - f*4.0F, 1.0F - f, 0.8F, 1.0F);
-                break;
+                return BIGLEVER_NORTH_AABB;
             case UP_Z:
             case UP_X:
                 f = 0.25F;
-                this.setBlockBounds(f, 0.0F, 0.5F - f, 1.0F - f, 0.8F, 0.5F + f);
-                break;
+                return BIGLEVER_UP_AABB;
             case DOWN_X:
             case DOWN_Z:
-                f = 0.25F;
-                this.setBlockBounds(f, 0.2F, 0.5F - f, 1.0F - f, 1.0F, 0.5F + f);
+                return BIGLEVER_DOWN_AABB;
+            default:
+                return FULL_BLOCK_AABB;
         }
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote) {
             return true;
         }
@@ -61,7 +72,8 @@ public class BlockBigLever extends BlockLever {
         {
             state = state.cycleProperty(POWERED);
             worldIn.setBlockState(pos, state, 3);
-            worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "random.click", 0.3F, ((Boolean)state.getValue(POWERED)).booleanValue() ? 0.2F : 0.1F);//lower pitch
+            //worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "random.click", 0.3F, ((Boolean)state.getValue(POWERED)).booleanValue() ? 0.2F : 0.1F);//lower pitch
+            worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, ((Boolean)state.getValue(POWERED)).booleanValue() ? 0.2F : 0.1F);
             worldIn.notifyNeighborsOfStateChange(pos, this);
             EnumFacing enumfacing = ((BlockLever.EnumOrientation)state.getValue(FACING)).getFacing();
             worldIn.notifyNeighborsOfStateChange(pos.offset(enumfacing.getOpposite()), this);

@@ -4,9 +4,10 @@ import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.tileentity.TEBundledReceiver;
 import com.empiricist.redcontrols.utility.ChatHelper;
 import com.empiricist.redcontrols.utility.LogHelper;
-import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraft.block.Block;
@@ -16,9 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import java.util.Arrays;
 
 public class ItemDebugger extends ItemBase{
 
@@ -31,13 +30,13 @@ public class ItemDebugger extends ItemBase{
 
     //give data of block right clicked on
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ){
         if( !world.isRemote ){
             ChatHelper.sendText(player, "-----Block-----");
             IBlockState blockstate = world.getBlockState(pos);
             Block block = blockstate.getBlock();
             ChatHelper.sendText(player, "X:" + pos.getX() + ", Y:" + pos.getY() + ", Z:" + pos.getZ() + "; Name: " + block.getRegistryName() + ", ID: " + block.getUnlocalizedName() + ", Meta: " + blockstate.toString());
-            ChatHelper.sendText(player, "Hardness: " + block.getBlockHardness(world, pos) + ", Resistance: " + block.getExplosionResistance(player)*5.0f + ", Mining Level: " + block.getHarvestLevel(blockstate));
+            ChatHelper.sendText(player, "Hardness: " + block.getBlockHardness(world.getBlockState(pos),world, pos) + ", Resistance: " + block.getExplosionResistance(player)*5.0f + ", Mining Level: " + block.getHarvestLevel(blockstate));
             TileEntity te = world.getTileEntity(pos);
             if( te != null ){
                 NBTTagCompound tag = new NBTTagCompound();
@@ -76,7 +75,7 @@ public class ItemDebugger extends ItemBase{
             }
             */
         }
-        return true;
+        return EnumActionResult.SUCCESS;
     }
 
     //If right clicked on no block, give data of item in slot 1

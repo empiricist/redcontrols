@@ -2,9 +2,8 @@ package com.empiricist.redcontrols.block;
 
 import com.empiricist.redcontrols.tileentity.TEBundledReceiver;
 import com.empiricist.redcontrols.utility.LogHelper;
-import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -39,14 +38,14 @@ public class BlockBundledReceiver extends BlockContainerBase{//} implements IRed
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random random) {
         super.updateTick(world, pos, state, random);
-        //LogHelper.info("Receiver block does update tick");
-        updateTE(world, pos);
+        LogHelper.info("Receiver block " + state.getBlock().getUnlocalizedName() + " does update tick");
+        //updateTE(world, pos);
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block block){
-        super.onNeighborBlockChange(world, pos, state, block);
-        //LogHelper.info("Receiver block does block change update");
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block){
+        super.neighborChanged(state, world, pos, block);
+        LogHelper.info("Receiver block " + state.getBlock().getUnlocalizedName() + " does block change update caused by " + block.getUnlocalizedName());
         updateTE(world, pos);
     }
 
