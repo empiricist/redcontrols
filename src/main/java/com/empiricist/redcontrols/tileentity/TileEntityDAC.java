@@ -8,10 +8,12 @@ public class TileEntityDAC extends TEBundledReceiver{
 
     @Override
     public void onBundledInputChanged() {
-        //LogHelper.info("DAC thing happened");
-        super.onBundledInputChanged();
-        worldObj.scheduleUpdate(pos, ModBlocks.dac, 1);//schedule a tick, we will notify neighbors then
-        //worldObj.notifyNeighborsOfStateChange(pos, ModBlocks.dac);
+        //LogHelper.info(" DAC thing happened");
+        if( super.doesThisChangeBundledInput() ) {
+            //LogHelper.info("  DAC scheduling update for itself");
+            worldObj.scheduleUpdate(pos, ModBlocks.dac, 1);//schedule a tick, we will notify neighbors then
+            //worldObj.notifyNeighborsOfStateChange(pos, ModBlocks.dac);
+        }
     }
 
     public int getRedstoneStrength(){

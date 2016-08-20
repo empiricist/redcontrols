@@ -65,6 +65,7 @@ $RECYCLE.BIN/
 #MY STUFF
 run/
 lib/
+build/
 .idea/
 out/
 src/api/java/

@@ -59,6 +59,8 @@ public class ClientProxy extends CommonProxy{
         mesher.register(Item.getItemFromBlock(ModBlocks.playerPanel),  0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.playerPanel.getName(),   "inventory"));
         mesher.register(Item.getItemFromBlock(ModBlocks.dac),          0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.dac.getName(),           "inventory"));
         mesher.register(Item.getItemFromBlock(ModBlocks.adc),          0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.adc.getName(),           "inventory"));
+        mesher.register(Item.getItemFromBlock(ModBlocks.serializer),   0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.serializer.getName(),    "inventory"));
+        mesher.register(Item.getItemFromBlock(ModBlocks.deserializer), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.deserializer.getName(),  "inventory"));
         for(int i = 0; i < ModBlocks.ironPanels.length; i++){
             mesher.register(Item.getItemFromBlock(ModBlocks.ironPanels[i]),0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.ironPanels[i].getName(), "inventory"));
             mesher.register(Item.getItemFromBlock(ModBlocks.goldPanels[i]),0, new ModelResourceLocation(Reference.MOD_ID + ":" + ModBlocks.goldPanels[i].getName(), "inventory"));

@@ -31,6 +31,7 @@ public class ConfigurationHandler {
     public static boolean enableIronPanel = false;
     public static boolean enableGoldPanel = false;
     public static boolean enableDACADC = false;
+    public static boolean enableRXTX = false;
 
 
     public static boolean enablePowerWand = false;
@@ -85,6 +86,7 @@ public class ConfigurationHandler {
         enableIronPanel =   configuration.getBoolean("enableIronPanel",     Configuration.CATEGORY_GENERAL, true, "Enable iron pressure panel");
         enableGoldPanel =   configuration.getBoolean("enableGoldPanel",     Configuration.CATEGORY_GENERAL, true, "Enable gold pressure panel");
         enableDACADC =      configuration.getBoolean("enableDACADC",        Configuration.CATEGORY_GENERAL, true, "Enable digital analog converter and analog digital converter");
+        enableRXTX =        configuration.getBoolean("enableRXTX",          Configuration.CATEGORY_GENERAL, true, "Enable experimental serializer and deserializer");
 
         enablePowerWand =   configuration.getBoolean("enablePowerWand",     Configuration.CATEGORY_GENERAL, true, "Enable power wand");
         enableDebugger =    configuration.getBoolean("enableDebugger",      Configuration.CATEGORY_GENERAL, true, "Enable debugger");

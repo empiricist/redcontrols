@@ -38,14 +38,14 @@ public class BlockBundledReceiver extends BlockContainerBase{//} implements IRed
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random random) {
         super.updateTick(world, pos, state, random);
-        LogHelper.info("Receiver block " + state.getBlock().getUnlocalizedName() + " does update tick");
+        //LogHelper.info("Receiver block " + state.getBlock().getUnlocalizedName() + " does update tick");
         //updateTE(world, pos);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block){
         super.neighborChanged(state, world, pos, block);
-        LogHelper.info("Receiver block " + state.getBlock().getUnlocalizedName() + " does block change update caused by " + block.getUnlocalizedName());
+        //LogHelper.info("Receiver block " + state.getBlock().getUnlocalizedName() + " does block change update caused by " + block.getUnlocalizedName());
         updateTE(world, pos);
     }
 

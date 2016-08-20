@@ -80,6 +80,8 @@ public class Recipes {
         //dac
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.dac), "sss", "rtr", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 't', new ItemStack(Blocks.REDSTONE_TORCH), 'r', "dustRedstone"));
 
+        //serializer
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.serializer), "sss", "rwr", "sss", 's', new ItemStack(Blocks.STONE_SLAB), 'w', "cropWheat", 'r', "dustRedstone"));//get it? cereal?
     }
 
     public static void postInit(){

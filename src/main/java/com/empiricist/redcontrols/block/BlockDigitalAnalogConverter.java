@@ -44,7 +44,7 @@ public class BlockDigitalAnalogConverter extends BlockBundledReceiver{
         TileEntity te = worldIn.getTileEntity(pos);
         if(te instanceof TileEntityDAC){
             TileEntityDAC teDAC = (TileEntityDAC) te;
-            return ((TileEntityDAC) te).getRedstoneStrength();
+            return teDAC.getRedstoneStrength();
         }
         return 0;
     }
@@ -68,7 +68,7 @@ public class BlockDigitalAnalogConverter extends BlockBundledReceiver{
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         super.updateTick(worldIn, pos, state, rand);
         if (!worldIn.isRemote) {
-            LogHelper.info("Ticking DAC block, will notify neighbors");
+            //LogHelper.info("  Ticking DAC block, will notify neighbors");
             worldIn.markAndNotifyBlock(pos, worldIn.getChunkFromBlockCoords(pos), state, state, 3);//send to clients and neighboring blocks
         }
     }

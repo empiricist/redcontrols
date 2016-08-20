@@ -32,6 +32,8 @@ public class ModBlocks {
     public static final BlockBigLever               bigLever =      new BlockBigLever();
     public static final BlockAnalogDigitalConverter adc =           new BlockAnalogDigitalConverter();//for technical reasons it is easier to make these separate blocks
     public static final BlockDigitalAnalogConverter dac =           new BlockDigitalAnalogConverter();
+    public static final BlockSerializer             serializer =    new BlockSerializer();
+    public static final BlockDeserializer           deserializer =  new BlockDeserializer();
     public static final BlockPressurePanel          woodPanel =     new BlockPressurePanel("woodPressurePanel", Material.WOOD, BlockPressurePanel.Sensitivity.EVERYTHING);
     public static final BlockPressurePanel          stonePanel =    new BlockPressurePanel("stonePressurePanel", Material.ROCK, BlockPressurePanel.Sensitivity.MOBS);
     public static final BlockPressurePanel          playerPanel =   new BlockPressurePanel("playerPressurePanel", Material.ROCK, BlockPressurePanel.Sensitivity.PLAYERS);
@@ -136,7 +138,6 @@ public class ModBlocks {
             }
             GameRegistry.register( new ItemBlock(goldPanels[0]), new ResourceLocation(Reference.MOD_ID + ":" + goldPanels[0].getName()));
         }
-
         if(ConfigurationHandler.enableDACADC) {
             adc.setRegistryName(Reference.MOD_ID, adc.getName());
             GameRegistry.register( adc );
@@ -147,6 +148,17 @@ public class ModBlocks {
             GameRegistry.register( dac );
             GameRegistry.registerTileEntity(TileEntityDAC.class, dac.getName());
             GameRegistry.register( new ItemBlock(dac), new ResourceLocation(Reference.MOD_ID + ":" + dac.getName()));
+        }
+        if(ConfigurationHandler.enableRXTX) {
+            serializer.setRegistryName(Reference.MOD_ID, serializer.getName());
+            GameRegistry.register( serializer );
+            GameRegistry.registerTileEntity(TileEntitySerializer.class, serializer.getName());
+            GameRegistry.register( new ItemBlock(serializer), new ResourceLocation(Reference.MOD_ID + ":" + serializer.getName()));
+
+            deserializer.setRegistryName(Reference.MOD_ID, deserializer.getName());
+            GameRegistry.register( deserializer );
+            GameRegistry.registerTileEntity(TileEntityDeserializer.class, deserializer.getName());
+            GameRegistry.register( new ItemBlock(deserializer), new ResourceLocation(Reference.MOD_ID + ":" + deserializer.getName()));
         }
     }
 

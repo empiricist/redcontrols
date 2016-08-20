@@ -32,6 +32,7 @@ public class BlockSwitch extends BlockButton{
         this.setCreativeTab(CreativeTabRedControls.RED_CONTROLS_TAB);
         name = "toggleSwitch";
         this.setUnlocalizedName(name);
+        setHardness(0.5F);//same as lever/stone button (theirs are set in Block.java, not in constructors)
     }
 
     @Override

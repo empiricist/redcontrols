@@ -28,6 +28,7 @@ public class BlockBreakerSwitch extends BlockLever{
         setCreativeTab(CreativeTabRedControls.RED_CONTROLS_TAB);
         name = "breakerSwitch";
         this.setUnlocalizedName(name);
+        setHardness(0.5F);//same as lever (lever's is set in Block.java, not in constructor)
     }
 
     @Override

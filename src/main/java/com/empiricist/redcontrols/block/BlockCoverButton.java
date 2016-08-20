@@ -43,6 +43,7 @@ public class BlockCoverButton extends BlockButton{
         this.setCreativeTab( covered ? CreativeTabRedControls.RED_CONTROLS_TAB : null);
         name = (covered ? "coverButton" : "uncoverButton");
         this.setUnlocalizedName(name);
+        setHardness(0.5F);//same as stone button (button's is set in Block.java, not in constructor)
 
     }
 

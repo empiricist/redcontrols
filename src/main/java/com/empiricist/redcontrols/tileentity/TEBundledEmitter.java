@@ -1,6 +1,7 @@
 package com.empiricist.redcontrols.tileentity;
 
 import com.empiricist.redcontrols.utility.LogHelper;
+import crazypants.enderio.api.redstone.IRedstoneConnectable;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -23,10 +24,11 @@ import net.minecraft.world.World;
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledEmitter", modid = "RedLogic", striprefs = true),
         @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IConnectable", modid = "RedLogic", striprefs = true),
         @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = "ProjRed|Core", striprefs = true),
-        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledEmitter", modid = "CharsetWires", striprefs = true)
+        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledEmitter", modid = "CharsetWires", striprefs = true),
+        @Optional.Interface(iface = "crazypants.enderio.api.redstone.IRedstoneConnectable", modid = "EnderIO", striprefs = true)
 })
 //If bluepower ever updates start by uncommenting cache, methods, IBundledDevice, readding @Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true)
-public class TEBundledEmitter extends TileEntity implements IBundledEmitter, IConnectable, IBundledTile, pl.asie.charset.api.wires.IBundledEmitter{//}, IBundledDevice {
+public class TEBundledEmitter extends TileEntity implements IBundledEmitter, IConnectable, IBundledTile, pl.asie.charset.api.wires.IBundledEmitter, IRedstoneConnectable{//}, IBundledDevice {
     public byte[] BPinput;
     public Object BPCache;
 
@@ -226,4 +228,19 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
 
 
     //MFR methods are in block class
+
+
+    //EIO, see also block class
+    public int[] getEIOSignals(){
+        byte[] bSignals = getBundledCableStrength(0,0);
+        int[] iSignals = new int[bSignals.length];
+        for(int i = 0; i < bSignals.length; i++){
+            iSignals[i] = (bSignals[i]!=0)? 15:0;
+        }
+        return iSignals;
+    }
+    @Override
+    public boolean shouldRedstoneConduitConnect(World world, int x, int y, int z, EnumFacing from) {
+        return true;
+    }
 }

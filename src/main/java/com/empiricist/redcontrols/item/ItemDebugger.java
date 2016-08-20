@@ -5,6 +5,7 @@ import com.empiricist.redcontrols.tileentity.TEBundledReceiver;
 import com.empiricist.redcontrols.utility.ChatHelper;
 import com.empiricist.redcontrols.utility.LogHelper;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -79,7 +80,8 @@ public class ItemDebugger extends ItemBase{
     }
 
     //If right clicked on no block, give data of item in slot 1
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand){
         if( !world.isRemote ){
             ItemStack slot1 = player.inventory.getStackInSlot(0);
             if (slot1 != null){
@@ -89,8 +91,10 @@ public class ItemDebugger extends ItemBase{
                     ChatHelper.sendText(player, "NBT Data is :"  + slot1.getTagCompound().toString());
                 }
             }
+            //ChatHelper.sendText(player, "World Time: " + world.getWorldTime());
+            //ChatHelper.sendText(player, "Total Time: " + world.getTotalWorldTime());
         }
-        return stack;
+        return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
     }
 
     //give data of entity left clicked on

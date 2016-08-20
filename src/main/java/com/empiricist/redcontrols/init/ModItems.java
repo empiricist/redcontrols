@@ -15,15 +15,18 @@ public class ModItems {
     //register items from mod
     public static void init(){
         if(ConfigurationHandler.enableDebugger) {
-            GameRegistry.registerItem(debugger, debugger.getName());
+            debugger.setRegistryName(Reference.MOD_ID, debugger.getName());
+            GameRegistry.register( debugger );
         }
 
         if(ConfigurationHandler.enableCompass) {
-            GameRegistry.registerItem(itemBearingCompass, itemBearingCompass.getName());
+            itemBearingCompass.setRegistryName(Reference.MOD_ID, itemBearingCompass.getName());
+            GameRegistry.register( itemBearingCompass );
         }
 
         if(ConfigurationHandler.enablePowerWand) {
-            GameRegistry.registerItem(powerWand, powerWand.getName());
+            powerWand.setRegistryName(Reference.MOD_ID, powerWand.getName());
+            GameRegistry.register( powerWand );
         }
     }
 }

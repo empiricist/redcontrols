@@ -13,11 +13,11 @@ public class WorldHelper {
         }
     }
 
-    public static int maxRedstonePower(World world, BlockPos pos){
-        int power = 0;
-        for(EnumFacing facing : EnumFacing.values()){
-            power = Math.max(power, world.getRedstonePower(pos.offset(facing), facing.getOpposite()) );
-        }
-        return power;
-    }
+//    public static int maxRedstonePower(World world, BlockPos pos){
+//        int power = 0;
+//        for(EnumFacing facing : EnumFacing.values()){
+//            power = Math.max(power, world.getRedstonePower(pos.offset(facing), facing.getOpposite()) );//never mind just use world.isIndirectlyGettingPowered()
+//        }
+//        return power;
+//    }
 }

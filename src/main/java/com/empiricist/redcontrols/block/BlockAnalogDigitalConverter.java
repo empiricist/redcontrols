@@ -17,6 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.storage.WorldInfo;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -55,22 +56,22 @@ public class BlockAnalogDigitalConverter extends BlockBundledEmitter{
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         super.updateTick(worldIn, pos, state, rand);
         if (!worldIn.isRemote) {
-            LogHelper.info("Ticking ADC block, will notify neighbors");
+            //LogHelper.info("Ticking ADC block, will notify neighbors");
             worldIn.markAndNotifyBlock(pos, worldIn.getChunkFromBlockCoords(pos), state, state, 3);//send to clients and neighboring blocks
         }
     }
 
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {//possible redstone update (blockIn is block that changed)
-        LogHelper.info("ADC's neighbor changed, state is " + state + ", pos is " + pos + ", block is " + blockIn);
+        //LogHelper.info("ADC's neighbor changed, state is " + state + ", pos is " + pos + ", block is " + blockIn);
         TileEntity te = worldIn.getTileEntity(pos);
         if( te != null && te instanceof TileEntityADC){
-            int power = WorldHelper.maxRedstonePower(worldIn, pos);
-            LogHelper.info("  Found power " + power);
+            int power = worldIn.isBlockIndirectlyGettingPowered(pos);//WorldHelper.maxRedstonePower(worldIn, pos);
+            //LogHelper.info("  Found power " + power);
             TileEntityADC teadc = (TileEntityADC) te;
-            LogHelper.info("  Last power  " + teadc.getLastPower());
+            //LogHelper.info("  Last power  " + teadc.getLastPower());
             if(power != teadc.getLastPower()){//send update if redstone changed
-                LogHelper.info("    scheduling update to notify clients and adjacent blocks");
+                //LogHelper.info("    scheduling update to notify clients and adjacent blocks");
                 teadc.setLastPower(power);
                 worldIn.scheduleUpdate(pos, this, 1);
             }

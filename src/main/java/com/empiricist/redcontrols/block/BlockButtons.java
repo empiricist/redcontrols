@@ -4,8 +4,10 @@ import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.tileentity.TileEntityButtons;
 import com.empiricist.redcontrols.utility.LogHelper;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Optional;
@@ -31,6 +33,8 @@ public class BlockButtons extends BlockSwitches{
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing face, float clickX, float clickY, float clickZ) {
+        super.onBlockActivated(world, pos, state, playerIn, hand, heldItem, face, clickX, clickY, clickZ);//EIO
+
         world.notifyBlockUpdate(pos, state, state, 3);//markBlockForUpdate( pos ); // Makes the server call getDescriptionPacket for a full data sync
         if( activeFace(state) != face){ return false; }
 
@@ -104,11 +108,15 @@ public class BlockButtons extends BlockSwitches{
                 //LogHelper.info("bx " + bx + " by " + by + " button " + button + " bezel " + bezel);
                 button = bx + 4 * by;
             }
+            if(button != -1){
+                //LogHelper.info("Playing sound");
+                world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.3F, 0.7F);
+            }
 
             TileEntity tile = world.getTileEntity( pos );
             if (tile != null && tile instanceof TileEntityButtons) {
                 TileEntityButtons buttonPanel = (TileEntityButtons)tile;
-                buttonPanel.setSignal(button, 30);
+                buttonPanel.setSignal(button, 30);  //reset button countdown
             }
 
             world.notifyNeighborsOfStateChange( pos, this );

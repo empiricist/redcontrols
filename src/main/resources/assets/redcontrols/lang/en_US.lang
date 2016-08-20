@@ -24,6 +24,8 @@ tile.redcontrols:ironPressurePanel_down.name=Weighted Pressure Panel (Heavy)
 tile.redcontrols:goldPressurePanel_down.name=Weighted Pressure Panel (Light)
 tile.redcontrols:dac.name=Digital Analog Converter
 tile.redcontrols:adc.name=Analog Digital Converter
+tile.redcontrols:serializer.name=Serializer
+tile.redcontrols:deserializer.name=Deserializer
 
 #Keybinds
 keys.redcontrols.category=Red Controls

@@ -36,6 +36,7 @@ public class BlockBigLever extends BlockLever {
         setCreativeTab(CreativeTabRedControls.RED_CONTROLS_TAB);
         name = "bigLever";
         this.setUnlocalizedName(name);
+        setHardness(0.5F);//same as lever (lever's is set in Block.java, not in constructor)
     }
 
     @Override

@@ -3,6 +3,11 @@ package com.empiricist.redcontrols.tileentity;
 
 import com.empiricist.redcontrols.utility.LogHelper;
 import crazypants.enderio.api.redstone.IRedstoneConnectable;
+import crazypants.enderio.conduit.AbstractConduitNetwork;
+import crazypants.enderio.conduit.IConduitBundle;
+import crazypants.enderio.conduit.redstone.IRedstoneConduit;
+import crazypants.enderio.conduit.redstone.RedstoneConduitNetwork;
+import crazypants.enderio.conduit.redstone.Signal;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -20,9 +25,11 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import pl.asie.charset.api.wires.IBundledReceiver;
+import scala.collection.mutable.MultiMap;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 //import powercrystals.minefactoryreloaded.api.rednet.IRedNetOutputNode;
 
 
@@ -54,12 +61,17 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
         BPinputs = new byte[]{0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0};
     }
 
+
     //this one
     public void onBundledInputChanged() {
+        doesThisChangeBundledInput();
+    }
+
+    public boolean doesThisChangeBundledInput(){//basically onBundledInputChanged but it returns whether anything actually happened
         byte[] in = new byte[16];
 
         //if(!worldObj.isRemote){LogHelper.info("Update for TE at x " + xCoord + " y " + yCoord + " z " + zCoord);}
-        if(!worldObj.isRemote){LogHelper.info("  Last signals were " + debugOutput(signals));}
+        //if(!worldObj.isRemote){LogHelper.info("  Last signals were " + debugOutput(signals));}
 
         for( EnumFacing dir : EnumFacing.values() ){
             //LogHelper.info("---- Checking for TE at " + dir.name() + " ----");
@@ -68,11 +80,11 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             //if(!worldObj.isRemote){LogHelper.info(" tile " + te);}
             //LogHelper.info("Checking signals against redlogic signals");
             if(te instanceof TEBundledEmitter){
-                if(!worldObj.isRemote){LogHelper.info("  TE is a TEBundledEmitter");}
+                //if(!worldObj.isRemote){LogHelper.info("   Found a is a TEBundledEmitter");}
                 for( int i = -1; i < 6; i++ ){
                     in = maxSignal(in, ((TEBundledEmitter) te).getBundledCableStrength(i, dir.getOpposite().ordinal()));
                 }
-                if(!worldObj.isRemote){LogHelper.info("    TE output makes state " + debugOutput(in));}
+                //if(!worldObj.isRemote){LogHelper.info("    TE output makes state " + debugOutput(in));}
             }
             if(Loader.isModLoaded("RedLogic") && te instanceof mods.immibis.redlogic.api.wiring.IBundledEmitter){
                 //if(!worldObj.isRemote){LogHelper.info("found redlogic " + dir);}
@@ -144,7 +156,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             }
             //MFR
             in = maxSignal(in, blockSignals);
-            if(!worldObj.isRemote){LogHelper.info("    blockSignals output makes state " + debugOutput(in));}
+            //if(!worldObj.isRemote){LogHelper.info("    blockSignals output makes state " + debugOutput(in));}
 
             //EIO (does this require MFR to be loaded?)
 //            if(Loader.isModLoaded("MineFactoryReloaded") && te instanceof IRedNetOutputNode){
@@ -168,28 +180,36 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 //                    LogHelper.info(" " + o + "\n");
 //                }
 //            }
-            /*
+
             //if(!worldObj.isRemote){LogHelper.info(" tile " + te + " is ICB? " + (te instanceof IConduitBundle));}
             if(Loader.isModLoaded("EnderIO") && te instanceof IConduitBundle && ((IConduitBundle)te).hasType(IRedstoneConduit.class)){
-                //if(!worldObj.isRemote){LogHelper.info(" tile " + te + " is ICB? " + (te instanceof IConduitBundle));}
+                //if(!worldObj.isRemote){LogHelper.info(" tile " + te + " is EIO conduit bundle? " + (te instanceof IConduitBundle));}
                 IRedstoneConduit ter = ((IConduitBundle)te).getConduit(IRedstoneConduit.class);
                 //if(!worldObj.isRemote){LogHelper.info("found EIO " + dir);}
-                BlockPos offsetpos = pos.offset(dir);
-                in = maxSignal(in, intsToBytes(ter.getOutputValues(worldObj, offsetpos.getX(), offsetpos.getY(), offsetpos.getZ(), dir.getOpposite().ordinal())));
+                //if(!worldObj.isRemote){LogHelper.info(" EIO says " + ter.getNetworkOutputs(dir.getOpposite()));}
+                AbstractConduitNetwork aNet = ter.getNetwork();
+                if(aNet instanceof RedstoneConduitNetwork){
+                    RedstoneConduitNetwork net = (RedstoneConduitNetwork)aNet;
+                    Collection<Signal> sigs = net.getSignals().values();
+                    in = maxSignal(in, fromEIO(sigs) );
+                }
+                //in = maxSignal(in, fromEIO( ter.getNetworkOutputs(dir.getOpposite()) ));//just gets the one color of the connection
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
             }
-            */
+
         }
 
-        if(!worldObj.isRemote){LogHelper.info("      Signals were " + debugOutput(signals));}
-        if(!worldObj.isRemote){LogHelper.info("      Input now is " + debugOutput(in));}
+        //if(!worldObj.isRemote){LogHelper.info("      Signals were " + debugOutput(signals));}
+        //if(!worldObj.isRemote){LogHelper.info("      Input now is " + debugOutput(in));}
         if( !Arrays.equals(signals, in) ){ //see if anything actually changed
-            LogHelper.info("    Receiver input changed");
+            //LogHelper.info("    Receiver input changed");
             signals = in;
             //if(!worldObj.isRemote){LogHelper.info("final signals " + debugOutput(signals));}
             worldObj.notifyBlockUpdate(pos, worldObj.getBlockState(pos), worldObj.getBlockState(pos), 3);//send change to clients
+            return true;
         }else{
-            LogHelper.info("    Receiver input did not change");
+            //LogHelper.info("    Receiver input did not change");
+            return false;
         }
 
     }
@@ -231,6 +251,16 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             bytes[i] = (byte)(val > 127 ? val - 256 : val);
         }
         return bytes;
+    }
+
+    private byte[] fromEIO( Collection<Signal> sigs ){
+        byte[] result = new byte[16];
+        for( Signal sig : sigs ){
+            int index = sig.color.ordinal();
+            result[15 - index] = (byte)( (sig.strength != 0)? -1 : 0 ); //EIO dyecolors are in opposite order, and signal strengths are 0-15 (or maybe just 14?)
+            //there can be muliple signals of the same color, but they seem to go away when off
+        }
+        return result;
     }
 
     //apparently these two are for resyncing (notifyBlockUpdate or markDirty)

@@ -6,12 +6,22 @@ import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.tileentity.TileEntitySwitches;
 import com.empiricist.redcontrols.utility.ChatHelper;
 import com.empiricist.redcontrols.utility.LogHelper;
+import com.enderio.core.common.util.DyeColor;
+import crazypants.enderio.conduit.AbstractConduitNetwork;
+import crazypants.enderio.conduit.IConduitBundle;
+import crazypants.enderio.conduit.redstone.IRedstoneConduit;
+import crazypants.enderio.conduit.redstone.RedstoneConduitNetwork;
+import crazypants.enderio.conduit.redstone.Signal;
+import crazypants.enderio.conduit.redstone.SignalSource;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.StringUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.Optional;
@@ -27,9 +37,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import com.google.common.collect.Multimap;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class BlockSwitches extends BlockBundledEmitter {
 
@@ -64,6 +77,8 @@ public class BlockSwitches extends BlockBundledEmitter {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing face, float clickX, float clickY, float clickZ){
+        super.onBlockActivated(world, pos, state, playerIn, hand, heldItem, face, clickX, clickY, clickZ);//EIO
+
         world.notifyBlockUpdate(pos, state, state, 3);//markBlockForUpdate( pos ); // Makes the server call getDescriptionPacket for a full data sync
 
         if( activeFace(state) != face){ //only does special things if you click on the face with the switches
@@ -143,12 +158,16 @@ public class BlockSwitches extends BlockBundledEmitter {
                 //LogHelper.info("bx " + bx + " by " + by + " button " + button + " bezel " + bezel);
                 button = bx + 4 * by;
             }
+            if(button != -1){
+                //LogHelper.info("Playing sound");
+                world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.2F, 0.7F);
+            }
 
             //tell the tileentity which was clicked
             TileEntity tile = world.getTileEntity( pos );
             if (tile != null && tile instanceof TileEntitySwitches) {
                 TileEntitySwitches switchPanel = (TileEntitySwitches)tile;
-                switchPanel.setSignal(button, !switchPanel.getSignal(button));
+                switchPanel.setSignal(button, !switchPanel.getSignal(button));  //toggle switch state
                 //Minecraft.getMinecraft().getNetHandler().addToSendQueue(warpCore.getDescriptionPacket());
                 //world.markBlockForUpdate(x, y, z);
 

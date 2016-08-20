@@ -3,9 +3,11 @@ package com.empiricist.redcontrols.tileentity;
 import com.empiricist.redcontrols.init.ModBlocks;
 import com.empiricist.redcontrols.utility.LogHelper;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 
 public class TileEntityButtons extends TEBundledEmitter implements ITEBundledLights, ITickable{
     public int[] signals;
@@ -20,6 +22,7 @@ public class TileEntityButtons extends TEBundledEmitter implements ITEBundledLig
         if(!worldObj.isRemote) {
             for (int i = 0; i < signals.length; i++) {
                 if (signals[i] == 1) {//button runs out
+                    worldObj.scheduleUpdate(pos, worldObj.getBlockState(pos).getBlock(), 1);//this will update EIO too (in updateTick()) when you run out
 //                    for( ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 //                        worldObj.scheduleBlockUpdate(xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ, ModBlocks.buttons, 10);
 //                        LogHelper.info("Schedules update for x:" + (xCoord + dir.offsetX) + " y:" + (yCoord + dir.offsetY) + " z:" + (zCoord + dir.offsetZ));
@@ -31,6 +34,7 @@ public class TileEntityButtons extends TEBundledEmitter implements ITEBundledLig
                     //worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, ModBlocks.buttons);
                     IBlockState state = worldObj.getBlockState(pos);
                     worldObj.markAndNotifyBlock( pos, worldObj.getChunkFromBlockCoords( pos ), state, state, 3);
+                    worldObj.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.3F, 0.7F);//play pop sound
                     //ModBlocks.buttons.onBlockActivated(worldObj, xCoord, yCoord, zCoord, null, worldObj.getBlockMetadata(xCoord,yCoord,zCoord), 0, 0, 0);
                 }
                 if (signals[i] >= 1) {//if time left for signal, decrement counter

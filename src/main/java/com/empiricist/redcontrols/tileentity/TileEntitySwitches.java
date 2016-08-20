@@ -22,14 +22,10 @@ public class TileEntitySwitches extends TEBundledEmitter implements ITEBundledLi
 
     private short signals;
 
-    //public EnergyStorage energyStorage;
-
     public TileEntitySwitches() {
         super();
 
         signals = 0;//new int[] { 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
-        //energyStorage = new EnergyStorage(ConfigurationHandler.coreEnergyStorage, 1000, ConfigurationHandler.coreEnergyStorage);//capacity, receive, extract
     }
 
     public short getSignals(){ return signals; }
@@ -74,16 +70,14 @@ public class TileEntitySwitches extends TEBundledEmitter implements ITEBundledLi
         super.writeToNBT(compound);
 
         compound.setShort("signals", signals);
-
-        //energyStorage.writeToNBT(compound);
         return compound;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
+
         signals = compound.getShort("signals");
-        //energyStorage.readFromNBT(compound);
     }
 
 }
