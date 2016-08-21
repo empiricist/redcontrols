@@ -1,5 +1,6 @@
 package com.empiricist.redcontrols.tileentity;
 
+import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.utility.LogHelper;
 import crazypants.enderio.api.redstone.IRedstoneConnectable;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -21,11 +22,11 @@ import net.minecraft.world.World;
 
 
 @Optional.InterfaceList({
-        @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledEmitter", modid = "RedLogic", striprefs = true),
-        @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IConnectable", modid = "RedLogic", striprefs = true),
-        @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = "ProjRed|Core", striprefs = true),
-        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledEmitter", modid = "CharsetWires", striprefs = true),
-        @Optional.Interface(iface = "crazypants.enderio.api.redstone.IRedstoneConnectable", modid = "EnderIO", striprefs = true)
+        @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledEmitter", modid = Reference.ID_REDLOGIC, striprefs = true),
+        @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IConnectable", modid = Reference.ID_REDLOGIC, striprefs = true),
+        @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = Reference.ID_PROJECT_RED, striprefs = true),
+        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledEmitter", modid = Reference.ID_CHARSET, striprefs = true),
+        @Optional.Interface(iface = "crazypants.enderio.api.redstone.IRedstoneConnectable", modid = Reference.ID_ENDER_IO, striprefs = true)
 })
 //If bluepower ever updates start by uncommenting cache, methods, IBundledDevice, readding @Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true)
 public class TEBundledEmitter extends TileEntity implements IBundledEmitter, IConnectable, IBundledTile, pl.asie.charset.api.wires.IBundledEmitter, IRedstoneConnectable{//}, IBundledDevice {
@@ -79,13 +80,13 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
 
     //Redlogic
     @Override
-    @Optional.Method(modid="RedLogic")
+    @Optional.Method(modid=Reference.ID_REDLOGIC)
     public boolean connects(IWire wire, int blockFace, int fromDirection) {
         return wire instanceof IBundledWire;
     }
 
     @Override
-    @Optional.Method(modid="RedLogic")
+    @Optional.Method(modid=Reference.ID_REDLOGIC)
     public boolean connectsAroundCorner(IWire wire, int blockFace, int fromDirection) {
         return false;
     }
@@ -94,13 +95,13 @@ public class TEBundledEmitter extends TileEntity implements IBundledEmitter, ICo
 
     //Project Red
     @Override
-    @Optional.Method(modid="ProjRed|Core")
+    @Optional.Method(modid=Reference.ID_PROJECT_RED)
     public boolean canConnectBundled(int side) {
         return true;
     }
 
     @Override
-    @Optional.Method(modid="ProjRed|Core")
+    @Optional.Method(modid=Reference.ID_PROJECT_RED)
     public byte[] getBundledSignal(int dir) {
         return getBundledCableStrength(0,dir);
     }

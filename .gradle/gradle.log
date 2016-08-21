@@ -1,5 +1,5 @@
 #################################################
-         ForgeGradle 2.2-SNAPSHOT-fcfdb66        
+         ForgeGradle 2.2-SNAPSHOT-c438b06        
   https://github.com/MinecraftForge/ForgeGradle  
 #################################################
                Powered by MCP unknown               
@@ -27,7 +27,7 @@ Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
 1 warning
 
-:processResources UP-TO-DATE
+:processResources
 :classes
 :jar
 :sourceTestJava UP-TO-DATE
@@ -52,4 +52,4 @@ remapping source...
 
 BUILD SUCCESSFUL
 
-Total time: 22.39 secs
+Total time: 20.02 secs

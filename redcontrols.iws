@@ -2,52 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52d22734-1c50-44c6-9864-89744a344646" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockDeserializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSerializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityDeserializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntitySerializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/blockstates/deserializer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/blockstates/serializer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/block/deserializer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/block/serializer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/item/deserializer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/item/serializer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/textures/dac.xcf" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/textures/dac.xcf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/gradle.log" afterPath="$PROJECT_DIR$/.gradle/gradle.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/redcontrols.ipr" afterPath="$PROJECT_DIR$/redcontrols.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/redcontrols.iws" afterPath="$PROJECT_DIR$/redcontrols.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockAnalogDigitalConverter.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockAnalogDigitalConverter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBigLever.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBigLever.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBreakerSwitch.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBreakerSwitch.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledEmitter.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledEmitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledReceiver.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledReceiver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockButtons.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockButtons.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockCoverButton.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockCoverButton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockDigitalAnalogConverter.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockDigitalAnalogConverter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSwitch.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSwitch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSwitches.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSwitches.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/handler/ConfigurationHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/handler/ConfigurationHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/ModBlocks.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/ModBlocks.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/ModItems.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/ModItems.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/Recipes.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/Recipes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/compat/CCRedstoneProvider.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/compat/CCRedstoneProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/Integration.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/Integration.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/item/ItemDebugger.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/item/ItemDebugger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/proxy/ClientProxy.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/proxy/ClientProxy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/reference/Reference.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/reference/Reference.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledEmitter.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledEmitter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledReceiver.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityADC.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityADC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityButtons.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityButtons.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityDAC.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityDAC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntitySwitches.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntitySwitches.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/utility/WorldHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/utility/WorldHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/lang/en_US.lang" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/lang/en_US.lang" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/item/adc.json" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/item/adc.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/item/dac.json" afterPath="$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/item/dac.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mcmod.info" afterPath="$PROJECT_DIR$/src/main/resources/mcmod.info" />
     </list>
     <ignored path="redcontrols.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -119,41 +89,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BlockBundledEmitter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BlockBundledEmitter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledEmitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="52" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.19101124">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockSwitches.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSwitches.java">
+      <file leaf-file-name="TEBundledEmitter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledEmitter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding />
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="e#3844#3845#0" expanded="true" />
+                <element signature="e#3895#3896#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TEBundledReceiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledReceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TileEntitySwitches.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TileEntitySwitches.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntitySwitches.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2857143">
-              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -759,11 +722,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockPressurePanelBase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockAnalogPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/handler/ConfigurationHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/ModBlocks.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/ModItems.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockDeserializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/utility/WorldHelper.java" />
@@ -780,7 +738,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/assets/redcontrols/blockstates/deserializer.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSerializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/Recipes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/item/ItemDebugger.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntitySerializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityDeserializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockAnalogDigitalConverter.java" />
@@ -803,13 +760,19 @@
         <option value="$PROJECT_DIR$/src/api/java/crazypants/enderio/conduit/redstone/InsulatedRedstoneConduit.java" />
         <option value="$PROJECT_DIR$/src/api/java/crazypants/enderio/conduit/IConduitBundle.java" />
         <option value="$PROJECT_DIR$/src/api/java/crazypants/enderio/conduit/redstone/RedstoneConduitNetwork.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockButtons.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSwitches.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntityButtons.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledReceiver.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledEmitter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledEmitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntitySwitches.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledEmitter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledReceiver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/Integration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/compat/CCRedstoneProvider.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/item/ItemDebugger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledEmitter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSwitches.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockButtons.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mcmod.info" />
+        <option value="$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/reference/Reference.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
       </list>
     </option>
   </component>
@@ -825,10 +788,10 @@
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -867,9 +830,6 @@
         <subPane subId="Project Files" />
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane">
-        <subPane />
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1102,7 +1062,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tileentity" />
+              <option name="myItemId" value="reference" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="redcontrols" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="redcontrols" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="redcontrols" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="block" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1155,6 +1145,9 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane />
       </pane>
     </panes>
   </component>
@@ -1546,35 +1539,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32683983" sideWeight="0.5021322" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32575756" sideWeight="0.4978678" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3253886" sideWeight="0.4978678" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20895523" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32683983" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32683983" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1600,41 +1593,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/item/serializer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029982364">
-          <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/redcontrols/models/item/deserializer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029982364">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/proxy/ClientProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3187184">
-          <caret line="62" column="174" selection-start-line="62" selection-start-column="174" selection-end-line="62" selection-end-column="174" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/redcontrols/blockstates/adc.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/redcontrols/blockstates/serializer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.059964728">
-          <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/assets/redcontrols/blockstates/deserializer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.059964728">
@@ -1653,14 +1611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/item/ItemDebugger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1787522">
-          <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1817,22 +1767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/RedControls.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6857143">
-          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/java/com/enderio/core/common/util/DyeColor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25714287">
@@ -1847,7 +1781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="14.8">
           <caret line="577" column="13" selection-start-line="577" selection-start-column="13" selection-end-line="577" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1862,7 +1795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.7428571">
           <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1878,9 +1810,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.4">
           <caret line="51" column="66" selection-start-line="51" selection-start-column="66" selection-end-line="51" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1911,16 +1840,8 @@
         <state vertical-scroll-proportion="1.5142857">
           <caret line="59" column="15" selection-start-line="59" selection-start-column="15" selection-end-line="59" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.9.4-12.17.0.1976/stable/26/forgeSrc-1.9.4-12.17.0.1976-sources.jar!/net/minecraft/world/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36134455">
-          <caret line="1781" column="5" selection-start-line="1781" selection-start-column="5" selection-end-line="1781" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1928,14 +1849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6756303">
           <caret line="1313" column="19" selection-start-line="1313" selection-start-column="19" selection-end-line="1313" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockButtons.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62857145">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1948,45 +1861,133 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1364366">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/init/Integration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1364366">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/compat/CCRedstoneProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19101124">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/item/ItemDebugger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76404494">
+          <caret line="47" column="58" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.9.4-12.17.0.1976/stable/26/forgeSrc-1.9.4-12.17.0.1976-sources.jar!/net/minecraft/world/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33226323">
+          <caret line="1121" column="16" selection-start-line="1121" selection-start-column="16" selection-end-line="1121" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockButtons.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.5922954">
+          <caret line="112" column="109" selection-start-line="112" selection-start-column="109" selection-end-line="112" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockSwitches.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledEmitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="52" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledEmitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3714286">
-          <caret line="71" column="24" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
+        <state vertical-scroll-proportion="1.882825">
+          <caret line="71" column="45" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="45" />
           <folding>
-            <element signature="e#8371#8372#0" expanded="true" />
-            <element signature="e#8398#8399#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.2102728">
+          <caret line="83" column="28" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#16302#16303#0" expanded="true" />
+            <element signature="e#16353#16354#0" expanded="true" />
+            <element signature="e#16671#16672#0" expanded="true" />
+            <element signature="e#16698#16699#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/RedControls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65489566">
+          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mcmod.info">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1364366">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/reference/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16372392">
+          <caret line="6" column="90" selection-start-line="6" selection-start-column="90" selection-end-line="6" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4365971">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TEBundledEmitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#3844#3845#0" expanded="true" />
+            <element signature="e#3895#3896#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/tileentity/TileEntitySwitches.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2857143">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/empiricist/redcontrols/block/BlockBundledEmitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19101124">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding />
         </state>
       </provider>

@@ -1,5 +1,6 @@
 package com.empiricist.redcontrols.item;
 
+import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.tileentity.TEBundledReceiver;
 import com.empiricist.redcontrols.utility.ChatHelper;
@@ -44,7 +45,7 @@ public class ItemDebugger extends ItemBase{
                 te.writeToNBT(tag);
                 ChatHelper.sendText(player, "NBTData:" + tag.toString());
 
-                if(Loader.isModLoaded("CharsetWires") ) {
+                if(Loader.isModLoaded(Reference.ID_CHARSET) ) {
                     ChatHelper.sendText(player, "-----Block-----");
                     for (EnumFacing face : EnumFacing.values()) {
                         ChatHelper.sendText(player, "Side: " + face.name() + ", receiver?: " + te.hasCapability(TEBundledReceiver.BUNDLED_RECEIVER, face));

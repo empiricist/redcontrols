@@ -110,7 +110,7 @@ public class BlockButtons extends BlockSwitches{
             }
             if(button != -1){
                 //LogHelper.info("Playing sound");
-                world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.3F, 0.7F);
+                world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.2F, 0.7F);
             }
 
             TileEntity tile = world.getTileEntity( pos );

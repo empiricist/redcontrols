@@ -1,6 +1,7 @@
 package com.empiricist.redcontrols.tileentity;
 
 
+import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.utility.LogHelper;
 import crazypants.enderio.api.redstone.IRedstoneConnectable;
 import crazypants.enderio.conduit.AbstractConduitNetwork;
@@ -27,6 +28,7 @@ import net.minecraft.world.World;
 import pl.asie.charset.api.wires.IBundledReceiver;
 import scala.collection.mutable.MultiMap;
 
+import java.sql.Ref;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
@@ -34,11 +36,11 @@ import java.util.Set;
 
 
 @Optional.InterfaceList({
-        @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledUpdatable", modid = "RedLogic", striprefs = true),
-        @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IConnectable", modid = "RedLogic", striprefs = true),
-        @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = "ProjRed|Core", striprefs = true),
-        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledReceiver", modid = "CharsetWires", striprefs = true),
-        @Optional.Interface(iface = "crazypants.enderio.api.redstone.IRedstoneConnectable", modid = "EnderIO", striprefs = true)
+        @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IBundledUpdatable", modid = Reference.ID_REDLOGIC, striprefs = true),
+        @Optional.Interface(iface = "mods.immibis.redlogic.api.wiring.IConnectable", modid = Reference.ID_REDLOGIC, striprefs = true),
+        @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = Reference.ID_PROJECT_RED, striprefs = true),
+        @Optional.Interface(iface = "pl.asie.charset.api.wires.IBundledReceiver", modid = Reference.ID_CHARSET, striprefs = true),
+        @Optional.Interface(iface = "crazypants.enderio.api.redstone.IRedstoneConnectable", modid = Reference.ID_ENDER_IO, striprefs = true)
 })
 //@Optional.Interface(iface = "com.bluepowermod.api.wire.redstone.IBundledDevice", modid = "bluepower", striprefs = true),
 public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, IConnectable, IBundledTile, IBundledReceiver, IRedstoneConnectable { //, IBundledDevice, } {
@@ -86,7 +88,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
                 }
                 //if(!worldObj.isRemote){LogHelper.info("    TE output makes state " + debugOutput(in));}
             }
-            if(Loader.isModLoaded("RedLogic") && te instanceof mods.immibis.redlogic.api.wiring.IBundledEmitter){
+            if(Loader.isModLoaded(Reference.ID_REDLOGIC) && te instanceof mods.immibis.redlogic.api.wiring.IBundledEmitter){
                 //if(!worldObj.isRemote){LogHelper.info("found redlogic " + dir);}
                 for( int i = -1; i < 6; i++ ){
                     //if(!worldObj.isRemote){LogHelper.info(" trying direction " + i);}
@@ -95,13 +97,13 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
                 //in = maxSignal(in, ((IBundledEmitter) te).getBundledCableStrength(dir.ordinal(), dir.getOpposite().ordinal()));
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
             }
-            if(Loader.isModLoaded("ProjRed|Core") ){//&& te instanceof mrtjp.projectred.api.IBundledEmitter){
+            if(Loader.isModLoaded(Reference.ID_PROJECT_RED) ){//&& te instanceof mrtjp.projectred.api.IBundledEmitter){
                 //if(!worldObj.isRemote){LogHelper.info("maybe found project red? " + dir);}
                 //LogHelper.info("Checking signals against project red signals");
                 in = maxSignal(in, ProjectRedAPI.transmissionAPI.getBundledInput(worldObj, pos.getX(), pos.getY(), pos.getZ(), dir.ordinal()));
                 //if(!worldObj.isRemote){LogHelper.info(" " + debugOutput(in));}
             }
-            if(Loader.isModLoaded("CharsetWires") && te.hasCapability(BUNDLED_EMITTER, dir) ){
+            if(Loader.isModLoaded(Reference.ID_CHARSET) && te.hasCapability(BUNDLED_EMITTER, dir) ){
                 in = maxSignal( in, charsetLevelShift( te.getCapability(BUNDLED_EMITTER, dir).getBundledSignal() ) );
             }
 /*
@@ -142,7 +144,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
             }*/
 
             //CC
-            if(Loader.isModLoaded("ComputerCraft")){
+            if(Loader.isModLoaded(Reference.ID_COMPUTERCRAFT)){
                 int ccSignal = ComputerCraftAPI.getBundledRedstoneOutput(worldObj, pos.offset(dir), dir.getOpposite());
                 if(ccSignal != -1){ //there is a signal
                     //convert to unsigned byte array
@@ -182,7 +184,7 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 //            }
 
             //if(!worldObj.isRemote){LogHelper.info(" tile " + te + " is ICB? " + (te instanceof IConduitBundle));}
-            if(Loader.isModLoaded("EnderIO") && te instanceof IConduitBundle && ((IConduitBundle)te).hasType(IRedstoneConduit.class)){
+            if(Loader.isModLoaded(Reference.ID_ENDER_IO) && te instanceof IConduitBundle && ((IConduitBundle)te).hasType(IRedstoneConduit.class)){
                 //if(!worldObj.isRemote){LogHelper.info(" tile " + te + " is EIO conduit bundle? " + (te instanceof IConduitBundle));}
                 IRedstoneConduit ter = ((IConduitBundle)te).getConduit(IRedstoneConduit.class);
                 //if(!worldObj.isRemote){LogHelper.info("found EIO " + dir);}
@@ -291,13 +293,13 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 
     //redlogic
     @Override
-    @Optional.Method(modid="RedLogic")
+    @Optional.Method(modid=Reference.ID_REDLOGIC)
     public boolean connects(IWire wire, int blockFace, int fromDirection) {
         return wire instanceof IBundledWire;
     }
 
     @Override
-    @Optional.Method(modid="RedLogic")
+    @Optional.Method(modid=Reference.ID_REDLOGIC)
     public boolean connectsAroundCorner(IWire wire, int blockFace, int fromDirection) {
         return false;
     }
@@ -306,13 +308,13 @@ public class TEBundledReceiver extends TileEntity implements IBundledUpdatable, 
 
     //project red
     @Override
-    @Optional.Method(modid="ProjRed|Core")
+    @Optional.Method(modid=Reference.ID_PROJECT_RED)
     public boolean canConnectBundled(int side) {
         return true;
     }
 
     @Override
-    @Optional.Method(modid="ProjRed|Core")
+    @Optional.Method(modid=Reference.ID_PROJECT_RED)
     public byte[] getBundledSignal(int dir) {
         return null;//does not emit
     }

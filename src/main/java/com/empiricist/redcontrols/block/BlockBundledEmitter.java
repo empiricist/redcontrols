@@ -1,5 +1,6 @@
 package com.empiricist.redcontrols.block;
 
+import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import com.empiricist.redcontrols.utility.LogHelper;
 import com.enderio.core.common.util.DyeColor;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -48,7 +50,7 @@ public class BlockBundledEmitter extends BlockContainerBase{//} implements IRedN
         TEBundledEmitter teb = (TEBundledEmitter)thisTE;
         for(EnumFacing dir : EnumFacing.VALUES){
             TileEntity adjacent = worldIn.getTileEntity(pos.offset(dir));
-            if(adjacent instanceof IConduitBundle){
+            if(Loader.isModLoaded(Reference.ID_ENDER_IO) && adjacent instanceof IConduitBundle){
                 IRedstoneConduit rc = ((IConduitBundle) adjacent).getConduit(IRedstoneConduit.class);
                 if(rc!=null){
                     //LogHelper.info("Found redstone conduit, trying to add signals to inputs");
@@ -85,7 +87,7 @@ public class BlockBundledEmitter extends BlockContainerBase{//} implements IRedN
         TEBundledEmitter teb = (TEBundledEmitter)thisTE;
         for(EnumFacing dir : EnumFacing.VALUES){
             TileEntity adjacent = world.getTileEntity(pos.offset(dir));
-            if(adjacent instanceof IConduitBundle){
+            if(Loader.isModLoaded(Reference.ID_ENDER_IO) && adjacent instanceof IConduitBundle){
                 IRedstoneConduit rc = ((IConduitBundle) adjacent).getConduit(IRedstoneConduit.class);
                 if(rc!=null){
                     AbstractConduitNetwork net = rc.getNetwork();

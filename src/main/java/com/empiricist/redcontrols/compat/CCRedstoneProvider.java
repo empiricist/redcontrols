@@ -1,6 +1,7 @@
 package com.empiricist.redcontrols.compat;
 
 
+import com.empiricist.redcontrols.reference.Reference;
 import com.empiricist.redcontrols.tileentity.TEBundledEmitter;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -9,7 +10,7 @@ import dan200.computercraft.api.redstone.IBundledRedstoneProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-@Optional.Interface(iface = "dan200.computercraft.api.redstone.IBundledRedstoneProvider", modid = "ComputerCraft", striprefs = true)
+@Optional.Interface(iface = "dan200.computercraft.api.redstone.IBundledRedstoneProvider", modid = Reference.ID_COMPUTERCRAFT, striprefs = true)
 public class CCRedstoneProvider implements IBundledRedstoneProvider {
 
     @Override
